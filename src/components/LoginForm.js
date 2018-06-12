@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './LoginForm.css'
 import { Button } from 'antd';
 import { Input } from 'antd';
+import fire from './fire';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -18,6 +19,32 @@ class LoginForm extends Component {
         });
     }
 
+    verifyLogin = () => {
+        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+            .catch(function (error) {
+                let errorCode = error.code;
+                if (errorCode === 'auth/wrong-password') {
+                    alert('Wrong password.');
+                }
+                else if (errorCode === 'auth/invalid-credential') {
+                    alert('Credentials expired.');
+                }
+                else if (errorCode === 'auth/operation-not-allowed') {
+                    alert('Invalid type of account.');
+                }
+                else if (errorCode === 'auth/user-disabled') {
+                    alert('Your account has been disabled.');
+                }
+                else {
+                    alert('User not found. Check username or click Sign Up');
+                }
+            });
+        this.setState({
+            email: null,
+            password: null
+        })
+    }
+
     render() {
         return (
             <div className="login-container">
@@ -26,6 +53,7 @@ class LoginForm extends Component {
                         placeholder="Email"
                         onChange={(e) => this.updateInfo("email", e.target.value)}
                         value={this.state.email}
+                        onPressEnter={this.verifyLogin}
                     />
                 </div>
                 <div className="input-fields">
@@ -33,10 +61,11 @@ class LoginForm extends Component {
                         placeholder="Password"
                         type="password" onChange={(e) => this.updateInfo("password", e.target.value)}
                         value={this.state.password}
+                        onPressEnter={this.verifyLogin}
                     />
                 </div>
                 <div className="button-container">
-                    <Button>
+                    <Button onClick={this.verifyLogin}>
                         login
                     </Button>
                 </div>
