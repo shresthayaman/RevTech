@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './LoginForm.css'
+import { Redirect } from 'react-router-dom';
 import { Button } from 'antd';
 import { Input } from 'antd';
 import fire from './fire';
@@ -9,7 +10,8 @@ class LoginForm extends Component {
         super(props);
         this.state = {
             email: null,
-            password: null
+            password: null,
+            user: null
         }
     }
 
@@ -41,11 +43,15 @@ class LoginForm extends Component {
             });
         this.setState({
             email: null,
-            password: null
+            password: null,
+            user: "here"
         })
     }
 
     render() {
+        if (this.state.user) {
+            return <Redirect to="/DummyPage" />
+        }
         return (
             <div className="login-container">
                 <div className="input-fields">
