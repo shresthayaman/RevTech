@@ -35,14 +35,15 @@ class Profile extends Component {
     linkedin: "",
     github: "",
     users: [],
+    complete: false,
     id: "nyp5aa@virginia.edu",
     currentUser: [
       {
-        name: "Deepak Goel",
-        status: "student",
-        email: "dzg4az@virginia.edu",
-        github: "",
-        linkedin: "",
+        name: "",
+        status: "",
+        email: "",
+        github: "https://github.com/",
+        linkedin: "https://www.linkedin.com/",
         approve: false,
         gradYear: 2021
       }
@@ -90,13 +91,15 @@ class Profile extends Component {
         }
       }
       this.setState({
-        currentUser: newState
+        currentUser: newState,
+        complete: true
       });
     });
   }
 
   render() {
     console.log(this.state.currentUser);
+    console.log(this.state);
     return (
       <div>
         <div className="profile-container">
@@ -109,11 +112,13 @@ class Profile extends Component {
                 <Typography gutterBottom variant="headline" component="h2">
                   RevTech
                 </Typography>
-                <Typography component="p">
-                  Name: {this.state.currentUser[0].name} <br /> Position:{" "}
-                  {this.state.currentUser[0].status} <br />
-                  Email: {this.state.currentUser[0].email}
-                </Typography>
+                {this.state.complete == true && (
+                  <Typography component="p">
+                    Name: {this.state.currentUser[0].name} <br /> Position:{" "}
+                    {this.state.currentUser[0].status} <br />
+                    Email: {this.state.currentUser[0].email}
+                  </Typography>
+                )}
                 <br />
                 <br />
                 <div className="icons">
