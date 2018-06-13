@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import { Tabs, Icon, Button, Modal, Input } from "antd";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -7,6 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import "./Profile.css";
 import { SocialIcon } from "react-social-icons";
+import fire from "./fire";
 
 const TabPane = Tabs.TabPane;
 
@@ -31,7 +33,8 @@ class Profile extends Component {
     namedisplay: "Nathan Park",
     position: "Intern",
     linkedin: "",
-    github: ""
+    github: "",
+    users: []
   };
   showModal = () => {
     this.setState({
@@ -54,6 +57,19 @@ class Profile extends Component {
       [e.target.name]: e.target.value
     });
   };
+
+  componentDidMount() {
+    fire
+      .database()
+      .ref()
+      .on("value", snapshot => {
+        console.log(snapshot.val().Users);
+        this.setState({
+          users: snapshot.val().Users
+        });
+      });
+  }
+
   render() {
     console.log(this.state);
     return (
