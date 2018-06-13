@@ -28,7 +28,10 @@ class Profile extends Component {
   state = {
     visible: false,
     name: "Nathan Park",
-    position: "Intern"
+    namedisplay: "Nathan Park",
+    position: "Intern",
+    linkedin: "",
+    github: ""
   };
   showModal = () => {
     this.setState({
@@ -36,24 +39,23 @@ class Profile extends Component {
     });
   };
   handleSubmit = e => {
-    console.log(e);
     this.setState({
+      namedisplay: this.state.name,
       visible: false
     });
   };
   handleCancel = e => {
-    console.log(e);
     this.setState({
       visible: false
     });
   };
   onChange = e => {
-    console.log(e);
     this.setState({
-      visible: false
+      [e.target.name]: e.target.value
     });
   };
   render() {
+    console.log(this.state);
     return (
       <div>
         <div className="profile-container">
@@ -67,14 +69,16 @@ class Profile extends Component {
                   RevTech
                 </Typography>
                 <Typography component="p">
-                  Name: {this.state.name} Position: {this.state.position}
+                  Name: {this.state.namedisplay} Position: {this.state.position}
                 </Typography>
                 <br />
                 <br />
                 <div className="icons">
-                  <SocialIcon url="https://www.linkedin.com/in/" />
+                  <SocialIcon
+                    url={"https://www.linkedin.com/in/" + this.state.linkedin}
+                  />
                   &emsp;
-                  <SocialIcon url="https://github.com/" />
+                  <SocialIcon url={"https://github.com/" + this.state.github} />
                 </div>
                 <br /> <br /> <br />
                 <div className="setting">
@@ -106,6 +110,8 @@ class Profile extends Component {
                   >
                     <Input
                       placeholder="Enter your name"
+                      name="name"
+                      onChange={this.onChange}
                       prefix={
                         <Icon
                           type="user"
@@ -115,8 +121,9 @@ class Profile extends Component {
                     />
                     &emsp;
                     <Input
+                      name="linkedin"
                       placeholder="Enter your Linkedin Username"
-                      onChange={this.handle}
+                      onChange={this.onChange}
                       prefix={
                         <Icon
                           type="user"
@@ -126,6 +133,8 @@ class Profile extends Component {
                     />
                     &emsp;
                     <Input
+                      name="github"
+                      onChange={this.onChange}
                       placeholder="Enter your Github Username"
                       prefix={
                         <Icon
