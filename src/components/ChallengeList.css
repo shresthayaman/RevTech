@@ -1,0 +1,10 @@
+.challengeList {
+  max-width: 200px;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2%;
+  padding-right: 2%;
+}
