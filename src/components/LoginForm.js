@@ -82,8 +82,9 @@ class LoginForm extends Component {
                     />
                 </div>
                 <div className="button-container">
-                    <Button onClick={this.verifyLogin}>
-                        login
+                    <Button 
+                        onClick={this.verifyLogin}>
+                        Login
                     </Button>
                 </div>
             </div>

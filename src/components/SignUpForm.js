@@ -71,7 +71,7 @@ class SignUpForm extends Component {
                         style={{ width: 200 }}
                     >
                         <Option value="intern">Intern</Option>
-                        <Option value="alum">Alumi</Option>
+                        <Option value="alum">Alum</Option>
                         <Option value="admin">Administrator</Option>
                     </Select>
                     <Input
