@@ -2,8 +2,9 @@ import React from "react";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentAdd from "material-ui/svg-icons/content/add";
 import TextField from "material-ui/TextField";
-import Button from "@material-ui/core/Button";
 import { gray400, blue500 } from "material-ui/styles/colors";
+import 'antd/dist/antd.css';
+import { Button } from 'antd';
 
 const style = {
   marginRight: 20
