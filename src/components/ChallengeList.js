@@ -1,6 +1,6 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { List, Avatar, Icon, Button, Table } from "antd";
+import { List, Avatar, Icon, Button, Table, Input } from "antd";
 
 import ChallengeDisplay from "./ChallengeDisplay";
 import "./ChallengeList.css";
@@ -38,6 +38,13 @@ export default class ChallenegeList extends React.Component {
     return (
       <div className="challenegeList">
         <ChallengeDisplay clickedChallenge={this.state.clickedChallenge} />
+        <Search
+          placeholder="Input link to submit"
+          enterButton="Submit"
+          size="default"
+          onSearch={value => console.log(value)}
+        />
+
         <List
           itemLayout="vertical"
           size="default"
