@@ -1,0 +1,24 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-fields {
+    margin: 1%;
+    width: 70%;
+}
+
+.button-container {
+    margin-top: 1%;
+}
+
+#status-grad-year {
+    display: flex;
+    flex-direction: row;
+}
+
+#grad-year{
+    margin-left: 3%;
+}
