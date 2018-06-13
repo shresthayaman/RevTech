@@ -35,18 +35,7 @@ class Profile extends Component {
     linkedin: "",
     github: "",
     users: [],
-    id: "nyp5aa@virginia.edu",
-    currentUser: [
-      {
-        name: "Deepak Goel",
-        status: "student",
-        email: "dzg4az@virginia.edu",
-        github: "",
-        linkedin: "",
-        approve: false,
-        gradYear: 2021
-      }
-    ]
+    id: "nyp5aa@virginia.edu"
   };
   showModal = () => {
     this.setState({
@@ -71,32 +60,19 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    const usersRef = fire.database().ref("Users");
-    console.log(usersRef);
-    usersRef.on("value", snapshot => {
-      let users = snapshot.val();
-      let newState = [];
-      for (let user in users) {
-        if (users[user].email === this.state.id) {
-          newState.push({
-            name: users[user].name,
-            approve: users[user].approve,
-            linkedin: users[user].linkedin,
-            status: users[user].status,
-            email: users[user].email,
-            gradYear: users[user].gradYear,
-            github: users[user].github
-          });
-        }
-      }
-      this.setState({
-        currentUser: newState
+    fire
+      .database()
+      .ref()
+      .on("value", snapshot => {
+        console.log(snapshot.val().Users);
+        this.setState({
+          users: snapshot.val().Users
+        });
       });
-    });
   }
 
   render() {
-    console.log(this.state.currentUser);
+    console.log(this.state);
     return (
       <div>
         <div className="profile-container">
@@ -110,16 +86,17 @@ class Profile extends Component {
                   RevTech
                 </Typography>
                 <Typography component="p">
-                  Name: {this.state.currentUser[0].name} <br /> Position:{" "}
-                  {this.state.currentUser[0].status} <br />
-                  Email: {this.state.currentUser[0].email}
+                  Name: {this.state.namedisplay} <br /> Position:{" "}
+                  {this.state.position} <br /> Email: {this.state.id}
                 </Typography>
                 <br />
                 <br />
                 <div className="icons">
-                  <SocialIcon url={this.state.currentUser[0].linkedin} />
+                  <SocialIcon
+                    url={"https://www.linkedin.com/in/" + this.state.linkedin}
+                  />
                   &emsp;
-                  <SocialIcon url={this.state.currentUser[0].github} />
+                  <SocialIcon url={"https://github.com/" + this.state.github} />
                 </div>
                 <br /> <br /> <br />
                 <div className="setting">
