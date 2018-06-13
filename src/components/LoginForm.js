@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import './LoginForm.css'
+import './LoginSignUpForm.css'
 import { Redirect } from 'react-router-dom';
-import { Button } from 'antd';
-import { Input } from 'antd';
+import { Button, Input } from 'antd';
 import fire from './fire';
 
 class LoginForm extends Component {
@@ -18,6 +17,18 @@ class LoginForm extends Component {
     updateInfo = (field, e) => {
         this.setState({
             [field]: e
+        });
+    }
+
+    componentDidMount() {
+        fire.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.setState({ user });
+                localStorage.setItem("user", user.uid);
+            } else {
+                this.setState({ user: null });
+                localStorage.removeItem("user");
+            }
         });
     }
 
@@ -42,14 +53,14 @@ class LoginForm extends Component {
                 }
             });
         this.setState({
-            email: null,
-            password: null,
-            user: "here"
-        })
+            email: "",
+            password: ""
+        });
     }
 
     render() {
         if (this.state.user) {
+            console.log("gets here");
             return <Redirect to="/DummyPage" />
         }
         return (
