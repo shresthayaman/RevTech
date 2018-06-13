@@ -11,11 +11,23 @@ const { Header, Sider, Content } = Layout;
 
 
 export default class SideBar extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+       tab: 0
+    };
+  }
+
+
+
   handleMenuClick1(){
   console.log("Hello!")
 
   }
     handleMenuClick2(){
+      this.setState({
+        tab: 1
+      })
       console.log("happy")
       return 
       <div>
@@ -41,6 +53,7 @@ export default class SideBar extends React.Component {
 
    state = {
     collapsed: false,
+
     
   };
   toggle = () => {
@@ -51,7 +64,7 @@ export default class SideBar extends React.Component {
 
 
 
-  
+
   render() {
     return (
       <Layout>
@@ -104,11 +117,16 @@ export default class SideBar extends React.Component {
               onClick={this.toggle}
             />
           </Header>
+
+
+
           <Content style={{ margin: '155px 16px', padding: 24, background: '#fff', minHeight: 380, marginTop:30 }}>
             <img src={require("./dickbutt.jpg")} className="Nathan" />
+            {this.state.tab === 1 && <InputDetails />}
+
             <div id="divId1">
             </div>
-            Content
+            
           </Content>
         </Layout>
       </Layout>
