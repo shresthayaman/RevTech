@@ -3,6 +3,7 @@ import "./App.css";
 import InputDetails from "./components/ContractInputDetails";
 import DisplayContracts from "./components/ContractInput";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import SideBar from "./components/SideBar"
 
 class App extends Component {
   constructor(props) {
@@ -22,13 +23,9 @@ class App extends Component {
 
   render() {
     return (
+
       <div className="App">
-        <MuiThemeProvider>
-          <InputDetails
-            addContract={contract => this.updateContracts(contract)}
-          />
-        </MuiThemeProvider>
-        <DisplayContracts showAll={this.state.contractList} />
+        <SideBar />
       </div>
     );
   }
