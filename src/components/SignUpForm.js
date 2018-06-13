@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Input, Select } from 'antd';
 import './LoginSignUpForm.css'
+import fire from './fire'
 
 const Option = Select.Option;
 
@@ -11,14 +12,37 @@ class SignUpForm extends Component {
             name: null,
             email: null,
             status: null,
-            gradYear: null,
-            major: null
+            gradYear: null
         }
     }
 
     updateInfo = (field, e) => {
         this.setState({
             [field]: e
+        });
+    }
+
+    submitApplication = () => {
+        if (this.state.name && this.state.email && this.state.status && this.state.gradYear) {
+            let application = {
+                name: this.state.name,
+                linkedin: "",
+                status: this.state.status,
+                email: this.state.email,
+                gradYear: this.state.gradYear,
+                github: "",
+                approve: false
+            }
+            fire.database().ref('Users').push(application);
+        }
+        else {
+            alert("did not fill in all the fields");
+        }
+        this.setState({
+            name: null,
+            email: null,
+            status: null,
+            gradYear: null
         });
     }
 
@@ -58,7 +82,7 @@ class SignUpForm extends Component {
                     />
                 </div>
                 <div className="button-container">
-                    <Button>
+                    <Button onClick={this.submitApplication}>
                         Apply
                     </Button>
                 </div>
