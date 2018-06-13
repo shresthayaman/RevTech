@@ -29,10 +29,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Landing/>
+        <InputDetails />
         <Identity />
-        <SideBar />
-        <DailyChallenge />
       </div>
     );
   }
