@@ -33,22 +33,8 @@ export default class ChallenegeDisplay extends React.Component {
     console.log(this.state.submittedLink);
     return (
       <div>
-        <Card className="card" title={this.props.clickedChallenge.title}>
-          {this.props.clickedChallenge.description}akhdsfljahflkdfhakjsfh
-          <br />
-          asdfasdfasdfasdfadsfasdfadsf<br />
-          sdfasdfaasdfasfasdfasdfasdfasdf<br />
-          asdfasdfasdfasdfadsfasdfadsf<br />
-          sdfasdfaasdfasfasdfasdfasdfasdf<br />
-          asdfasdfasdfasdfadsfasdfadsf<br />
-          sdfasdfaasdfasfasdfasdfasdfasdf<br />
-          asdfasdfasdfasdfadsfasdfadsf<br />
-          sdfasdfaasdfasfasdfasdfasdfasdf<br />
-          asdfasdfasdfasdfadsfasdfadsf<br />
-          sdfasdfaasdfasfasdfasdfasdfasdf<br />
-          asdfasdfasdfasdfadsfasdfadsf<br />
-          sdfasdfaasdfasfasdfasdfasdfasdf<br />
-        </Card>
+        <h1>{this.props.clickedChallenge.title}</h1>
+        <Card className="card">{this.props.clickedChallenge.detail}</Card>
 
         <LinkInput
           placeholder={

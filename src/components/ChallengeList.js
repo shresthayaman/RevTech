@@ -1,33 +1,46 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { List, Avatar, Icon, Button } from "antd";
-
+import { List } from "antd";
 import ChallengeDisplay from "./ChallengeDisplay";
 import "./ChallengeList.css";
-
-const listData = [];
-for (let i = 0; i < 35; i++) {
-  listData.push({
-    title: `Daily Challenege ${i}`,
-    description: `Ant Design Description ${i}`,
-    dueDate: `1/${i}/18`
-  });
-}
+import fire from "./fire";
 
 export default class ChallenegeList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      challenegeArray: [],
+      challengeArray: [],
       clickedChallenge: {
-        title: "Daily Challenege",
-        description:
-          "Ant Design, a design language for background applications,",
-        dueDate: "1/21/18"
+        title: "Daily Challeneges",
+        detail:
+          "Select a specific daily challenge to obtain challenege details,",
+        dueDate: "N/A"
       }
     };
   }
 
+  //get all the daily challenges from database to obtain the data
+  componentDidMount() {
+    const fireRef = fire.database().ref("DailyChallenges");
+    fireRef.on("value", snapshot => {
+      let allChallenges = snapshot.val();
+      let tempList = [];
+      for (let challenge in allChallenges) {
+        tempList.push({
+          key: challenge,
+          title: allChallenges[challenge].title,
+          detail: allChallenges[challenge].detail,
+          dueDate: allChallenges[challenge].dueDate,
+          sumbission: allChallenges[challenge].submission
+        });
+      }
+      this.setState({
+        challengeArray: tempList
+      });
+    });
+  }
+
+  //change the challenge stored in state when another challenge is selected
   handleClick = item => {
     this.setState({
       clickedChallenge: item
@@ -36,19 +49,17 @@ export default class ChallenegeList extends React.Component {
 
   render() {
     return (
-      <div className="challenegeList">
+      <div className="challengeList">
         <ChallengeDisplay clickedChallenge={this.state.clickedChallenge} />
 
         <List
           itemLayout="vertical"
           size="default"
           pagination={{
-            onChange: page => {
-              console.log(page);
-            },
+            onChange: page => {},
             pageSize: 5
           }}
-          dataSource={listData}
+          dataSource={this.state.challengeArray}
           renderItem={item => (
             <List.Item key={item.title}>
               <div className="listItem">
