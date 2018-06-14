@@ -4,5 +4,30 @@
 }
 
 .Con-buttons {
-  display: inline-flex;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 3%;
+  right: 3%;
+}
+
+.Card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  border-bottom: solid;
+  border-bottom-width: 1pt;
+  border-bottom-color: rgba(0, 0, 0, 0.257858);
+}
+
+.Details {
+  height: 80px;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
