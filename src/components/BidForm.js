@@ -29,30 +29,24 @@ class BidForm extends Component {
     if (this.state.hours !== 0 && this.state.rate !== 0) {
       //something
       let contractId = this.props.contract.id;
-      let newBids = [];
-      let shallowCopy = [];
-      const bidsRef = fire.database().ref("Contracts");
+      const bidsRef = fire.database().ref(`/Contracts/${contractId}/bids`);
+      let curBids = [];
       bidsRef.on("value", snapshot => {
-        for (let contract in snapshot.val()) {
-          if (contract === contractId) {
-            shallowCopy = snapshot.val()[contract].bids;
-          }
+        let bids = snapshot.val();
+        for (let bid in bids) {
+          curBids.push({
+            hours: bids[bid].hours,
+            rate: bids[bid].rate,
+            notes: bids[bid].notes,
+            bidder: bids[bid].bidder
+          });
         }
-        shallowCopy.push(bid);
-        bidsRef.set("/Contract/${contractId}").set({
-          bids: shallowCopy
-        });
-        // let bids = [];
-        // console.log(snapshot.val());
-        // for (let bid in bids) {
-        //   newBids.push(bid);
-        // }
-        // console.log(newBids);
-        // this.setState({
-        //   bids: bids
-        // });
       });
-      bidsRef.set(newBids);
+      curBids.push(bid);
+      fire
+        .database()
+        .ref(`/Contracts/${contractId}`)
+        .update({ bids: curBids });
     } else {
       alert("Please complete the bid form.");
     }

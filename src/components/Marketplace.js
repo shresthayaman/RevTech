@@ -8,6 +8,7 @@ class Marketplace extends Component {
     super(props);
     this.state = {
       approvedContracts: [],
+      allContracts: [],
       id: "nyp5aa@virginia.edu"
     };
   }
@@ -16,6 +17,7 @@ class Marketplace extends Component {
     contractsRef.on("value", snapshot => {
       let contracts = snapshot.val();
       let newState = [];
+      let newerState = [];
       for (let contract in contracts) {
         if (contracts[contract].approve === true) {
           newState.push({
@@ -28,9 +30,19 @@ class Marketplace extends Component {
             award: contracts[contract].award
           });
         }
+        newerState.push({
+          id: contract,
+          approve: contracts[contract].approve,
+          company: contracts[contract].company,
+          detail: contracts[contract].detail,
+          contact: contracts[contract].contact,
+          bids: contracts[contract].bids,
+          award: contracts[contract].award
+        });
       }
       this.setState({
-        approvedContracts: newState
+        approvedContracts: newState,
+        allContracts: newerState
       });
     });
   }

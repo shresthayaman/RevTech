@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 import Marketplace from "./components/Marketplace.js";
 import DailyChallenge from "./components/DailyChallenge";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
