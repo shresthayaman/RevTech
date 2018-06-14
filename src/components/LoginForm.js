@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import './LoginSignUpForm.css'
 import { Redirect } from 'react-router-dom';
-import { Button, Input } from 'antd';
+import { Button, Input, Icon } from 'antd';
 import fire from './fire';
 
 class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: null,
-            password: null,
+            email: "",
+            password: "",
             user: null
         }
     }
@@ -17,6 +17,12 @@ class LoginForm extends Component {
     updateInfo = (field, e) => {
         this.setState({
             [field]: e
+        });
+    }
+
+    clearInfo = (field) => {
+        this.setState({
+            [field]: ""
         });
     }
 
@@ -71,6 +77,7 @@ class LoginForm extends Component {
                         onChange={(e) => this.updateInfo("email", e.target.value)}
                         value={this.state.email}
                         onPressEnter={this.verifyLogin}
+                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                     />
                 </div>
                 <div className="input-fields">
@@ -79,10 +86,13 @@ class LoginForm extends Component {
                         type="password" onChange={(e) => this.updateInfo("password", e.target.value)}
                         value={this.state.password}
                         onPressEnter={this.verifyLogin}
+                        prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                     />
                 </div>
                 <div className="button-container">
-                    <Button onClick={this.verifyLogin}>
+                    <Button
+                        onClick={this.verifyLogin}
+                        disabled={this.state.email === "" || this.state.password === ""}>
                         login
                     </Button>
                 </div>

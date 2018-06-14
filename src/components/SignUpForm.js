@@ -9,10 +9,10 @@ class SignUpForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: null,
-            email: null,
-            status: null,
-            gradYear: null
+            name: "",
+            email: "",
+            status: "",
+            gradYear: ""
         }
     }
 
@@ -82,7 +82,10 @@ class SignUpForm extends Component {
                     />
                 </div>
                 <div className="button-container">
-                    <Button onClick={this.submitApplication}>
+                    <Button
+                        onClick={this.submitApplication}
+                        disabled={this.state.name === "" || this.state.email === "" || this.state.status === "" || this.state.gradYear === ""}
+                    >
                         Apply
                     </Button>
                 </div>
