@@ -10,6 +10,7 @@ class LoginForm extends Component {
         this.state = {
             email: "",
             password: "",
+            admin: false,
             user: null
         }
     }
@@ -58,6 +59,16 @@ class LoginForm extends Component {
                     alert('User not found. Check username or click Sign Up');
                 }
             });
+        fire.database().ref('Users').on('value', (snapshot) => {
+            let allUsers = snapshot.val();
+            for (let user in allUsers) {
+                if (allUsers[user].status === "admin" && this.state.email === allUsers[user].email) {
+                    this.setState({
+                        admin: true
+                    })
+                }
+            }
+        })
         this.setState({
             email: "",
             password: ""
@@ -66,8 +77,12 @@ class LoginForm extends Component {
 
     render() {
         if (this.state.user) {
-            console.log("gets here");
-            return <Redirect to="/DummyPage" />
+            if (this.state.admin) {
+                return <Redirect to="/AdminPage" />
+            }
+            else {
+                return <Redirect to="/DummyPage" />
+            }
         }
         return (
             <div className="login-container">

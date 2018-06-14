@@ -40,8 +40,6 @@ export default class InputDetails extends Component {
       }
       let contract = {
         approve: true,
-        award: ["dummy"],
-        bids: ["dummy"],
         company: this.state.company,
         contact: this.state.email,
         detail: this.state.details,
@@ -104,6 +102,7 @@ export default class InputDetails extends Component {
             variant="raised"
             color="primary"
             onClick={this.handleClick}
+            disabled={this.state.company === "" || this.state.companyPhone === "" || this.state.details === "" || this.state.email === ""}
           >
             Submit
           </Button>
