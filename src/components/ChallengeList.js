@@ -31,7 +31,7 @@ export default class ChallenegeList extends React.Component {
           title: allChallenges[challenge].title,
           detail: allChallenges[challenge].detail,
           dueDate: allChallenges[challenge].dueDate,
-          sumbission: allChallenges[challenge].submission
+          submission: allChallenges[challenge].submission
         });
       }
       this.setState({
