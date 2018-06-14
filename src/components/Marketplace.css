@@ -1,0 +1,8 @@
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Con-buttons {
+  display: inline-flex;
+}
