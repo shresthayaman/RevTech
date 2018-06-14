@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
+import Marketplace from "./components/Marketplace.js";
 import DailyChallenge from "./components/DailyChallenge";
-import InputDetails from "./components/ContractInputDetails";
-import DisplayContracts from "./components/ContractInput";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import SideBar from "./components/SideBar"
-import fire from './components/fire';
-import Identity from './components/Identity';
-import Landing from "./components/Landing.js"
-
+import SideBar from "./components/SideBar";
+import fire from "./components/fire";
+import Identity from "./components/Identity";
+import Landing from "./components/Landing.js";
 
 class App extends Component {
   constructor(props) {
@@ -29,10 +27,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Landing/>
-        <Identity />
-        <SideBar />
-        <DailyChallenge />
+        <Marketplace />
       </div>
     );
   }
