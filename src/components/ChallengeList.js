@@ -56,7 +56,7 @@ export default class ChallenegeList extends React.Component {
           bordered
           header={
             <div className="listHeader">
-              <div>Daily Challenege</div>
+              <div>Daily Challeneges</div>
               <div>Due Date</div>
             </div>
           }
