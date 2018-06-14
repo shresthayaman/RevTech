@@ -45,19 +45,14 @@ class Profile extends Component {
         github: "https://github.com/",
         linkedin: "https://www.linkedin.com/",
         approve: false,
-        gradYear: 2021
+        gradYear: 2021,
+        id: ""
       }
     ]
   };
   showModal = () => {
     this.setState({
       visible: true
-    });
-  };
-  handleSubmit = e => {
-    this.setState({
-      namedisplay: this.state.name,
-      visible: false
     });
   };
   handleCancel = e => {
@@ -77,6 +72,7 @@ class Profile extends Component {
     usersRef.on("value", snapshot => {
       let users = snapshot.val();
       let newState = [];
+      console.log(users);
       for (let user in users) {
         if (users[user].email === this.state.id) {
           newState.push({
@@ -86,7 +82,8 @@ class Profile extends Component {
             status: users[user].status,
             email: users[user].email,
             gradYear: users[user].gradYear,
-            github: users[user].github
+            github: users[user].github,
+            id: user
           });
         }
       }
@@ -97,9 +94,36 @@ class Profile extends Component {
     });
   }
 
-  render() {
+  handleSubmit = e => {
+    this.setState({
+      namedisplay: this.state.name,
+      visible: false
+    });
     console.log(this.state.currentUser);
-    console.log(this.state);
+    console.log(this.state.currentUser[0].id);
+    if (this.state.complete == true) {
+      console.log(this.state.currentUser[0].id);
+      fire
+        .database()
+        .ref(`/Users/${this.state.currentUser[0].id}`)
+        .update(
+          {
+            linkedin: this.state.linkedin,
+            github: this.state.github
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+            }
+          }
+        );
+    }
+  };
+
+  render() {
+    // console.log(this.state.currentUser);
     return (
       <div>
         <div className="profile-container">
@@ -135,6 +159,7 @@ class Profile extends Component {
                     Edit Profile{" "}
                   </Button>
                 </div>
+                {/* Edit Profile */}
                 <div>
                   <Modal
                     title="Basic Modal"
@@ -154,6 +179,7 @@ class Profile extends Component {
                       </Button>
                     ]}
                   >
+                    {/* Name Input */}
                     <Input
                       placeholder="Enter your name"
                       name="name"
@@ -166,6 +192,7 @@ class Profile extends Component {
                       }
                     />
                     &emsp;
+                    {/* Linkedin Input */}
                     <Input
                       name="linkedin"
                       placeholder="Enter your Linkedin Username"
@@ -178,6 +205,7 @@ class Profile extends Component {
                       }
                     />
                     &emsp;
+                    {/* Github Input */}
                     <Input
                       name="github"
                       onChange={this.onChange}

@@ -186,3 +186,23 @@ class Profile extends Component {
 }
 
 export default Profile;
+
+
+
+fire
+      .database()
+      .ref("Users/" + this.state.currentUser[0].id)
+      .set(
+        {
+          name: this.state.name,
+          linkedin: this.state.linkedin,
+          github: this.state.github
+        },
+        function(error) {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
+          }
+        }
+      );
