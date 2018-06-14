@@ -8,22 +8,27 @@ export default class ChallenegeDisplay extends React.Component {
     super(props);
     this.state = {
       previousLink: "",
-      buttonDisplay: "Submit",
-      buttonType: "Primary"
+      alreadySubmitted: false
     };
   }
 
   componentWillReceiveProps(nextProps) {
     let link = "";
+    let updatedState = {
+      previousLink: "",
+      alreadySubmitted: false
+    };
     if (this.props.clickedChallenge !== nextProps.clickedChallenge) {
       nextProps.clickedChallenge.submission.map(submission => {
         if (fire.auth().currentUser.email === submission.email) {
           link = submission.link;
-          this.setState({
-            previousLink: link
-          });
+          updatedState = {
+            previousLink: link,
+            alreadySubmitted: true
+          };
         }
       });
+      this.setState(updatedState);
     }
   }
 
@@ -59,6 +64,7 @@ export default class ChallenegeDisplay extends React.Component {
   };
 
   render() {
+    console.log(this.state.previousLink);
     return (
       <div>
         <h1>{this.props.clickedChallenge.title}</h1>
@@ -75,12 +81,12 @@ export default class ChallenegeDisplay extends React.Component {
             }
           />
           <Button
-            type={this.state.previousLink === "" ? "primary" : "danger"}
+            type={this.state.alreadySubmitted === false ? "primary" : "danger"}
             icon="download"
             size="default"
             onClick={() => this.handleLinkSubmit()}
           >
-            {this.state.previousLink === "" ? "Submit" : "Re-Submit"}
+            {this.state.alreadySubmitted === false ? "Submit" : "Re-Submit"}
           </Button>
         </div>
       </div>

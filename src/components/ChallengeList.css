@@ -1,4 +1,4 @@
-.challengeList {
+.challengeDisplayAndList {
   max-width: 60%;
   margin-left: 20%;
   margin-right: 20%;
@@ -7,6 +7,15 @@
 .listItem {
   display: flex;
   justify-content: space-between;
-  padding-left: 2%;
+  padding-left: 1%;
+  padding-right: 2%;
+}
+
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  text-decoration: underline;
+  padding-left: 1%;
   padding-right: 2%;
 }

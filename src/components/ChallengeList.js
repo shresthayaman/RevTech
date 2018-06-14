@@ -49,10 +49,17 @@ export default class ChallenegeList extends React.Component {
 
   render() {
     return (
-      <div className="challengeList">
+      <div className="challengeDisplayAndList">
         <ChallengeDisplay clickedChallenge={this.state.clickedChallenge} />
 
         <List
+          bordered
+          header={
+            <div className="listHeader">
+              <div>Daily Challenege</div>
+              <div>Due Date</div>
+            </div>
+          }
           itemLayout="vertical"
           size="default"
           pagination={{
