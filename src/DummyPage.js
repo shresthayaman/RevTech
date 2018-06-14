@@ -23,9 +23,6 @@ class DummyPage extends Component {
         }
         return (
             <div>
-                <div>
-                    This is the intern and alumi page
-            </div>
                 <button onClick={this.logout}> logout </button>
             </div>
         );

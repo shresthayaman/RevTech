@@ -21,12 +21,6 @@ class LoginForm extends Component {
         });
     }
 
-    clearInfo = (field) => {
-        this.setState({
-            [field]: ""
-        });
-    }
-
     componentDidMount() {
         fire.auth().onAuthStateChanged(user => {
             if (user) {

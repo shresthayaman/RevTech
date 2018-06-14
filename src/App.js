@@ -8,6 +8,7 @@ import SideBar from "./components/SideBar"
 import fire from './components/fire';
 import Identity from './components/Identity';
 import Landing from "./components/Landing.js"
+import PendingContracts from "./components/PendingContracts"
 
 
 class App extends Component {
@@ -18,8 +19,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <InputDetails />
-        <Identity />
+        <PendingContracts />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import fire from './components/fire';
 import { Link, Redirect } from 'react-router-dom';
+import SideBar from "./components/SideBar"
 
 class DummyPage extends Component {
     constructor(props) {
@@ -23,10 +24,8 @@ class DummyPage extends Component {
         }
         return (
             <div>
-                <div>
-                    Admin Page
-            </div>
                 <button onClick={this.logout}> logout </button>
+                <SideBar />
             </div>
         );
     }
