@@ -1,28 +1,19 @@
 import React from "react";
-import FloatingActionButton from "material-ui/FloatingActionButton";
-import ContentAdd from "material-ui/svg-icons/content/add";
-import TextField from "material-ui/TextField";
-import { gray400, blue500 } from "material-ui/styles/colors";
-import 'antd/dist/antd.css';
-import { Button } from 'antd';
+
+import TextField from "@material-ui/core/TextField";
+
+import "antd/dist/antd.css";
+import { Button } from "antd";
 
 const style = {
   marginRight: 20
 };
 
 const styles = {
-  errorStyle: {
-    color: gray400
-  },
-  underlineStyle: {
-    borderColor: gray400
-  },
-  floatingLabelStyle: {
-    color: gray400
-  },
-  floatingLabelFocusStyle: {
-    color: blue500
-  }
+  errorStyle: {},
+  underlineStyle: {},
+  floatingLabelStyle: {},
+  floatingLabelFocusStyle: {}
 };
 
 export default class InputDetails extends React.Component {
@@ -39,8 +30,8 @@ export default class InputDetails extends React.Component {
   handleClick() {
     if (
       document.getElementById("company").value === "" ||
-      document.getElementById("details").value === ""||
-      document.getElementById("email").value === ""||
+      document.getElementById("details").value === "" ||
+      document.getElementById("email").value === "" ||
       document.getElementById("phoneNumber").value === ""
     ) {
       alert(
@@ -71,7 +62,6 @@ export default class InputDetails extends React.Component {
   render() {
     return (
       <div>
-    
         <TextField
           id="company"
           floatingLabelText="Company Name"
@@ -86,14 +76,14 @@ export default class InputDetails extends React.Component {
           floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
         />
         <br />
-         <TextField
+        <TextField
           id="email"
           floatingLabelText="Company Email"
           floatingLabelStyle={styles.floatingLabelStyle}
           floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
         />
         <br />
-         <TextField
+        <TextField
           id="phoneNumber"
           floatingLabelText="Contact Number"
           floatingLabelStyle={styles.floatingLabelStyle}
@@ -105,8 +95,8 @@ export default class InputDetails extends React.Component {
           variant="raised"
           color="primary"
           onClick={event => this.handleClick()}
-        >Submit
-          
+        >
+          Submit
         </Button>
       </div>
     );
