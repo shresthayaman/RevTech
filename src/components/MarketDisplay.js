@@ -11,7 +11,7 @@ class MarketDisplay extends Component {
     super(props);
     this.state = {
       visible: false,
-      visibleView: false,
+      visibleDetails: false,
       confirmLoading: false,
       hours: "",
       rate: "",
@@ -21,7 +21,8 @@ class MarketDisplay extends Component {
       bidButton: "Bid",
       bidButtonColor: "#389e0d",
       didBid: false,
-      previousBid: "No bid found"
+      previousBid: "No bid found",
+      totalBids: 0
     };
   }
   updateText = (field, value) => {
@@ -44,15 +45,15 @@ class MarketDisplay extends Component {
     });
   };
   //Will use if there is more information to display
-  handleClickView = () => {
+  handleClickDetails = () => {
     this.setState({
-      visibleView: true
+      visibleDetails: true
     });
   };
-  handleCancelView = e => {
+  handleCancelDetails = e => {
     console.log(e);
     this.setState({
-      visibleView: false
+      visibleDetails: false
     });
   };
   submitBid = () => {
@@ -109,7 +110,8 @@ class MarketDisplay extends Component {
           bidButton: "Update Bid",
           bidButtonColor: "#1890FF",
           didBid: true,
-          previousBid: prevBidString
+          previousBid: prevBidString,
+          totalBids: curBids.length
         });
       } else {
         //Make shallow copy
@@ -145,7 +147,8 @@ class MarketDisplay extends Component {
           bidButton: "Update Bid",
           bidButtonColor: "#1890FF",
           didBid: true,
-          previousBid: prevBidString
+          previousBid: prevBidString,
+          totalBids: curBids.length
         });
       }
       //clear state
@@ -185,7 +188,8 @@ class MarketDisplay extends Component {
           bidButton: "Update Bid",
           bidButtonColor: "#1890FF",
           didBid: true,
-          previousBid: prevBidString
+          previousBid: prevBidString,
+          totalBids: curBids.length
         });
       }
     }
@@ -196,6 +200,8 @@ class MarketDisplay extends Component {
     return (
       <div>
         <Card
+          elevation={12}
+          square={false}
           style={{
             margin: "1.8vw",
             width: "21vw",
@@ -219,7 +225,7 @@ class MarketDisplay extends Component {
           </div>
           <div className="Con-buttons">
             <div>
-              <Button onClick={this.handleClickView}>View</Button>
+              <Button onClick={this.handleClickDetails}>Details</Button>
               &emsp;
             </div>
             <div>
@@ -288,11 +294,11 @@ class MarketDisplay extends Component {
         <div>
           <Modal
             title={contract.company}
-            visible={this.state.visibleView}
-            onOk={this.handleOkView}
-            onCancel={this.handleCancelView}
+            visible={this.state.visibleDetails}
+            onOk={this.handleOkDetails}
+            onCancel={this.handleCancelDetails}
             footer={[
-              <Button key="cancel" onClick={this.handleCancelView}>
+              <Button key="cancel" onClick={this.handleCancelDetails}>
                 Close
               </Button>
             ]}
@@ -306,8 +312,12 @@ class MarketDisplay extends Component {
               {contract.contact}
             </p>
             <p>
-              <strong>Previous bid: </strong>
+              <strong>Your previous bid: </strong>
               {this.state.previousBid}
+            </p>
+            <p>
+              <strong>Total bids: </strong>
+              {this.state.totalBids}
             </p>
           </Modal>
         </div>
