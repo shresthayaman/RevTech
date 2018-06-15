@@ -18,7 +18,9 @@ class MarketDisplay extends Component {
       notes: "",
       user: "",
       bids: [],
-      bidButton: "Bid"
+      bidButton: "Bid",
+      bidButtonColor: "#389e0d",
+      didBid: false
     };
   }
   updateText = (field, value) => {
@@ -31,24 +33,6 @@ class MarketDisplay extends Component {
     this.setState({
       visible: true
     });
-    let contractId = this.props.contract.id;
-    const bidsRef = fire.database().ref(`/Contracts/${contractId}/bids`);
-    let curBids = [];
-    bidsRef.on("value", snapshot => {
-      let bids = snapshot.val();
-      for (let bid in bids) {
-        curBids.push({
-          bidder: bids[bid].bidder
-        });
-      }
-    });
-    for (let bid in curBids) {
-      if (bid.bidder === this.props.id) {
-        this.setState({
-          bidButton: "Update Bid"
-        });
-      }
-    }
   };
   handleCancel = () => {
     this.setState({
@@ -86,29 +70,64 @@ class MarketDisplay extends Component {
         visible: false,
         confirmLoading: false
       });
-    }, 1000);
+    }, 500);
     if (this.state.hours && this.state.rate) {
-      //Make shallow copy
-      let contractId = this.props.contract.id;
-      const bidsRef = fire.database().ref(`/Contracts/${contractId}/bids`);
-      let curBids = [];
-      bidsRef.on("value", snapshot => {
-        let bids = snapshot.val();
-        for (let bid in bids) {
-          curBids.push({
-            hours: bids[bid].hours,
-            rate: bids[bid].rate,
-            notes: bids[bid].notes,
-            bidder: bids[bid].bidder
+      //Case for checking if the user has an existing bid for the contract
+      if (this.state.didBid) {
+        let contractId = this.props.contract.id;
+        const bidsRef = fire.database().ref(`/Contracts/${contractId}/bids`);
+        let curBids = [];
+        bidsRef.on("value", snapshot => {
+          let bids = snapshot.val();
+          for (let bid in bids) {
+            if (bids[bid].bidder !== this.props.id) {
+              curBids.push({
+                hours: bids[bid].hours,
+                rate: bids[bid].rate,
+                notes: bids[bid].notes,
+                bidder: bids[bid].bidder
+              });
+            }
+          }
+        });
+        //Append new bid to shallow copy
+        curBids.push(bid);
+        fire
+          .database()
+          .ref(`/Contracts/${contractId}`)
+          .update({
+            bids: curBids
           });
-        }
-      });
-      //Append new bid to shallow copy
-      curBids.push(bid);
-      fire
-        .database()
-        .ref(`/Contracts/${contractId}`)
-        .update({ bids: curBids });
+      } else {
+        //Make shallow copy
+        let contractId = this.props.contract.id;
+        const bidsRef = fire.database().ref(`/Contracts/${contractId}/bids`);
+        let curBids = [];
+        bidsRef.on("value", snapshot => {
+          let bids = snapshot.val();
+          for (let bid in bids) {
+            curBids.push({
+              hours: bids[bid].hours,
+              rate: bids[bid].rate,
+              notes: bids[bid].notes,
+              bidder: bids[bid].bidder
+            });
+          }
+        });
+        //Append new bid to shallow copy
+        curBids.push(bid);
+        fire
+          .database()
+          .ref(`/Contracts/${contractId}`)
+          .update({
+            bids: curBids
+          });
+        this.setState({
+          bidButton: "Update Bid",
+          bidButtonColor: "#1890FF",
+          didBid: true
+        });
+      }
       //clear state
       this.setState({
         hours: "",
@@ -120,6 +139,28 @@ class MarketDisplay extends Component {
       alert("Please complete the bid form.");
     }
   };
+  componentDidMount() {
+    let contractId = this.props.contract.id;
+    const bidsRef = fire.database().ref(`/Contracts/${contractId}/bids`);
+    let curBids = [];
+    bidsRef.on("value", snapshot => {
+      let bids = snapshot.val();
+      for (let bid in bids) {
+        curBids.push({
+          bidder: bids[bid].bidder
+        });
+      }
+    });
+    for (let bid in curBids) {
+      if (curBids[bid].bidder === this.props.id) {
+        this.setState({
+          bidButton: "Update Bid",
+          bidButtonColor: "#1890FF",
+          didBid: true
+        });
+      }
+    }
+  }
   render() {
     const { contract, id } = this.props;
     const { visible, confirmLoading } = this.state;
@@ -153,8 +194,12 @@ class MarketDisplay extends Component {
               &emsp;
             </div>
             <div>
-              <Button type="primary" onClick={this.handleClickBid}>
-                Bid
+              <Button
+                type="primary"
+                style={{ background: this.state.bidButtonColor }}
+                onClick={this.handleClickBid}
+              >
+                {this.state.bidButton}
               </Button>
             </div>
           </div>
