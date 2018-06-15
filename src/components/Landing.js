@@ -4,13 +4,14 @@ import company from "./images/company.jpg";
 import "./Landing.css";
 import background from "./images/background.jpg"; 
 import downArrow from "./images/downArrow.png";
-import Identity from './Identity';
+import Identity from "./Identity";
 
 
 export default class Landing extends Component {
   
     render() {
-    return <div className="App">
+    return (
+      <div className="App">
        <div className='header'>
               <img
               src={background}
@@ -18,45 +19,52 @@ export default class Landing extends Component {
               style={{ maxWidth: "100%", height: "auto", opacity: .8,  maxheight: 50,
               overflow: "hidden"}} />
               <h1 className="title">RevTech</h1>
-            </div>
-            <div className="downArrow">
+      </div>
+      
+      <div className="downArrow">
             <img
-                src={downArrow}
-                onClick = "slideDown()"/></div>
+                src={downArrow}>
+                {/* onClick = "slideDown()"> */}
+            </img>
+      </div>
 
-           <div className="signUpAffiliatesBox">
-              <div className="signUpAffiliates">
-                  <Identity/></div>
-              
-              <div className="affiliatesLogin">
+      <div className="affiliatesLogin">
+          <Identity 
+            style={{position: "absolute"}}
+            className="affiliatesSignUpBox"/>
+            <p className='affiliatesLoginText'>Interns, alumni, and admins, log in here: </p>
                 <img
                   src={affiliates}
-                  className="affiliates"
-                  style={{width: "100%", height: "auto"}}/>
-              </div>
-            </div>
+                  className="image"
+                  style={{width: "100%", height: "auto", position: "relative", opacity: .8, backfacevisibility: "hidden"
 
-          <div className="downArrow">
+                }}></img>
+      </div>
+
+      <div className="downArrow">
             <img
                 src={downArrow}
-                onClick = "slideDown()"/></div>
+                onClick = "slideDown()"></img>
+      </div>
 
-          <div className='companyLogin'>
+      <div className='companyLogin'>
               <img
                 src={company}
-                className="company"
-                style ={{maxWidth: "100%", height: "auto", opacity: .8}}/>
-            </div>
-  
+                className="image"
+                style ={{maxWidth: "100%", height: "auto", opacity: 1}}></img>
+      </div>
           
-          <div>
+      <div> 
               <br/>
               <br/>
-              <p className="missionStatement">- About Us -</p>
-              <p className="missionStatement">Our goal is to foster an elite team of software developers and to remove barriers between interns, alumni, and companies.</p>
-              <br/>
-              <br/>
-          </div>  
+              <p className="missionStatement">- About Us -  </p>
+              <br/> 
+              <p className="missionStatement">Our goal is to foster an elite team of software developers.</p>
+      </div>  
+
+
     </div>
+
+    );
+    }
   }
-}

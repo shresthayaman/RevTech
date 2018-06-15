@@ -27,12 +27,7 @@
     width: 70%;
     display: inline-block; 
 }
-/* 
-.affiliatesLogin:hover .signUpAffiliates
-{
-    text-align:justify;
-    background-color: white;
-} */
+
 
 .signUpAffiliates { 
     position: absolute;
@@ -44,6 +39,8 @@
 .signUpAffiliatesBox { 
     background-color: white;
     opacity: .8;
+    position: relative;
+    z-index: 1;
 }
 
 .downArrow { 
@@ -55,6 +52,45 @@
     padding-top: 60px;
     padding-bottom: 60px;
 }
+
+  .affiliatesLogin img {
+    -webkit-transition: all 1s ease;
+       -moz-transition: all 1s ease;
+         -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+            transition: all 1s ease;
+  }
+  
+  .affiliatesLogin img:hover {
+    -webkit-filter: blur(7px);
+  } 
+
+  .affiliatesLogin:hover .identity-container{
+    opacity: 1;
+  }
+
+  .affiliatesLoginText { 
+      font-size: 30px;
+      margin-left: 25%;
+      font-family: 'Aldrich', sans-serif;
+      color: black;
+      position: absolute;
+      opacity: 1;
+  
+  }
+
+ .companyLogin img {
+    -webkit-transition: all 1s ease;
+       -moz-transition: all 1s ease;
+         -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+            transition: all 1s ease;
+  }
+   
+  .companyLogin img:hover {
+    -webkit-filter: blur(5px);
+    z-index: 300;
+  } 
 
 .AboutUs { 
     font-size: 50px;
