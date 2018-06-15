@@ -1,14 +1,35 @@
 import React, { Component } from 'react';
-import { List, Button } from 'antd';
+import { List, Button, Select } from 'antd';
 import fire from './fire';
 import "./PendingUsers.css";
+
+const Option = Select.Option;
 
 class PendingUsers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pendingUsers: null,
-            approvedUsers: null
+            pendingUsers: [],
+            approvedUsers: []
+        }
+    }
+
+    updateStatus = (e, id) => {
+        fire.database().ref(`Users/${id}`).update({
+            status: e
+        });
+    }
+
+    getStatus = (status) => {
+        if (status === "admin") {
+            console.log("admin")
+            return "Administrator"
+        }
+        else if (status === "intern") {
+            return "Intern"
+        }
+        else {
+            return "Alumni"
         }
     }
 
@@ -48,8 +69,6 @@ class PendingUsers extends Component {
         fire.database().ref(`Users/${id}`).update({
             approve: true
         });
-        console.log(email)
-        console.log(password)
         fire.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
             let errorCode = error.code;
             if (errorCode === 'auth/email-already-in-use') {
@@ -78,7 +97,7 @@ class PendingUsers extends Component {
         return (
             <div>
                 <div className="list-container">
-                    {this.state.pendingUsers !== null && <List
+                    {this.state.pendingUsers.length > 1 && <List
                         itemLayout="horizontal"
                         dataSource={this.state.pendingUsers}
                         renderItem={user => (
@@ -109,7 +128,19 @@ class PendingUsers extends Component {
                                     title={user.name}
                                 />
                                 <div className="status-toolbar">
-                                    {user.status}
+                                    {this.getStatus(user.status)}
+                                </div>
+                                <div>
+                                    <Select
+                                        id="status"
+                                        placeholder="Edit Status"
+                                        onChange={(e) => this.updateStatus(e, user.id)}
+                                        style={{ width: 200 }}
+                                    >
+                                        <Option value="intern">Intern</Option>
+                                        <Option value="alum">Alumi</Option>
+                                        <Option value="admin">Administrator</Option>
+                                    </Select>
                                 </div>
                             </List.Item>
                         )}
