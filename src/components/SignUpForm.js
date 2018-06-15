@@ -23,21 +23,35 @@ class SignUpForm extends Component {
     }
 
     submitApplication = () => {
-        if (this.state.name && this.state.email && this.state.status && this.state.gradYear) {
-            let application = {
-                name: this.state.name,
-                linkedin: "",
-                status: this.state.status,
-                email: this.state.email,
-                gradYear: this.state.gradYear,
-                github: "",
-                approve: false
+        fire.database().ref('Users').on('value', (snapshot) => {
+            let emailAlreadyExists = false;
+            let allUsers = snapshot.val();
+            for (let user in allUsers) {
+                if (allUsers[user].email === this.state.email) {
+                    emailAlreadyExists = true;
+                }
             }
-            fire.database().ref('Users').push(application);
-        }
-        else {
-            alert("did not fill in all the fields");
-        }
+            if (this.state.name && this.state.email && this.state.status && this.state.gradYear && !emailAlreadyExists) {
+                let application = {
+                    name: this.state.name,
+                    linkedin: "",
+                    status: this.state.status,
+                    email: this.state.email,
+                    gradYear: this.state.gradYear,
+                    github: "",
+                    approve: false
+                }
+                fire.database().ref('Users').push(application);
+            }
+            else {
+                if (emailAlreadyExists) {
+                    alert("This email is already in use!");
+                }
+                else {
+                    alert("did not fill in all the fields");
+                }
+            }
+        })
         this.setState({
             name: null,
             email: null,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Checkbox, Button } from 'antd';
+import { Card, Checkbox, Button, Modal } from 'antd';
 import fire from './fire'
 
 const CheckboxGroup = Checkbox.Group;
@@ -43,7 +43,12 @@ class PendingContracts extends Component {
     }
 
     deny = (id) => {
-
+        //fire.database().ref(`Contracts/${id}`).remove()
+        /*
+            that comand is to remove the contract from the database, but
+            i want a pop up to say like "are you sure you want to delete this contract" or
+            something of that nature.
+        */
     }
 
     render() {
