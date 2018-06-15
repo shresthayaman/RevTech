@@ -23,7 +23,8 @@ class PendingUsers extends Component {
                         id: user,
                         name: allUsers[user].name,
                         status: allUsers[user].status,
-                        email: allUsers[user].email
+                        email: allUsers[user].email,
+                        password: allUsers[user].password
                     }
                     notApproved.push(theUser);
                 }
@@ -43,13 +44,13 @@ class PendingUsers extends Component {
         })
     }
 
-    approve = (id, email) => {
+    approve = (id, email, password) => {
         fire.database().ref(`Users/${id}`).update({
             approve: true
         });
-        console.log("right before create user with email and password")
         console.log(email)
-        fire.auth().createUserWithEmailAndPassword(email, "helloworld").catch(function (error) {
+        console.log(password)
+        fire.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
             let errorCode = error.code;
             if (errorCode === 'auth/email-already-in-use') {
                 alert('Email entered is already in use.');
@@ -63,7 +64,10 @@ class PendingUsers extends Component {
             else {
                 alert('Weak password. Try making password longer and include digits.');
             }
-        });
+        })
+        fire.database().ref(`Users/${id}`).update({
+            password: null
+        })
     }
 
     deny = (id) => {
@@ -85,7 +89,7 @@ class PendingUsers extends Component {
                                 <div className="status-toolbar">
                                     {user.status}
                                 </div>
-                                <Button onClick={() => this.approve(user.id, user.email)}>
+                                <Button onClick={() => this.approve(user.id, user.email, user.password)}>
                                     Approve
                                 </Button>
                                 <Button type="danger" onClick={() => this.deny(user.id, user.email)}>

@@ -39,7 +39,7 @@ export default class InputDetails extends Component {
         }
       }
       let contract = {
-        approve: false,
+        approve: true,
         company: this.state.company,
         contact: this.state.email,
         detail: this.state.details,
