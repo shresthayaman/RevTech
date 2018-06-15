@@ -10,7 +10,7 @@ class LoginForm extends Component {
         this.state = {
             email: "",
             password: "",
-            admin: false,
+            admin: [],
             user: null
         }
     }
@@ -31,47 +31,57 @@ class LoginForm extends Component {
                 localStorage.removeItem("user");
             }
         });
+        fire.database().ref('Users').on('value', (snapshot) => {
+            let allUsers = snapshot.val();
+            let allAdmin = []
+            for (let user in allUsers) {
+                if (allUsers[user].status === "admin") {
+                    allAdmin.push(allUsers[user].email)
+                }
+            }
+            this.setState({
+                admin: allAdmin
+            })
+        })
     }
 
     verifyLogin = () => {
-        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-            .catch(function (error) {
-                let errorCode = error.code;
-                if (errorCode === 'auth/wrong-password') {
-                    alert('Wrong password.');
-                }
-                else if (errorCode === 'auth/invalid-credential') {
-                    alert('Credentials expired.');
-                }
-                else if (errorCode === 'auth/operation-not-allowed') {
-                    alert('Invalid type of account.');
-                }
-                else if (errorCode === 'auth/user-disabled') {
-                    alert('Your account has been disabled.');
-                }
-                else {
-                    alert('User not found. Check username or click Sign Up');
-                }
+        if (this.state.email !== "" && this.state.password) {
+            fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+                .catch(function (error) {
+                    let errorCode = error.code;
+                    if (errorCode === 'auth/wrong-password') {
+                        alert('Wrong password.');
+                    }
+                    else if (errorCode === 'auth/invalid-credential') {
+                        alert('Credentials expired.');
+                    }
+                    else if (errorCode === 'auth/operation-not-allowed') {
+                        alert('Invalid type of account.');
+                    }
+                    else if (errorCode === 'auth/user-disabled') {
+                        alert('Your account has been disabled.');
+                    }
+                    else {
+                        alert('User not found. Check username or click Sign Up');
+                    }
+                });
+            this.setState({
+                email: "",
+                password: ""
             });
-        fire.database().ref('Users').on('value', (snapshot) => {
-            let allUsers = snapshot.val();
-            for (let user in allUsers) {
-                if (allUsers[user].status === "admin" && this.state.email === allUsers[user].email) {
-                    this.setState({
-                        admin: true
-                    })
-                }
-            }
-        })
-        this.setState({
-            email: "",
-            password: ""
-        });
+        }
     }
 
     render() {
         if (this.state.user) {
-            if (this.state.admin) {
+            let isAdmin = false;
+            for (let i = 0; i < this.state.admin.length; i++) {
+                if (this.state.admin[i] === fire.auth().currentUser.email) {
+                    isAdmin = true
+                }
+            }
+            if (isAdmin) {
                 return <Redirect to="/AdminPage" />
             }
             else {

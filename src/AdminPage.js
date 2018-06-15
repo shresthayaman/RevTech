@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import fire from './components/fire';
 import { Link, Redirect } from 'react-router-dom';
 import SideBar from "./components/SideBar"
+import PendingUsers from "./components/PendingUsers"
 
 class DummyPage extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class DummyPage extends Component {
         return (
             <div>
                 <button onClick={this.logout}> logout </button>
-                <SideBar />
+                <PendingUsers />
             </div>
         );
     }

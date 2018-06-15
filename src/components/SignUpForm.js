@@ -23,42 +23,45 @@ class SignUpForm extends Component {
     }
 
     submitApplication = () => {
-        fire.database().ref('Users').on('value', (snapshot) => {
-            let emailAlreadyExists = false;
-            let allUsers = snapshot.val();
-            for (let user in allUsers) {
-                if (allUsers[user].email === this.state.email) {
-                    emailAlreadyExists = true;
+        if (this.state.email !== "" && this.state.gradYear !== "" && this.state.name !== "" && this.state.status !== "") {
+            fire.database().ref('Users').once('value', (snapshot) => {
+                let emailAlreadyExists = false;
+                let allUsers = snapshot.val();
+                for (let user in allUsers) {
+                    if (allUsers[user].email === this.state.email) {
+                        emailAlreadyExists = true;
+                    }
                 }
-            }
-            if (this.state.name && this.state.email && this.state.status && this.state.gradYear && !emailAlreadyExists) {
-                let application = {
-                    name: this.state.name,
-                    linkedin: "",
-                    status: this.state.status,
-                    email: this.state.email,
-                    gradYear: this.state.gradYear,
-                    github: "",
-                    approve: false,
-                    pictureURL: ""
-                }
-                fire.database().ref('Users').push(application);
-            }
-            else {
-                if (emailAlreadyExists) {
-                    alert("This email is already in use!");
+                if (!emailAlreadyExists) {
+                    let application = {
+                        name: this.state.name,
+                        linkedin: "",
+                        status: this.state.status,
+                        email: this.state.email,
+                        gradYear: this.state.gradYear,
+                        github: "",
+                        approve: false,
+                        pictureURL: ""
+                    }
+                    fire.database().ref('Users').push(application);
+                    alert("Your submission will be considered.");
                 }
                 else {
-                    alert("did not fill in all the fields");
+                    if (emailAlreadyExists) {
+                        alert("This email is already in use!");
+                    }
+                    else {
+                        alert("did not fill in all the fields");
+                    }
                 }
-            }
-        })
-        this.setState({
-            name: null,
-            email: null,
-            status: null,
-            gradYear: null
-        });
+                this.setState({
+                    name: "",
+                    email: "",
+                    status: "",
+                    gradYear: ""
+                });
+            });
+        }
     }
 
     render() {
@@ -69,6 +72,7 @@ class SignUpForm extends Component {
                         placeholder="Name"
                         onChange={(e) => this.updateInfo("name", e.target.value)}
                         value={this.state.name}
+                        onPressEnter={this.submitApplication}
                     />
                 </div>
                 <div className="input-fields">
@@ -76,6 +80,7 @@ class SignUpForm extends Component {
                         placeholder="Email"
                         onChange={(e) => this.updateInfo("email", e.target.value)}
                         value={this.state.email}
+                        onPressEnter={this.submitApplication}
                     />
                 </div>
                 <div className="input-fields" id="status-grad-year">
@@ -94,6 +99,7 @@ class SignUpForm extends Component {
                         placeholder="Graduation Year (Ex: 2020)"
                         onChange={(e) => this.updateInfo("gradYear", e.target.value)}
                         value={this.state.gradYear}
+                        onPressEnter={this.submitApplication}
                     />
                 </div>
                 <div className="button-container">

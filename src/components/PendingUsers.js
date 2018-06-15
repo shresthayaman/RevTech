@@ -22,7 +22,8 @@ class PendingUsers extends Component {
                     let theUser = {
                         id: user,
                         name: allUsers[user].name,
-                        status: allUsers[user].status
+                        status: allUsers[user].status,
+                        email: allUsers[user].email
                     }
                     notApproved.push(theUser);
                 }
@@ -42,19 +43,31 @@ class PendingUsers extends Component {
         })
     }
 
-    approve = (id) => {
+    approve = (id, email) => {
         fire.database().ref(`Users/${id}`).update({
             approve: true
+        });
+        console.log("right before create user with email and password")
+        console.log(email)
+        fire.auth().createUserWithEmailAndPassword(email, "helloworld").catch(function (error) {
+            let errorCode = error.code;
+            if (errorCode === 'auth/email-already-in-use') {
+                alert('Email entered is already in use.');
+            }
+            else if (errorCode === 'auth/invalid-email') {
+                alert('Email address is not valid');
+            }
+            else if (errorCode === 'auth/operation-not-allowed') {
+                alert('Email and password accoutns are not enabled.');
+            }
+            else {
+                alert('Weak password. Try making password longer and include digits.');
+            }
         });
     }
 
     deny = (id) => {
-        //fire.database().ref(`Users/${id}`).remove()
-        /*
-            that comand is to remove the contract from the database, but
-            i want a pop up to say like "are you sure you want to delete this contract" or
-            something of that nature.
-        */
+        fire.database().ref(`Users/${id}`).remove()
     }
 
     render() {
@@ -67,15 +80,15 @@ class PendingUsers extends Component {
                         renderItem={user => (
                             <List.Item>
                                 <List.Item.Meta
-                                    title={<a href="https://ant.design">{user.name}</a>}
+                                    title={user.name}
                                 />
                                 <div className="status-toolbar">
                                     {user.status}
                                 </div>
-                                <Button onClick={() => this.approve(user.id)}>
+                                <Button onClick={() => this.approve(user.id, user.email)}>
                                     Approve
                                 </Button>
-                                <Button type="danger" onClick={() => this.deny(user.id)}>
+                                <Button type="danger" onClick={() => this.deny(user.id, user.email)}>
                                     Deny
                                 </Button>
                             </List.Item>
