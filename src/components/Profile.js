@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import { Tabs, Icon, Button, Modal, Input } from "antd";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -11,6 +10,7 @@ import Community from "./Community.js";
 import { SocialIcon } from "react-social-icons";
 import fire from "./fire";
 import Users_list from "./Users_list";
+import Profile_pic from "./Profile_pic";
 
 const TabPane = Tabs.TabPane;
 
@@ -42,7 +42,9 @@ class Profile extends Component {
         linkedin: "https://www.linkedin.com/",
         approve: false,
         gradYear: 2021,
-        id: ""
+        id: "",
+        pictureURL: "",
+        pictureUploaded: false
       }
     ]
   };
@@ -83,7 +85,9 @@ class Profile extends Component {
             email: users[user].email,
             gradYear: users[user].gradYear,
             github: users[user].github,
-            id: user
+            id: user,
+            pictureURL: users[user].pictureURL,
+            pictureUploaded: users[user].pictureUploaded
           });
         }
       }
@@ -103,29 +107,7 @@ class Profile extends Component {
     });
     console.log(this.state.currentUser);
     console.log(this.state.currentUser[0].id);
-    if (
-      this.state.complete == true &&
-      this.state.linkedin != "" &&
-      this.state.github != ""
-    ) {
-      console.log(this.state.currentUser[0].id);
-      fire
-        .database()
-        .ref(`/Users/${this.state.currentUser[0].id}`)
-        .update(
-          {
-            linkedin: this.state.linkedin,
-            github: this.state.github
-          },
-          function(error) {
-            if (error) {
-              // The write failed...
-            } else {
-              // Data saved successfully!
-            }
-          }
-        );
-    }
+
     if (
       this.state.complete == true &&
       this.state.linkedin == "" &&
@@ -173,12 +155,15 @@ class Profile extends Component {
   };
 
   render() {
-    // console.log(this.state.currentUser);
+    console.log(this.state.currentUser[0].pictureURL);
     return (
       <div>
         <div className="profile-container">
           <div className="ImageDiv">
-            <img src={require("./0.jpg")} className="Nathan" />
+            <img
+              src={this.state.currentUser[0].pictureURL}
+              className="Nathan"
+            />
           </div>
           <div>
             <Card
@@ -266,6 +251,7 @@ class Profile extends Component {
                         />
                       }
                     />
+                    <Profile_pic user={this.state.currentUser[0]} />
                   </Modal>
                 </div>
               </CardContent>

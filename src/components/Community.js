@@ -16,6 +16,8 @@ class Community extends Component {
     return (
       <div>
         <Card
+          elevation={6}
+          square={true}
           style={{
             margin: "1.8vw",
             width: "21vw",
@@ -30,6 +32,7 @@ class Community extends Component {
           <p className="Position"> Position: {user.status}</p>
           <p className="Position"> Email: {user.email}</p>
           <SocialIcon url={user.linkedin} />
+          &nbsp;
           <SocialIcon url={user.github} />
         </Card>
       </div>
