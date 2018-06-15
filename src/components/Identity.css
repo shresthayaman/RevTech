@@ -9,14 +9,11 @@
 
 .affiliatesLoginText { 
     font-size: 30px;
-    margin-left: 5%;
     font-family: 'Aldrich', sans-serif;
-    color: rgb(32, 127, 235);
+    color:white;
     position: absolute;
     opacity: 1;
-    margin-top: -15%;
-
-
+    margin-top: -10%;
 }
 
 .identity-container:hover {

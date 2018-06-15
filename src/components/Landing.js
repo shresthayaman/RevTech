@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import affiliates from "./images/affiliates.jpg";
-import company from "./images/company.jpg";
+import affiliates from "./images/affiliates1.jpg";
+import company from "./images/company1.jpg";
 import "./Landing.css";
 import background from "./images/background.jpg"; 
 import downArrow from "./images/downArrow.png";
@@ -35,11 +35,11 @@ export default class Landing extends Component {
               style={{width: "100%", height: "auto", position: "relative", opacity: .8, backfacevisibility: "hidden"}}></img>
       </div>
 
-      <div className="downArrow">
+    {/*   <div className="downArrow">
         <img
             src={downArrow}
             onClick = "slideDown()"></img>
-      </div>
+      </div> */}
 
       <div className='companyLogin'>
         <Contract 
@@ -48,7 +48,8 @@ export default class Landing extends Component {
         <img
           src={company}
           className="image"
-          style ={{maxWidth: "100%", height: "auto", opacity: 1}}></img>
+          style={{width: "100%", height: "auto", position: "relative", opacity: .8, backfacevisibility: "hidden"}}></img>
+
       </div>
           
       <div> 
@@ -56,7 +57,7 @@ export default class Landing extends Component {
         <br/>
         <p className="missionStatement">- About Us -  </p>
         <br/> 
-        <p className="missionStatement">Our goal is to foster an elite team of software developers.</p>
+        <p className="missionStatement">Our goal is to foster an elite team of software developers and to build a community between interns and alumni.</p>
       </div>  
     </div>
 

@@ -3,6 +3,12 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    width: 50%;
+    position: absolute;
+    margin: 18%;
+    margin-left: 25%; 
+    z-index: 3;    
+    opacity: 0;
 }
 
 .input-fields {
@@ -14,26 +20,18 @@
     margin-top: 1%;
 }
 
-.identity-container { 
-    width: 50%;
-    position: absolute;
-    margin: 18%;
-    margin-left: 25%; 
-    z-index: 3;    
-    opacity: 0;
-}
-
 .contractFormText { 
     font-size: 30px;
-    margin-left: 5%;
     font-family: 'Aldrich', sans-serif;
-    color: rgb(32, 127, 235);
+    color: white;
     position: absolute;
     opacity: 1;
-    margin-top: -15%;
+    margin-top: -28%;
 }
 
-.identity-container:hover {
+.login-container:hover {
     opacity: 1;
     transition: all .5s ease;
   } 
+
+

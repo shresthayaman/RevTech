@@ -3,7 +3,7 @@ import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import { Tabs } from 'antd';
 import 'antd/dist/antd.css';
-import './Identity.css'
+import './Identity.css';
 const TabPane = Tabs.TabPane;
 
 

@@ -3,7 +3,7 @@ import { Button, Input } from 'antd';
 import './LoginSignUpForm.css'
 import 'antd/dist/antd.css';
 import fire from './fire';
-import '/.ContractInputDetails.css';
+import './ContractInputDetails.css';
 
 const style = {
   marginRight: 20
