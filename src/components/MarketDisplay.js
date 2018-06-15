@@ -100,7 +100,11 @@ class MarketDisplay extends Component {
             bids: curBids
           });
         let prevBidString =
-          bid.hours + " hours at " + bid.rate + " dollars per hour";
+          bid.hours +
+          " hours at " +
+          bid.rate +
+          " dollars per hour; total cost: $" +
+          bid.hours * bid.rate;
         this.setState({
           bidButton: "Update Bid",
           bidButtonColor: "#1890FF",
@@ -132,7 +136,11 @@ class MarketDisplay extends Component {
             bids: curBids
           });
         let prevBidString =
-          bid.hours + " hours at " + bid.rate + " dollars per hour";
+          bid.hours +
+          " hours at " +
+          bid.rate +
+          " dollars per hour; total cost: $" +
+          bid.hours * bid.rate;
         this.setState({
           bidButton: "Update Bid",
           bidButtonColor: "#1890FF",
@@ -171,7 +179,8 @@ class MarketDisplay extends Component {
           curBids[bid].hours +
           " hours at " +
           curBids[bid].rate +
-          " dollars per hour";
+          " dollars per hour; total cost: $" +
+          curBids[bid].rate * curBids[bid].hours;
         this.setState({
           bidButton: "Update Bid",
           bidButtonColor: "#1890FF",
