@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import './LoginSignUpForm.css'
 import { Redirect } from 'react-router-dom';
-import { Button, Input } from 'antd';
+import { Button, Input, Icon } from 'antd';
 import fire from './fire';
 
 class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: null,
-            password: null,
+            email: "",
+            password: "",
+            admin: [],
             user: null
         }
     }
 
-    updateInfo = (field, e) => {
-        this.setState({
-            [field]: e
-        });
-    }
+  updateInfo = (field, e) => {
+    this.setState({
+      [field]: e
+    });
+  };
 
     componentDidMount() {
         fire.auth().onAuthStateChanged(user => {
@@ -30,38 +31,62 @@ class LoginForm extends Component {
                 localStorage.removeItem("user");
             }
         });
+        fire.database().ref('Users').on('value', (snapshot) => {
+            let allUsers = snapshot.val();
+            let allAdmin = []
+            for (let user in allUsers) {
+                if (allUsers[user].status === "admin") {
+                    allAdmin.push(allUsers[user].email)
+                }
+            }
+            this.setState({
+                admin: allAdmin
+            })
+        })
     }
 
     verifyLogin = () => {
-        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-            .catch(function (error) {
-                let errorCode = error.code;
-                if (errorCode === 'auth/wrong-password') {
-                    alert('Wrong password.');
-                }
-                else if (errorCode === 'auth/invalid-credential') {
-                    alert('Credentials expired.');
-                }
-                else if (errorCode === 'auth/operation-not-allowed') {
-                    alert('Invalid type of account.');
-                }
-                else if (errorCode === 'auth/user-disabled') {
-                    alert('Your account has been disabled.');
-                }
-                else {
-                    alert('User not found. Check username or click Sign Up');
-                }
+        if (this.state.email !== "" && this.state.password) {
+            fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+                .catch(function (error) {
+                    let errorCode = error.code;
+                    if (errorCode === 'auth/wrong-password') {
+                        alert('Wrong password.');
+                    }
+                    else if (errorCode === 'auth/invalid-credential') {
+                        alert('Credentials expired.');
+                    }
+                    else if (errorCode === 'auth/operation-not-allowed') {
+                        alert('Invalid type of account.');
+                    }
+                    else if (errorCode === 'auth/user-disabled') {
+                        alert('Your account has been disabled.');
+                    }
+                    else {
+                        alert('User not found. Check username or click Sign Up');
+                    }
+                });
+            this.setState({
+                email: "",
+                password: ""
             });
-        this.setState({
-            email: "",
-            password: ""
-        });
+        }
     }
 
     render() {
         if (this.state.user) {
-            console.log("gets here");
-            return <Redirect to="/DummyPage" />
+            let isAdmin = false;
+            for (let i = 0; i < this.state.admin.length; i++) {
+                if (this.state.admin[i] === fire.auth().currentUser.email) {
+                    isAdmin = true
+                }
+            }
+            if (isAdmin) {
+                return <Redirect to="/AdminPage" />
+            }
+            else {
+                return <Redirect to="/DummyPage" />
+            }
         }
         return (
             <div className="login-container">
@@ -71,6 +96,7 @@ class LoginForm extends Component {
                         onChange={(e) => this.updateInfo("email", e.target.value)}
                         value={this.state.email}
                         onPressEnter={this.verifyLogin}
+                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                     />
                 </div>
                 <div className="input-fields">
@@ -79,17 +105,18 @@ class LoginForm extends Component {
                         type="password" onChange={(e) => this.updateInfo("password", e.target.value)}
                         value={this.state.password}
                         onPressEnter={this.verifyLogin}
+                        prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                     />
                 </div>
                 <div className="button-container">
-                    <Button 
-                        onClick={this.verifyLogin}>
+                    <Button
+                        onClick={this.verifyLogin}
+                        disabled={this.state.email === "" || this.state.password === ""}>
                         Login
                     </Button>
                 </div>
             </div>
         );
     }
-}
 
 export default LoginForm;

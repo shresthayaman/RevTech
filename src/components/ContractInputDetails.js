@@ -62,7 +62,6 @@ export default class InputDetails extends Component {
     return (
       <div className="login-container">
          <p className="contractFormText">Companies, fill out this form: </p>
-
         <div className="input-fields">
           <Input
             id="company"
