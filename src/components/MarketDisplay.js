@@ -20,7 +20,8 @@ class MarketDisplay extends Component {
       bids: [],
       bidButton: "Bid",
       bidButtonColor: "#389e0d",
-      didBid: false
+      didBid: false,
+      previousBid: "No bid found"
     };
   }
   updateText = (field, value) => {
@@ -98,6 +99,14 @@ class MarketDisplay extends Component {
           .update({
             bids: curBids
           });
+        let prevBidString =
+          bid.hours + " hours at " + bid.rate + " dollars per hour";
+        this.setState({
+          bidButton: "Update Bid",
+          bidButtonColor: "#1890FF",
+          didBid: true,
+          previousBid: prevBidString
+        });
       } else {
         //Make shallow copy
         let contractId = this.props.contract.id;
@@ -122,10 +131,13 @@ class MarketDisplay extends Component {
           .update({
             bids: curBids
           });
+        let prevBidString =
+          bid.hours + " hours at " + bid.rate + " dollars per hour";
         this.setState({
           bidButton: "Update Bid",
           bidButtonColor: "#1890FF",
-          didBid: true
+          didBid: true,
+          previousBid: prevBidString
         });
       }
       //clear state
@@ -147,16 +159,24 @@ class MarketDisplay extends Component {
       let bids = snapshot.val();
       for (let bid in bids) {
         curBids.push({
-          bidder: bids[bid].bidder
+          bidder: bids[bid].bidder,
+          rate: bids[bid].rate,
+          hours: bids[bid].hours
         });
       }
     });
     for (let bid in curBids) {
       if (curBids[bid].bidder === this.props.id) {
+        let prevBidString =
+          curBids[bid].hours +
+          " hours at " +
+          curBids[bid].rate +
+          " dollars per hour";
         this.setState({
           bidButton: "Update Bid",
           bidButtonColor: "#1890FF",
-          didBid: true
+          didBid: true,
+          previousBid: prevBidString
         });
       }
     }
@@ -269,12 +289,16 @@ class MarketDisplay extends Component {
             ]}
           >
             <p>
-              <strong>Contract details:</strong>
+              <strong>Contract details: </strong>
               {contract.detail}
             </p>
             <p>
-              <strong>Contact info:</strong>
+              <strong>Contact info: </strong>
               {contract.contact}
+            </p>
+            <p>
+              <strong>Previous bid: </strong>
+              {this.state.previousBid}
             </p>
           </Modal>
         </div>
