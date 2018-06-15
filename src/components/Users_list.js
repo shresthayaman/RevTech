@@ -11,6 +11,16 @@ class Users_list extends Component {
       id: "nyp5aa@virginia.edu"
     };
   }
+  compare = (user1, user2) => {
+    if (user1.name < user2.name) {
+      return -1;
+    }
+    if (user1.name > user2.name) {
+      return 1;
+    }
+    return 0;
+  };
+
   componentDidMount() {
     console.log("Hello11");
     const usersRef = fire.database().ref("Users");
@@ -19,7 +29,11 @@ class Users_list extends Component {
       console.log(Users);
       let newState = [];
       for (let User in Users) {
-        if (Users[User].approve === true) {
+        if (
+          Users[User].approve === true &&
+          Users[User].linkedin != "" &&
+          Users[User].github != ""
+        ) {
           newState.push({
             name: Users[User].name,
             status: Users[User].status,
@@ -31,9 +45,26 @@ class Users_list extends Component {
             id: User
           });
         }
+        if (
+          Users[User].approve === true &&
+          Users[User].linkedin == "" &&
+          Users[User].github == ""
+        ) {
+          newState.push({
+            name: Users[User].name,
+            status: Users[User].status,
+            email: Users[User].email,
+            github: "https://github.com/DeepakG123",
+            linkedin: "https://www.linkedin.com/in/",
+            approve: Users[User].approve,
+            gradYear: Users[User].gradYear,
+            id: User
+          });
+        }
       }
+      let newState2 = newState.sort(this.compare);
       this.setState({
-        approvedUsers: newState
+        approvedUsers: newState2
       });
     });
   }

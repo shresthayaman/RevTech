@@ -31,7 +31,7 @@ class Profile extends Component {
     link_disabled: false,
     git_disabled: false,
     submit_disabled: true,
-    id: "ys2nc@virginia.edu",
+    id: "nyp5aa@virginia.edu",
     buttontitle: "Add",
     currentUser: [
       {
@@ -181,7 +181,15 @@ class Profile extends Component {
             <img src={require("./0.jpg")} className="Nathan" />
           </div>
           <div>
-            <Card classname="card">
+            <Card
+              classname="card"
+              style={{
+                margin: "1vw",
+                width: "90vw",
+                height: "35vh",
+                position: "relative"
+              }}
+            >
               <CardContent>
                 <Typography gutterBottom variant="headline" component="h2">
                   RevTech
