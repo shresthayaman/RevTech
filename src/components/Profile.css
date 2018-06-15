@@ -1,17 +1,19 @@
 .profile-container {
-  margin-top: 5%;
+  margin-top: 3%;
   display: flex;
   flex-direction: row;
   text-align: center;
 }
 
 .card {
-  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  height: 100px;
 }
 
 .ImageDiv {
   width: 200px;
-  height: 200px;
+  height: 280px;
   background-color: pink;
 }
 
@@ -22,4 +24,8 @@
 
 .icons {
   text-align: center;
+}
+
+.setting {
+  padding-left: 1000px;
 }

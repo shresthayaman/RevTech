@@ -14,11 +14,8 @@ const TabPane = Tabs.TabPane;
 
 const styles = {
   card: {
-    display: "flex"
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%" // 16:9
+    display: "flex",
+    height: "10vw"
   }
 };
 
@@ -36,7 +33,11 @@ class Profile extends Component {
     github: "",
     users: [],
     complete: false,
-    id: "nyp5aa@virginia.edu",
+    link_disabled: false,
+    git_disabled: false,
+    submit_disabled: true,
+    id: "ys2nc@virginia.edu",
+    buttontitle: "Add",
     currentUser: [
       {
         name: "",
@@ -52,7 +53,10 @@ class Profile extends Component {
   };
   showModal = () => {
     this.setState({
-      visible: true
+      visible: true,
+      linkedin: "",
+      github: "",
+      submit_disabled: true
     });
   };
   handleCancel = e => {
@@ -62,7 +66,8 @@ class Profile extends Component {
   };
   onChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      submit_disabled: false
     });
   };
 
@@ -97,11 +102,17 @@ class Profile extends Component {
   handleSubmit = e => {
     this.setState({
       namedisplay: this.state.name,
-      visible: false
+      visible: false,
+      buttontitle: "Edit",
+      submit_disabled: true
     });
     console.log(this.state.currentUser);
     console.log(this.state.currentUser[0].id);
-    if (this.state.complete == true) {
+    if (
+      this.state.complete == true &&
+      this.state.linkedin != "" &&
+      this.state.github != ""
+    ) {
       console.log(this.state.currentUser[0].id);
       fire
         .database()
@@ -110,6 +121,50 @@ class Profile extends Component {
           {
             linkedin: this.state.linkedin,
             github: this.state.github
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+            }
+          }
+        );
+    }
+    if (
+      this.state.complete == true &&
+      this.state.linkedin == "" &&
+      this.state.github != ""
+    ) {
+      console.log(this.state.currentUser[0].id);
+      fire
+        .database()
+        .ref(`/Users/${this.state.currentUser[0].id}`)
+        .update(
+          {
+            github: this.state.github
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+            }
+          }
+        );
+    }
+    if (
+      this.state.complete == true &&
+      this.state.linkedin != "" &&
+      this.state.github == ""
+    ) {
+      console.log(this.state.currentUser[0].id);
+      fire
+        .database()
+        .ref(`/Users/${this.state.currentUser[0].id}`)
+        .update(
+          {
+            linkedin: this.state.linkedin
           },
           function(error) {
             if (error) {
@@ -130,8 +185,8 @@ class Profile extends Component {
           <div className="ImageDiv">
             <img src={require("./0.jpg")} className="Nathan" />
           </div>
-          <div classname="card">
-            <Card>
+          <div>
+            <Card classname="card">
               <CardContent>
                 <Typography gutterBottom variant="headline" component="h2">
                   RevTech
@@ -144,25 +199,27 @@ class Profile extends Component {
                   </Typography>
                 )}
                 <br />
-                <br />
                 <div className="icons">
                   <SocialIcon url={this.state.currentUser[0].linkedin} />
                   &emsp;
-                  <SocialIcon url={this.state.currentUser[0].github} />
+                  <SocialIcon
+                    disabled={this.state.git_disabled}
+                    url={this.state.currentUser[0].github}
+                  />
                 </div>
-                <br /> <br /> <br />
+                <br />
                 <div className="setting">
                   <Icon type="setting" />
                   &emsp;
                   <Button type="primary" onClick={this.showModal}>
                     {" "}
-                    Edit Profile{" "}
+                    {this.state.buttontitle} LinkedIn and GitHub{" "}
                   </Button>
                 </div>
                 {/* Edit Profile */}
                 <div>
                   <Modal
-                    title="Basic Modal"
+                    title="Enter LinkedIn and Github URLs"
                     visible={this.state.visible}
                     onSubmit={this.handleSubmit}
                     onCancel={this.handleCancel}
@@ -172,6 +229,7 @@ class Profile extends Component {
                       </Button>,
                       <Button
                         key="submit"
+                        disabled={this.state.submit_disabled}
                         type="primary"
                         onClick={this.handleSubmit}
                       >
@@ -179,24 +237,11 @@ class Profile extends Component {
                       </Button>
                     ]}
                   >
-                    {/* Name Input */}
-                    <Input
-                      placeholder="Enter your name"
-                      name="name"
-                      onChange={this.onChange}
-                      prefix={
-                        <Icon
-                          type="user"
-                          style={{ color: "rgba(0,0,0,.25)" }}
-                        />
-                      }
-                    />
-                    &emsp;
-                    {/* Linkedin Input */}
                     <Input
                       name="linkedin"
-                      placeholder="Enter your Linkedin Username"
+                      placeholder="Enter your Linkedin URL"
                       onChange={this.onChange}
+                      value={this.state.linkedin}
                       prefix={
                         <Icon
                           type="user"
@@ -209,7 +254,8 @@ class Profile extends Component {
                     <Input
                       name="github"
                       onChange={this.onChange}
-                      placeholder="Enter your Github Username"
+                      value={this.state.github}
+                      placeholder="Enter your Github URL"
                       prefix={
                         <Icon
                           type="user"
