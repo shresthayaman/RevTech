@@ -4,6 +4,7 @@ import 'antd/dist/antd.css';
 import { Layout, Menu, Icon } from 'antd';
 import DisplayContracts from './ContractInput'
 import InputDetails from './ContractInputDetails'
+import PendingUsers from './PendingUsers'
 const { Header, Sider, Content } = Layout;
 
 
@@ -14,47 +15,47 @@ export default class SideBar extends React.Component {
   constructor() {
     super();
     this.state = {
-       tab: 0
+      tab: 0
     };
   }
 
 
 
-  handleMenuClick1(){
-  console.log("Hello!")
+  handleMenuClick1() {
+    console.log("Hello!")
 
   }
-    handleMenuClick2(){
-      this.setState({
-        tab: 1
-      })
-      console.log("happy")
-      return 
-      <div>
-        < DisplayContracts />
-        < InputDetails />
-      </div>
-
-  }
-
-
-    handleMenuClick3(){
-  console.log("Am!")
-
-  }
-    handleMenuClick4(){
-  console.log("Dickbutt!")
+  handleMenuClick2() {
+    this.setState({
+      tab: 1
+    })
+    console.log("happy")
+    return
+    <div>
+      < DisplayContracts />
+      < InputDetails />
+    </div>
 
   }
 
 
+  handleMenuClick3() {
+    console.log("Am!")
+
+  }
+  handleMenuClick4() {
+    console.log("Dickbutt!")
+
+  }
 
 
 
-   state = {
+
+
+  state = {
     collapsed: false,
 
-    
+
   };
   toggle = () => {
     this.setState({
@@ -75,7 +76,7 @@ export default class SideBar extends React.Component {
         >
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-           <Menu.Item key="0" style= {{height: 130}}>
+            <Menu.Item key="0" style={{ height: 130 }}>
               <Icon type="" />
               <span>Admins Page</span>
             </Menu.Item>
@@ -120,13 +121,13 @@ export default class SideBar extends React.Component {
 
 
 
-          <Content style={{ margin: '155px 16px', padding: 24, background: '#fff', minHeight: 380, marginTop:30 }}>
-            <img src={require("./dickbutt.jpg")} className="Nathan" />
+          <Content style={{ margin: '155px 16px', padding: 24, background: '#fff', minHeight: 380, marginTop: 30 }}>
+            <PendingUsers />
             {this.state.tab === 1 && <InputDetails />}
 
             <div id="divId1">
             </div>
-            
+
           </Content>
         </Layout>
       </Layout>

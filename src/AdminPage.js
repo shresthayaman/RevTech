@@ -26,7 +26,7 @@ class DummyPage extends Component {
         return (
             <div>
                 <button onClick={this.logout}> logout </button>
-                <PendingUsers />
+                <SideBar />
             </div>
         );
     }
