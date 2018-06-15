@@ -7,17 +7,12 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import "./Profile.css";
+import Community from "./Community.js";
 import { SocialIcon } from "react-social-icons";
 import fire from "./fire";
+import Users_list from "./Users_list";
 
 const TabPane = Tabs.TabPane;
-
-const styles = {
-  card: {
-    display: "flex",
-    height: "10vw"
-  }
-};
 
 function callback(key) {
   console.log(key);
@@ -278,7 +273,7 @@ class Profile extends Component {
               Content of Tab Pane 2
             </TabPane>
             <TabPane tab="Networks" key="3">
-              Content of Tab Pane 3
+              <Users_list />
             </TabPane>
           </Tabs>
         </div>
