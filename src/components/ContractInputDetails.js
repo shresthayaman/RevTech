@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Button, Input } from 'antd';
 import './LoginSignUpForm.css'
 import 'antd/dist/antd.css';
-import fire from './fire'
+import fire from './fire';
+import './ContractInputDetails.css';
 
 const style = {
   marginRight: 20
@@ -29,7 +30,7 @@ export default class InputDetails extends Component {
 
   handleClick = () => {
     if (this.state.company === "" || this.state.companyPhone === "" || this.state.details === "" || this.state.email === "") {
-      alert("Some field are missing! Please resubmit after filling out all fields.");
+      alert("Some fields are missing! Please resubmit after filling out all fields.");
     }
     else {
       let editPhoneNumber = "";
@@ -39,7 +40,7 @@ export default class InputDetails extends Component {
         }
       }
       let contract = {
-        approve: true,
+        approve: false,
         company: this.state.company,
         contact: this.state.email,
         detail: this.state.details,
@@ -60,6 +61,7 @@ export default class InputDetails extends Component {
   render() {
     return (
       <div className="login-container">
+         <p className="contractFormText">Companies, fill out this form: </p>
         <div className="input-fields">
           <Input
             id="company"

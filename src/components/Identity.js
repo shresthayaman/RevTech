@@ -3,7 +3,7 @@ import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import { Tabs } from 'antd';
 import 'antd/dist/antd.css';
-import './Identity.css'
+import './Identity.css';
 const TabPane = Tabs.TabPane;
 
 
@@ -15,6 +15,8 @@ class Identity extends Component {
     render() {
         return (
             <div className="identity-container">
+            <p className="affiliatesLoginText">Interns, alumni, and admins, log in here: </p>
+            <br />
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="Login" key="1">
                         <LoginForm />

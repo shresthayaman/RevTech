@@ -112,7 +112,7 @@ class LoginForm extends Component {
                     <Button
                         onClick={this.verifyLogin}
                         disabled={this.state.email === "" || this.state.password === ""}>
-                        login
+                        Login
                     </Button>
                 </div>
             </div>
