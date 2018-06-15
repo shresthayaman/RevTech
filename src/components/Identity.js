@@ -15,6 +15,8 @@ class Identity extends Component {
     render() {
         return (
             <div className="identity-container">
+            <p className="affiliatesLoginText">Interns, alumni, and admins, log in here: </p>
+            <br />
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="Login" key="1">
                         <LoginForm />
