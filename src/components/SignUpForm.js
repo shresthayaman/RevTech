@@ -9,10 +9,11 @@ class SignUpForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: null,
-            email: null,
-            status: null,
-            gradYear: null
+            name: "",
+            email: "",
+            status: "",
+            gradYear: "",
+            password: ""
         }
     }
 
@@ -23,26 +24,48 @@ class SignUpForm extends Component {
     }
 
     submitApplication = () => {
-        if (this.state.name && this.state.email && this.state.status && this.state.gradYear) {
-            let application = {
-                name: this.state.name,
-                linkedin: "",
-                status: this.state.status,
-                email: this.state.email,
-                gradYear: this.state.gradYear,
-                github: "",
-                approve: false
-            }
-            fire.database().ref('Users').push(application);
+        if (this.state.email !== "" && this.state.gradYear !== "" && this.state.name !== "" && this.state.status !== "" && this.state.password.length >= 6) {
+            fire.database().ref('Users').once('value', (snapshot) => {
+                let emailAlreadyExists = false;
+                let allUsers = snapshot.val();
+                for (let user in allUsers) {
+                    if (allUsers[user].email === this.state.email) {
+                        emailAlreadyExists = true;
+                    }
+                }
+                if (!emailAlreadyExists) {
+                    let application = {
+                        name: this.state.name,
+                        linkedin: "",
+                        status: this.state.status,
+                        email: this.state.email,
+                        gradYear: this.state.gradYear,
+                        github: "",
+                        approve: false,
+                        pictureURL: "",
+                        password: this.state.password
+                    }
+                    fire.database().ref('Users').push(application);
+                }
+                else {
+                    if (emailAlreadyExists) {
+                        alert("This email is already in use!");
+                    }
+                    else {
+                        alert("did not fill in all the fields");
+                    }
+                }
+            });
         }
-        else {
-            alert("did not fill in all the fields");
+        if (this.state.password.length < 6) {
+            alert("Password must be at least 6 characters long");
         }
         this.setState({
-            name: null,
-            email: null,
-            status: null,
-            gradYear: null
+            name: "",
+            email: "",
+            status: "",
+            gradYear: "",
+            password: ""
         });
     }
 
@@ -54,6 +77,7 @@ class SignUpForm extends Component {
                         placeholder="Name"
                         onChange={(e) => this.updateInfo("name", e.target.value)}
                         value={this.state.name}
+                        onPressEnter={this.submitApplication}
                     />
                 </div>
                 <div className="input-fields">
@@ -61,6 +85,16 @@ class SignUpForm extends Component {
                         placeholder="Email"
                         onChange={(e) => this.updateInfo("email", e.target.value)}
                         value={this.state.email}
+                        onPressEnter={this.submitApplication}
+                    />
+                </div>
+                <div className="input-fields">
+                    <Input
+                        placeholder="Potential Password"
+                        onChange={(e) => this.updateInfo("password", e.target.value)}
+                        value={this.state.password}
+                        onPressEnter={this.submitApplication}
+                        type="password"
                     />
                 </div>
                 <div className="input-fields" id="status-grad-year">
@@ -79,10 +113,14 @@ class SignUpForm extends Component {
                         placeholder="Graduation Year (Ex: 2020)"
                         onChange={(e) => this.updateInfo("gradYear", e.target.value)}
                         value={this.state.gradYear}
+                        onPressEnter={this.submitApplication}
                     />
                 </div>
                 <div className="button-container">
-                    <Button onClick={this.submitApplication}>
+                    <Button
+                        onClick={this.submitApplication}
+                        disabled={this.state.name === "" || this.state.email === "" || this.state.status === "" || this.state.gradYear === ""}
+                    >
                         Apply
                     </Button>
                 </div>
