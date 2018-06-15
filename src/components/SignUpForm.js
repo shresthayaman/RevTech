@@ -39,7 +39,8 @@ class SignUpForm extends Component {
                     email: this.state.email,
                     gradYear: this.state.gradYear,
                     github: "",
-                    approve: false
+                    approve: false,
+                    pictureURL: ""
                 }
                 fire.database().ref('Users').push(application);
             }

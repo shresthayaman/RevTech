@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Card, Checkbox, Button, Modal } from 'antd';
 import fire from './fire'
 
-const CheckboxGroup = Checkbox.Group;
-
-
 class PendingContracts extends Component {
     constructor(props) {
         super(props);

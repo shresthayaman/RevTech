@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 import DailyChallenge from "./components/DailyChallenge";
 import InputDetails from "./components/ContractInputDetails";
 import DisplayContracts from "./components/ContractInput";
@@ -9,7 +8,7 @@ import fire from './components/fire';
 import Identity from './components/Identity';
 import Landing from "./components/Landing.js"
 import PendingContracts from "./components/PendingContracts"
-
+import PendingUsers from "./components/PendingUsers"
 
 class App extends Component {
   constructor(props) {
@@ -19,9 +18,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <InputDetails />
-        <Identity />
-        <PendingContracts />
+        <PendingUsers />
       </div>
     );
   }
