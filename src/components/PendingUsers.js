@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { List, Button, Select } from 'antd';
 import fire from './fire';
-import "./PendingUsers.css";
+import "./WebsiteUsers.css";
 
 const Option = Select.Option;
 
@@ -9,15 +9,8 @@ class PendingUsers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pendingUsers: [],
-            approvedUsers: []
+            pendingUsers: []
         }
-    }
-
-    updateStatus = (e, id) => {
-        fire.database().ref(`Users/${id}`).update({
-            status: e
-        });
     }
 
     getStatus = (status) => {
@@ -28,18 +21,15 @@ class PendingUsers extends Component {
             return "Intern"
         }
         else {
-            return "Alumni"
+            return "Alumnus"
         }
     }
 
     componentDidMount() {
-        console.log("when does component mount")
         fire.database().ref('Users').on('value', (snapshot) => {
-            let approved = [];
             let notApproved = [];
             let allUsers = snapshot.val();
             for (let user in allUsers) {
-                console.log(allUsers[user].name, allUsers[user].approve);
                 if (!allUsers[user].approve) {
                     let theUser = {
                         id: user,
@@ -48,24 +38,11 @@ class PendingUsers extends Component {
                         email: allUsers[user].email,
                         password: allUsers[user].password
                     }
-                    console.log(theUser)
                     notApproved.push(theUser);
                 }
-                else {
-                    let theUser = {
-                        id: user,
-                        name: allUsers[user].name,
-                        status: allUsers[user].status
-                    }
-                    console.log(theUser)
-                    approved.push(theUser);
-                }
             }
-            console.log(approved)
-            console.log(notApproved)
             this.setState({
-                pendingUsers: notApproved,
-                approvedUsers: approved
+                pendingUsers: notApproved
             });
         })
     }
@@ -101,57 +78,27 @@ class PendingUsers extends Component {
     render() {
         return (
             <div>
-                <div>
-                    Pending Users
-                </div>
                 <div className="list-container">
                     {this.state.pendingUsers.length >= 1 && <List
                         itemLayout="horizontal"
                         dataSource={this.state.pendingUsers}
                         renderItem={user => (
                             <List.Item>
-                                <List.Item.Meta
-                                    title={user.name}
-                                />
-                                <div className="status-toolbar">
-                                    {user.status}
+                                <div className="flexbox-item">
+                                    <List.Item.Meta
+                                        title={user.name}
+                                    />
                                 </div>
-                                <Button onClick={() => this.approve(user.id, user.email, user.password)}>
-                                    Approve
-                                </Button>
-                                <Button type="danger" onClick={() => this.deny(user.id, user.email)}>
-                                    Deny
-                                </Button>
-                            </List.Item>
-                        )}
-                    />}
-                </div>
-                <div>
-                    Current Users
-                </div>
-                <div className="list-container">
-                    {this.state.approvedUsers !== null && <List
-                        itemLayout="horizontal"
-                        dataSource={this.state.approvedUsers}
-                        renderItem={user => (
-                            <List.Item>
-                                <List.Item.Meta
-                                    title={user.name}
-                                />
-                                <div className="status-toolbar">
+                                <div className="flexbox-item">
                                     {this.getStatus(user.status)}
                                 </div>
-                                <div>
-                                    <Select
-                                        id="status"
-                                        placeholder="Edit Status"
-                                        onChange={(e) => this.updateStatus(e, user.id)}
-                                        style={{ width: 200 }}
-                                    >
-                                        <Option value="intern">Intern</Option>
-                                        <Option value="alum">Alumi</Option>
-                                        <Option value="admin">Administrator</Option>
-                                    </Select>
+                                <div className="flexbox-item">
+                                    <Button onClick={() => this.approve(user.id, user.email, user.password)}>
+                                        Approve
+                                    </Button>
+                                    <Button type="danger" onClick={() => this.deny(user.id, user.email)}>
+                                        Deny
+                                    </Button>
                                 </div>
                             </List.Item>
                         )}
