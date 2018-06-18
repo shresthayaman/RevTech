@@ -1,9 +1,10 @@
 import React from "react";
-import "antd/dist/antd.css";
-import { Layout, Menu, Icon } from "antd";
-import DisplayContracts from "./ContractInput";
-import InputDetails from "./ContractInputDetails";
-import PendingUsers from "./PendingUsers";
+import 'antd/dist/antd.css';
+import { Layout, Menu, Icon } from 'antd';
+import DisplayContracts from './ContractInput'
+import InputDetails from './ContractInputDetails'
+import PendingUsers from './PendingUsers'
+
 const { Header, Sider, Content } = Layout;
 
 export default class SideBar extends React.Component {
@@ -14,30 +15,42 @@ export default class SideBar extends React.Component {
     };
   }
 
+
   handleMenuClick1() {
-    console.log("Hello!");
+    console.log("Hello!")
   }
+  
   handleMenuClick2() {
     this.setState({
       tab: 1
-    });
-    console.log("happy");
-    return;
+    })
+    console.log("happy")
+    return
     <div>
-      <DisplayContracts />
-      <InputDetails />
-    </div>;
+      < DisplayContracts />
+      < InputDetails />
+    </div>
+
   }
+
 
   handleMenuClick3() {
-    console.log("Am!");
+    console.log("Am!")
+
   }
   handleMenuClick4() {
-    console.log("Dickbutt!");
+    console.log("Dickbutt!")
+
   }
 
+
+
+
+
   state = {
-    collapsed: false
+    collapsed: false,
+
+
   };
   toggle = () => {
     this.setState({
@@ -50,7 +63,7 @@ export default class SideBar extends React.Component {
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="0" style={{ height: 130 }}>
               <Icon type="" />
               <span>Admins Page</span>
@@ -85,19 +98,15 @@ export default class SideBar extends React.Component {
             />
           </Header>
 
-          <Content
-            style={{
-              margin: "155px 16px",
-              padding: 24,
-              background: "#fff",
-              minHeight: 380,
-              marginTop: 30
-            }}
-          >
+
+
+          <Content style={{ margin: '155px 16px', padding: 24, background: '#fff', minHeight: 380, marginTop: 30 }}>
             <PendingUsers />
             {this.state.tab === 1 && <InputDetails />}
 
-            <div id="divId1" />
+            <div id="divId1">
+            </div>
+
           </Content>
         </Layout>
       </Layout>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import App from './App.js';
 import DummyPage from './DummyPage.js';
+import AdminPage from './AdminPage.js'
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 class Routes extends Component {
@@ -11,6 +12,7 @@ class Routes extends Component {
                     <Redirect to='/LandingPage' />
                     <Route path="/LandingPage" component={App} />
                     <Route path="/DummyPage" component={DummyPage} />
+                    <Route path="/AdminPage" component={AdminPage} />
                 </div>
             </BrowserRouter>
         );
