@@ -34,7 +34,8 @@ class Profile extends Component {
     link_disabled: false,
     git_disabled: false,
     submit_disabled: true,
-    id: "ys2nc@virginia.edu",
+    id: "stephen@gmail.com",
+    loginuser: "",
     buttontitle: "Add",
     currentUser: [
       {
@@ -46,8 +47,7 @@ class Profile extends Component {
         approve: false,
         gradYear: 2021,
         id: "",
-        pictureURL: "",
-        pictureUploaded: false
+        pictureURL: ""
       }
     ]
   };
@@ -72,7 +72,21 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    console.log("Hello:" + fire.auth().currentUser);
+    fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user });
+        localStorage.setItem("user", user.uid);
+      } else {
+        this.setState({ user: null });
+        localStorage.removeItem("user");
+      }
+    });
+    if (fire.auth().currentUser != null) {
+      console.log("Logged in:" + fire.auth().currentUser.email);
+      this.setState({
+        id: fire.auth().currentUser.email
+      });
+    }
     const usersRef = fire.database().ref("Users");
     console.log(usersRef);
     usersRef.on("value", snapshot => {
@@ -97,10 +111,7 @@ class Profile extends Component {
             pictureUploaded: users[user].pictureUploaded
           });
         }
-        if (
-          users[user].email === this.state.id &&
-          users[user].pictureUploaded == false
-        ) {
+        if (users[user].email === this.state.id) {
           newState.push({
             name: users[user].name,
             approve: users[user].approve,
@@ -110,7 +121,7 @@ class Profile extends Component {
             gradYear: users[user].gradYear,
             github: users[user].github,
             id: user,
-            pictureURL: "https://imgur.com/a/cptzpKN",
+            pictureURL: "https://i.imgur.com/dUYvmXB.jpg",
             pictureUploaded: false
           });
         }
@@ -179,7 +190,7 @@ class Profile extends Component {
   };
 
   render() {
-    // console.log(this.state.currentUser[0].pictureURL);
+    console.log(this.state.loginuser);
     return (
       <div>
         <div className="profile-container">
