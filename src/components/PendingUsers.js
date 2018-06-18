@@ -22,7 +22,6 @@ class PendingUsers extends Component {
 
     getStatus = (status) => {
         if (status === "admin") {
-            console.log("admin")
             return "Administrator"
         }
         else if (status === "intern") {
@@ -34,11 +33,13 @@ class PendingUsers extends Component {
     }
 
     componentDidMount() {
+        console.log("when does component mount")
         fire.database().ref('Users').on('value', (snapshot) => {
             let approved = [];
             let notApproved = [];
             let allUsers = snapshot.val();
             for (let user in allUsers) {
+                console.log(allUsers[user].name, allUsers[user].approve);
                 if (!allUsers[user].approve) {
                     let theUser = {
                         id: user,
@@ -47,6 +48,7 @@ class PendingUsers extends Component {
                         email: allUsers[user].email,
                         password: allUsers[user].password
                     }
+                    console.log(theUser)
                     notApproved.push(theUser);
                 }
                 else {
@@ -55,9 +57,12 @@ class PendingUsers extends Component {
                         name: allUsers[user].name,
                         status: allUsers[user].status
                     }
+                    console.log(theUser)
                     approved.push(theUser);
                 }
             }
+            console.log(approved)
+            console.log(notApproved)
             this.setState({
                 pendingUsers: notApproved,
                 approvedUsers: approved
@@ -96,8 +101,11 @@ class PendingUsers extends Component {
     render() {
         return (
             <div>
+                <div>
+                    Pending Users
+                </div>
                 <div className="list-container">
-                    {this.state.pendingUsers.length > 1 && <List
+                    {this.state.pendingUsers.length >= 1 && <List
                         itemLayout="horizontal"
                         dataSource={this.state.pendingUsers}
                         renderItem={user => (
@@ -117,6 +125,9 @@ class PendingUsers extends Component {
                             </List.Item>
                         )}
                     />}
+                </div>
+                <div>
+                    Current Users
                 </div>
                 <div className="list-container">
                     {this.state.approvedUsers !== null && <List

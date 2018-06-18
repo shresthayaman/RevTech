@@ -24,6 +24,7 @@ class SignUpForm extends Component {
     }
 
     submitApplication = () => {
+        console.log("how many times this submits");
         if (this.state.email !== "" && this.state.gradYear !== "" && this.state.name !== "" && this.state.status !== "" && this.state.password.length >= 6) {
             fire.database().ref('Users').once('value', (snapshot) => {
                 let emailAlreadyExists = false;
@@ -100,7 +101,7 @@ class SignUpForm extends Component {
                 <div className="input-fields">
                     <Input
                         placeholder="Password"
-                        type = "password"
+                        type="password"
                         onChange={(e) => this.updateInfo("password", e.target.value)}
                         value={this.state.password}
                     />
