@@ -75,12 +75,11 @@ export default class Landing extends Component {
           className="pics"/>
       <img
           src={tools}
-          className="pics"/>
+          className="pics1"/>
       <br />
       <br />
       <br />
       </div>
-
     </div>
 
     );
