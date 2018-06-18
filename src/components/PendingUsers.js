@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { List, Button, Select } from 'antd';
 import fire from './fire';
-import "./PendingUsers.css";
+import "./WebsiteUsers.css";
 
 const Option = Select.Option;
 
@@ -9,33 +9,24 @@ class PendingUsers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pendingUsers: [],
-            approvedUsers: []
+            pendingUsers: []
         }
-    }
-
-    updateStatus = (e, id) => {
-        fire.database().ref(`Users/${id}`).update({
-            status: e
-        });
     }
 
     getStatus = (status) => {
         if (status === "admin") {
-            console.log("admin")
             return "Administrator"
         }
         else if (status === "intern") {
             return "Intern"
         }
         else {
-            return "Alumni"
+            return "Alumnus"
         }
     }
 
     componentDidMount() {
         fire.database().ref('Users').on('value', (snapshot) => {
-            let approved = [];
             let notApproved = [];
             let allUsers = snapshot.val();
             for (let user in allUsers) {
@@ -49,18 +40,9 @@ class PendingUsers extends Component {
                     }
                     notApproved.push(theUser);
                 }
-                else {
-                    let theUser = {
-                        id: user,
-                        name: allUsers[user].name,
-                        status: allUsers[user].status
-                    }
-                    approved.push(theUser);
-                }
             }
             this.setState({
-                pendingUsers: notApproved,
-                approvedUsers: approved
+                pendingUsers: notApproved
             });
         })
     }
@@ -97,50 +79,26 @@ class PendingUsers extends Component {
         return (
             <div>
                 <div className="list-container">
-                    {this.state.pendingUsers.length > 1 && <List
+                    {this.state.pendingUsers.length >= 1 && <List
                         itemLayout="horizontal"
                         dataSource={this.state.pendingUsers}
                         renderItem={user => (
                             <List.Item>
-                                <List.Item.Meta
-                                    title={user.name}
-                                />
-                                <div className="status-toolbar">
-                                    {user.status}
+                                <div className="flexbox-item">
+                                    <List.Item.Meta
+                                        title={user.name}
+                                    />
                                 </div>
-                                <Button onClick={() => this.approve(user.id, user.email, user.password)}>
-                                    Approve
-                                </Button>
-                                <Button type="danger" onClick={() => this.deny(user.id, user.email)}>
-                                    Deny
-                                </Button>
-                            </List.Item>
-                        )}
-                    />}
-                </div>
-                <div className="list-container">
-                    {this.state.approvedUsers !== null && <List
-                        itemLayout="horizontal"
-                        dataSource={this.state.approvedUsers}
-                        renderItem={user => (
-                            <List.Item>
-                                <List.Item.Meta
-                                    title={user.name}
-                                />
-                                <div className="status-toolbar">
+                                <div className="flexbox-item">
                                     {this.getStatus(user.status)}
                                 </div>
-                                <div>
-                                    <Select
-                                        id="status"
-                                        placeholder="Edit Status"
-                                        onChange={(e) => this.updateStatus(e, user.id)}
-                                        style={{ width: 200 }}
-                                    >
-                                        <Option value="intern">Intern</Option>
-                                        <Option value="alum">Alumi</Option>
-                                        <Option value="admin">Administrator</Option>
-                                    </Select>
+                                <div className="flexbox-item">
+                                    <Button onClick={() => this.approve(user.id, user.email, user.password)}>
+                                        Approve
+                                    </Button>
+                                    <Button type="danger" onClick={() => this.deny(user.id, user.email)}>
+                                        Deny
+                                    </Button>
                                 </div>
                             </List.Item>
                         )}

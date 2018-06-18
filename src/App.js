@@ -22,8 +22,6 @@ class App extends Component {
     return (
       <div className="App">
         <Landing />
-        <AdminMarket />
-        <Marketplace />
       </div>
     );
   }

@@ -1,22 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=Aldrich');
 
 .title { 
-    font-size: 90px;
+    font-size: 50px;
+  
     font-family: 'Aldrich', sans-serif;
-    color: black;
-    background-color: white;
+    color: white;
     position: absolute;
-    opacity: .6;
+    margin-left: -40.1%;
 
     /* position: absolute; 
     top: 10%; 
     left: 30%; */
 
     left: 0;
-    margin: auto;
-    margin-top: -210px;
-    top: 50%;
+
     width: 100%;
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
 }
 
 .missionStatement { 
@@ -48,10 +54,12 @@
     width: 7%;
     height: "auto"; 
     display: block;
-    margin-left: auto;
-    margin-right: auto; 
-    padding-top: 40px;
-    padding-bottom: 40px;
+    opacity: .5;
+    position: absolute;
+    margin-left: 45%;
+    margin-top: -8%;
+    /* margin-right: auto;  */
+
 }
 
 /* Styling for affiliates login */

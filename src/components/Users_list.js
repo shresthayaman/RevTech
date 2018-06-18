@@ -42,7 +42,8 @@ class Users_list extends Component {
             linkedin: Users[User].linkedin,
             approve: Users[User].approve,
             gradYear: Users[User].gradYear,
-            id: User
+            id: User,
+            pictureURL: Users[User].pictureURL
           });
         }
         if (
@@ -58,7 +59,8 @@ class Users_list extends Component {
             linkedin: "https://www.linkedin.com/in/",
             approve: Users[User].approve,
             gradYear: Users[User].gradYear,
-            id: User
+            id: User,
+            pictureURL: Users[User].pictureURL
           });
         }
       }
