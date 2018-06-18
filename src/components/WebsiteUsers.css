@@ -1,0 +1,16 @@
+.list-container {
+    margin: auto;
+    width: 80%;
+}
+
+.flexbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.flexbox-item {
+    width: 33.33%;
+}
