@@ -24,8 +24,7 @@ class DummyPage extends Component {
     }
     return (
       <div>
-        <div>hello world!</div>
-        <button onClick={this.logout}> logout </button>
+        <button onClick={this.logout}>Logout </button>
         <DailyChallenge />
       </div>
     );
