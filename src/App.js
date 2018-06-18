@@ -5,12 +5,13 @@ import Marketplace from "./components/Marketplace.js";
 import DailyChallenge from "./components/DailyChallenge";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Identity from "./components/Identity";
-import SideBar from "./components/SideBar"
-import fire from './components/fire';
-import Landing from "./components/Landing.js"
-import PendingContracts from "./components/PendingContracts"
-import PendingUsers from "./components/PendingUsers"
-import "./App.css"
+import SideBar from "./components/SideBar";
+import fire from "./components/fire";
+import Landing from "./components/Landing.js";
+import PendingContracts from "./components/PendingContracts";
+import PendingUsers from "./components/PendingUsers";
+import AdminMarket from "./components/AdminMarket.js";
+import "./App.css";
 
 class App extends Component {
   constructor(props) {
