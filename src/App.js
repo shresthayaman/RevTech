@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import Marketplace from "./components/Marketplace.js";
 import DailyChallenge from "./components/DailyChallenge";
-import InputDetails from "./components/ContractInputDetails";
-import DisplayContracts from "./components/ContractInput";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import Identity from "./components/Identity";
 import SideBar from "./components/SideBar"
 import fire from './components/fire';
 import Landing from "./components/Landing.js"
@@ -17,7 +17,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Landing/>
+        <Landing />
+        <Identity />
       </div>
     );
   }
