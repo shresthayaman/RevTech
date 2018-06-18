@@ -1,0 +1,22 @@
+.identity-container { 
+    width: 50%;
+    position: absolute;
+    margin: 15%;
+    margin-left: 25%; 
+    z-index: 5;    
+    opacity: 0;
+}
+
+.affiliatesLoginText { 
+    font-size: 30px;
+    font-family: 'Aldrich', sans-serif;
+    color:white;
+    position: absolute;
+    opacity: 1;
+    margin-top: -10%;
+}
+
+.identity-container:hover {
+    opacity: 1;
+    transition: all .5s ease;
+  } 

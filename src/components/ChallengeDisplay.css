@@ -1,0 +1,11 @@
+.card {
+  height: 300px;
+  overflow: auto;
+}
+
+.linkSubmission {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 2%;
+}
