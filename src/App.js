@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import "antd/dist/antd.css";
+import Profile from "./components/Profile";
 import Marketplace from "./components/Marketplace.js";
 import DailyChallenge from "./components/DailyChallenge";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
@@ -20,6 +22,7 @@ class App extends Component {
       <div className="App">
         <Landing />
         <Identity />
+        <Profile />
       </div>
     );
   }

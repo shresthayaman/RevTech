@@ -1,0 +1,33 @@
+.profile-container {
+  margin-top: 3%;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+}
+
+/* .card {
+  display: flex;
+  flex-direction: row;
+} */
+
+.ImageDiv {
+  width: 200px;
+  height: 180px;
+  background-color: pink;
+}
+
+.Nathan {
+  height: 100%;
+  width: 100%;
+}
+
+.icons {
+  text-align: left;
+}
+
+.setting {
+  padding-left: 1000px;
+}
+.Profile {
+  text-align: center;
+}
