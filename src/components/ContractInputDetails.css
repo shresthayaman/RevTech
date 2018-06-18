@@ -1,4 +1,4 @@
-.login-container {
+.login-container1 {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -26,10 +26,10 @@
     color: white;
     position: absolute;
     opacity: 1;
-    margin-top: -28%;
+    margin-top: -30%;
 }
 
-.login-container:hover {
+.login-container1:hover {
     opacity: 1;
     transition: all .5s ease;
   } 

@@ -60,7 +60,7 @@ export default class InputDetails extends Component {
 
   render() {
     return (
-      <div className="login-container">
+      <div className="login-container1">
          <p className="contractFormText">Companies, fill out this form: </p>
 
         <div className="input-fields">
@@ -100,6 +100,7 @@ export default class InputDetails extends Component {
             onPressEnter={this.handleClick}
           />
         </div>
+        <br />
         <div className="button-container">
           <Button
             variant="raised"

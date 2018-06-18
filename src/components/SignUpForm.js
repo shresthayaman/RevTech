@@ -11,6 +11,7 @@ class SignUpForm extends Component {
         this.state = {
             name: null,
             email: null,
+            password: null,
             status: null,
             gradYear: null
         }
@@ -23,12 +24,13 @@ class SignUpForm extends Component {
     }
 
     submitApplication = () => {
-        if (this.state.name && this.state.email && this.state.status && this.state.gradYear) {
+        if (this.state.name && this.state.email && this.state.password && this.state.status && this.state.gradYear) {
             let application = {
                 name: this.state.name,
                 linkedin: "",
                 status: this.state.status,
                 email: this.state.email,
+                password: this.state.password,
                 gradYear: this.state.gradYear,
                 github: "",
                 approve: false
@@ -41,6 +43,7 @@ class SignUpForm extends Component {
         this.setState({
             name: null,
             email: null,
+            password: null,
             status: null,
             gradYear: null
         });
@@ -63,6 +66,14 @@ class SignUpForm extends Component {
                         value={this.state.email}
                     />
                 </div>
+                <div className="input-fields">
+                    <Input
+                        placeholder="Password"
+                        type = "password"
+                        onChange={(e) => this.updateInfo("password", e.target.value)}
+                        value={this.state.password}
+                    />
+                </div>
                 <div className="input-fields" id="status-grad-year">
                     <Select
                         id="status"
@@ -81,6 +92,7 @@ class SignUpForm extends Component {
                         value={this.state.gradYear}
                     />
                 </div>
+                <br />
                 <div className="button-container">
                     <Button onClick={this.submitApplication}>
                         Apply

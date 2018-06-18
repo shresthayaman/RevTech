@@ -81,6 +81,7 @@ class LoginForm extends Component {
                         onPressEnter={this.verifyLogin}
                     />
                 </div>
+                < br />
                 <div className="button-container">
                     <Button 
                         onClick={this.verifyLogin}>
