@@ -1,7 +1,6 @@
 import React from "react";
 import 'antd/dist/antd.css';
 import { Layout, Menu, Icon } from 'antd';
-import DisplayContracts from './ContractInput'
 import InputDetails from './ContractInputDetails'
 import PendingUsers from './PendingUsers'
 
@@ -19,7 +18,7 @@ export default class SideBar extends React.Component {
   handleMenuClick1() {
     console.log("Hello!")
   }
-  
+
   handleMenuClick2() {
     this.setState({
       tab: 1
@@ -27,7 +26,6 @@ export default class SideBar extends React.Component {
     console.log("happy")
     return
     <div>
-      < DisplayContracts />
       < InputDetails />
     </div>
 

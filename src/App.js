@@ -8,6 +8,7 @@ import fire from './components/fire';
 import Landing from "./components/Landing.js"
 import PendingContracts from "./components/PendingContracts"
 import PendingUsers from "./components/PendingUsers"
+import "./App.css"
 
 class App extends Component {
   constructor(props) {

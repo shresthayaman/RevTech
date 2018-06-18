@@ -15,11 +15,11 @@ class LoginForm extends Component {
         }
     }
 
-  updateInfo = (field, e) => {
-    this.setState({
-      [field]: e
-    });
-  };
+    updateInfo = (field, e) => {
+        this.setState({
+            [field]: e
+        });
+    };
 
     componentDidMount() {
         fire.auth().onAuthStateChanged(user => {
@@ -118,5 +118,5 @@ class LoginForm extends Component {
             </div>
         );
     }
-
+}
 export default LoginForm;
