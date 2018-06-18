@@ -97,6 +97,14 @@ class SignUpForm extends Component {
                         type="password"
                     />
                 </div>
+                <div className="input-fields">
+                    <Input
+                        placeholder="Password"
+                        type = "password"
+                        onChange={(e) => this.updateInfo("password", e.target.value)}
+                        value={this.state.password}
+                    />
+                </div>
                 <div className="input-fields" id="status-grad-year">
                     <Select
                         id="status"
@@ -116,6 +124,7 @@ class SignUpForm extends Component {
                         onPressEnter={this.submitApplication}
                     />
                 </div>
+                <br />
                 <div className="button-container">
                     <Button
                         onClick={this.submitApplication}

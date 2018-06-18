@@ -108,6 +108,7 @@ class LoginForm extends Component {
                         prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                     />
                 </div>
+                < br />
                 <div className="button-container">
                     <Button
                         onClick={this.verifyLogin}
