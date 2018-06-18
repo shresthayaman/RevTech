@@ -9,28 +9,34 @@ import computer from "./images/computer.png";
 import "./Landing.css";
 import Identity from "./Identity";
 import Contract from "./ContractInputDetails";
+import videoRev from "./images/RevTechVid.mp4";
 
 
-function slideDown() {
-  ('html, body').animate({scrollTop:650}, 'slow');
-}
 
 export default class Landing extends Component {
+
+
     render() {
     return (
       <div className="App">
       <div className='header'>
-        <img
+      <h1 className="title">RevTech</h1>
+      
+
+       <video autoPlay id="background-video"  style={{width:"100%", height: "auto"}}>
+       <source src={videoRev} type="video/mp4" />
+        
+        </video>
+        <img src={downArrow} className="downArrow" onClick = "slideDown()" ></img>
+
+
+        {/* <img
         src={background}
         className='background'
         style={{ maxWidth: "100%", height: "auto", opacity: .8,  maxheight: 50,
-        overflow: "hidden"}} />
-        <h1 className="title">RevTech</h1>
+        overflow: "hidden"}} /> */}
+        
       </div>   
-            <img
-                src={downArrow}
-                className="downArrow"
-                onClick = "slideDown()" ></img>
 
       <div className="affiliatesLogin">
           <Identity 
