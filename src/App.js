@@ -21,7 +21,6 @@ class App extends Component {
     return (
       <div className="App">
         <Landing />
-        <Identity />
         <Profile />
       </div>
     );
