@@ -4,7 +4,6 @@ import { Button, Modal, Input } from "antd";
 import "./Community.css";
 import fire from "./fire.js";
 import "antd/dist/antd.css";
-import Profile_pic from "./Profile_pic";
 import { SocialIcon } from "react-social-icons";
 
 class Community extends Component {
@@ -23,7 +22,7 @@ class Community extends Component {
             margin: "1.8vw",
             width: "21vw",
             padding: "1.8vw",
-            height: "30vh",
+            height: "60vh",
             position: "relative"
           }}
         >
@@ -35,6 +34,8 @@ class Community extends Component {
           <SocialIcon url={user.linkedin} />
           &nbsp;
           <SocialIcon url={user.github} />
+          <br />
+          <img src={user.pictureURL} className="communitypic" />
         </Card>
       </div>
     );

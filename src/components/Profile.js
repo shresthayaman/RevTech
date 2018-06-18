@@ -11,6 +11,9 @@ import { SocialIcon } from "react-social-icons";
 import fire from "./fire";
 import Users_list from "./Users_list";
 import Profile_pic from "./Profile_pic";
+import DailyChallenge from "./DailyChallenge";
+import MarketDisplay from "./MarketDisplay";
+import Marketplace from "./Marketplace";
 
 const TabPane = Tabs.TabPane;
 
@@ -69,6 +72,7 @@ class Profile extends Component {
   };
 
   componentDidMount() {
+    console.log("Hello:" + fire.auth().currentUser);
     const usersRef = fire.database().ref("Users");
     console.log(usersRef);
     usersRef.on("value", snapshot => {
@@ -155,7 +159,7 @@ class Profile extends Component {
       this.state.linkedin != "" &&
       this.state.github == ""
     ) {
-      console.log(this.state.currentUser[0].id);
+      // console.log(this.state.currentUser[0].id);
       fire
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
@@ -175,7 +179,7 @@ class Profile extends Component {
   };
 
   render() {
-    console.log(this.state.currentUser[0].pictureURL);
+    // console.log(this.state.currentUser[0].pictureURL);
     return (
       <div>
         <div className="profile-container">
@@ -221,7 +225,7 @@ class Profile extends Component {
                   &emsp;
                   <Button type="primary" onClick={this.showModal}>
                     {" "}
-                    {this.state.buttontitle} LinkedIn and GitHub{" "}
+                    Edit Profile
                   </Button>
                 </div>
                 {/* Edit Profile */}
@@ -282,10 +286,10 @@ class Profile extends Component {
         <div classname="tabs">
           <Tabs defaultActiveKey="1" onChange={callback}>
             <TabPane tab="Daily Challenges" key="1">
-              Content of Tab Pane 1
+              <DailyChallenge />
             </TabPane>
             <TabPane tab="Contracts" key="2">
-              Content of Tab Pane 2
+              <Marketplace />
             </TabPane>
             <TabPane tab="Network" key="3">
               <Users_list />
