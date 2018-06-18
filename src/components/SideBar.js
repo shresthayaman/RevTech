@@ -1,6 +1,9 @@
 import React from "react";
 import "antd/dist/antd.css";
 import { Layout, Menu, Icon } from "antd";
+import DisplayContracts from "./ContractInput";
+import InputDetails from "./ContractInputDetails";
+import PendingUsers from "./PendingUsers";
 const { Header, Sider, Content } = Layout;
 
 export default class SideBar extends React.Component {
@@ -20,7 +23,10 @@ export default class SideBar extends React.Component {
     });
     console.log("happy");
     return;
-    <div />;
+    <div>
+      <DisplayContracts />
+      <InputDetails />
+    </div>;
   }
 
   handleMenuClick3() {
@@ -88,7 +94,8 @@ export default class SideBar extends React.Component {
               marginTop: 30
             }}
           >
-            <img src={require("./dickbutt.jpg")} className="Nathan" />
+            <PendingUsers />
+            {this.state.tab === 1 && <InputDetails />}
 
             <div id="divId1" />
           </Content>

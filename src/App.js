@@ -10,23 +10,13 @@ import Landing from "./components/Landing.js";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      contractList: []
-    };
-  }
-
-  updateContracts(newContract) {
-    let temp = this.state.contractList;
-    temp.push(newContract);
-    this.setState({
-      contractList: temp
-    });
   }
 
   render() {
     return (
       <div className="App">
-        <Marketplace />
+        <Landing />
+        <Identity />
       </div>
     );
   }
