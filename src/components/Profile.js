@@ -72,6 +72,7 @@ class Profile extends Component {
   };
 
   componentDidMount() {
+    console.log("Hello:" + fire.auth().currentUser);
     const usersRef = fire.database().ref("Users");
     console.log(usersRef);
     usersRef.on("value", snapshot => {
@@ -158,7 +159,7 @@ class Profile extends Component {
       this.state.linkedin != "" &&
       this.state.github == ""
     ) {
-      console.log(this.state.currentUser[0].id);
+      // console.log(this.state.currentUser[0].id);
       fire
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
@@ -178,7 +179,7 @@ class Profile extends Component {
   };
 
   render() {
-    console.log(this.state.currentUser[0].pictureURL);
+    // console.log(this.state.currentUser[0].pictureURL);
     return (
       <div>
         <div className="profile-container">
@@ -224,7 +225,7 @@ class Profile extends Component {
                   &emsp;
                   <Button type="primary" onClick={this.showModal}>
                     {" "}
-                    {this.state.buttontitle} LinkedIn and GitHub{" "}
+                    Edit Profile
                   </Button>
                 </div>
                 {/* Edit Profile */}
