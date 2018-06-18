@@ -11,6 +11,9 @@ import { SocialIcon } from "react-social-icons";
 import fire from "./fire";
 import Users_list from "./Users_list";
 import Profile_pic from "./Profile_pic";
+import DailyChallenge from "./DailyChallenge";
+import MarketDisplay from "./MarketDisplay";
+import Marketplace from "./Marketplace";
 
 const TabPane = Tabs.TabPane;
 
@@ -282,10 +285,10 @@ class Profile extends Component {
         <div classname="tabs">
           <Tabs defaultActiveKey="1" onChange={callback}>
             <TabPane tab="Daily Challenges" key="1">
-              Content of Tab Pane 1
+              <DailyChallenge />
             </TabPane>
             <TabPane tab="Contracts" key="2">
-              Content of Tab Pane 2
+              <Marketplace />
             </TabPane>
             <TabPane tab="Network" key="3">
               <Users_list />
