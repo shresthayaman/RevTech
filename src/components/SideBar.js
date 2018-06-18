@@ -3,6 +3,7 @@ import 'antd/dist/antd.css';
 import { Layout, Menu, Icon } from 'antd';
 import InputDetails from './ContractInputDetails';
 import WebsiteUsers from './WebsiteUsers';
+import AdminMarket from './AdminMarket';
 
 const { Header, Sider, Content } = Layout;
 
@@ -71,7 +72,7 @@ export default class SideBar extends React.Component {
             {this.state.page === "" && <WebsiteUsers />}
             {this.state.page === "users" && <WebsiteUsers />}
             {this.state.page === "challenges" && <div> challenges </div>}
-            {this.state.page === "pendingContracts" && <div> edit pending contracts </div>}
+            {this.state.page === "pendingContracts" && <div> <AdminMarket /> </div>}
             {this.state.page === "manageContracts" && <div> manage contract bids </div>}
           </Content>
         </Layout>
