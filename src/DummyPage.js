@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import fire from "./components/fire";
 import { Link, Redirect } from "react-router-dom";
 import DailyChallenge from "./components/DailyChallenge";
+import Profile from "./components/Profile";
 
 class DummyPage extends Component {
   constructor(props) {
@@ -24,8 +25,9 @@ class DummyPage extends Component {
     }
     return (
       <div>
-        <button onClick={this.logout}>Logout </button>
-        <DailyChallenge />
+        <div>hello world!</div>
+        <button onClick={this.logout}> logout </button>
+        <Profile />
       </div>
     );
   }
