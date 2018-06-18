@@ -79,7 +79,6 @@ class Profile_pic extends React.Component {
           {this.state.uploadedFileCloudinaryUrl === "" ? null : (
             <div>
               <p>{this.state.uploadedFile.name}</p>
-              {/* <img src={this.state.uploadedFileCloudinaryUrl} /> */}
             </div>
           )}
         </div>

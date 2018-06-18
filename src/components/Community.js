@@ -4,6 +4,7 @@ import { Button, Modal, Input } from "antd";
 import "./Community.css";
 import fire from "./fire.js";
 import "antd/dist/antd.css";
+import Profile_pic from "./Profile_pic";
 import { SocialIcon } from "react-social-icons";
 
 class Community extends Component {

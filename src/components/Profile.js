@@ -31,7 +31,7 @@ class Profile extends Component {
     link_disabled: false,
     git_disabled: false,
     submit_disabled: true,
-    id: "nyp5aa@virginia.edu",
+    id: "ys2nc@virginia.edu",
     buttontitle: "Add",
     currentUser: [
       {
@@ -76,7 +76,10 @@ class Profile extends Component {
       let newState = [];
       console.log(users);
       for (let user in users) {
-        if (users[user].email === this.state.id) {
+        if (
+          users[user].email === this.state.id &&
+          users[user].pictureUploaded == true
+        ) {
           newState.push({
             name: users[user].name,
             approve: users[user].approve,
@@ -88,6 +91,23 @@ class Profile extends Component {
             id: user,
             pictureURL: users[user].pictureURL,
             pictureUploaded: users[user].pictureUploaded
+          });
+        }
+        if (
+          users[user].email === this.state.id &&
+          users[user].pictureUploaded == false
+        ) {
+          newState.push({
+            name: users[user].name,
+            approve: users[user].approve,
+            linkedin: users[user].linkedin,
+            status: users[user].status,
+            email: users[user].email,
+            gradYear: users[user].gradYear,
+            github: users[user].github,
+            id: user,
+            pictureURL: "https://imgur.com/a/cptzpKN",
+            pictureUploaded: false
           });
         }
       }
@@ -207,7 +227,7 @@ class Profile extends Component {
                 {/* Edit Profile */}
                 <div>
                   <Modal
-                    title="Enter LinkedIn and Github URLs"
+                    title="Edit Profile "
                     visible={this.state.visible}
                     onSubmit={this.handleSubmit}
                     onCancel={this.handleCancel}
@@ -251,6 +271,7 @@ class Profile extends Component {
                         />
                       }
                     />
+                    <p> Add Photo: </p>
                     <Profile_pic user={this.state.currentUser[0]} />
                   </Modal>
                 </div>
@@ -266,7 +287,7 @@ class Profile extends Component {
             <TabPane tab="Contracts" key="2">
               Content of Tab Pane 2
             </TabPane>
-            <TabPane tab="Networks" key="3">
+            <TabPane tab="Network" key="3">
               <Users_list />
             </TabPane>
           </Tabs>
