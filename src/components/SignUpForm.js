@@ -100,15 +100,6 @@ class SignUpForm extends Component {
         </div>
         <div className="input-fields">
           <Input
-            placeholder="Potential Password"
-            onChange={e => this.updateInfo("password", e.target.value)}
-            value={this.state.password}
-            onPressEnter={this.submitApplication}
-            type="password"
-          />
-        </div>
-        <div className="input-fields">
-          <Input
             placeholder="Password"
             type="password"
             onChange={e => this.updateInfo("password", e.target.value)}
