@@ -297,7 +297,7 @@ class Profile extends Component {
                   <DailyChallenge />
                 </TabPane>
                 <TabPane tab="Contracts" key="2">
-                  <Marketplace />
+                  <Marketplace email={this.state.id} />
                 </TabPane>
                 <TabPane tab="Network" key="3">
                   <Users_list />

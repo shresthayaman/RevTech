@@ -8,7 +8,9 @@ class DummyPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      logout: false
+      logout: false,
+      toggleToAdmin: false,
+      toggleToAdminNow: false
     };
   }
 
@@ -19,13 +21,39 @@ class DummyPage extends Component {
     });
   };
 
+  toggleToAdmin = () => {
+    this.setState({
+      toggleToAdminNow: true
+    })
+  }
+
+  componentDidMount() {
+    fire
+      .database()
+      .ref("Users")
+      .on("value", snapshot => {
+        let allUsers = snapshot.val();
+        for (let user in allUsers) {
+          if (allUsers[user].status === "admin" && allUsers[user].email === fire.auth().currentUser.email) {
+            this.setState({
+              toggleToAdmin: true
+            })
+          }
+        }
+      });
+  }
+
   render() {
     if (this.state.logout) {
       return <Redirect to="/LandingPage" />;
     }
+    if (this.state.toggleToAdminNow) {
+      return <Redirect to="/AdminPage" />;
+    }
     return (
       <div>
         <div>hello world!</div>
+        {this.state.toggleToAdmin && <button onClick={this.toggleToAdmin}> Admin Mode </button>}
         <button onClick={this.logout}> logout </button>
         {fire.auth().currentUser !== null && <Profile passedEmail={fire.auth().currentUser.email} />}
       </div>
