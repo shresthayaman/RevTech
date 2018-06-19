@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import AdminMarketDisplay from "./AdminMarketDisplay.js";
-import "./AdminMarket.css";
+import PendingContractDisplay from "./PendingContractDisplay";
+import "./PendingContract.css";
 import fire from "./fire.js";
 
-class AdminMarket extends Component {
+class PendingContract extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,10 +36,10 @@ class AdminMarket extends Component {
   }
   render() {
     let marketDisplays = this.state.approvedContracts.map(con => {
-      return <AdminMarketDisplay contract={con} id={this.state.id} />;
+      return <PendingContractDisplay contract={con} id={this.state.id} />;
     });
     return <div className="flex-container">{marketDisplays}</div>;
   }
 }
 
-export default AdminMarket;
+export default PendingContract;

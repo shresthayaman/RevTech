@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Card from "@material-ui/core/Card";
 import { Button, Modal, Input, message } from "antd";
-import "./AdminMarket.css";
+import "./PendingContract.css";
 import fire from "./fire.js";
 import "antd/dist/antd.css";
 import { relative } from "path";
 
-class AdminMarketDisplay extends Component {
+class PendingContractDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,6 +61,9 @@ class AdminMarketDisplay extends Component {
     let contractId = this.props.contract.id;
     const contractRef = fire.database().ref(`/Contracts/${contractId}`);
     contractRef.remove();
+    this.setState({
+      visibleDeny: false
+    });
     message.error("Contract denied!");
   };
   submitEdits = () => {
@@ -127,11 +130,7 @@ class AdminMarketDisplay extends Component {
               &emsp;
             </div>
             <div>
-              <Button
-                type="primary"
-                style={{ background: "#f5222d" }}
-                onClick={this.handleClickDeny}
-              >
+              <Button type="danger" onClick={this.handleClickDeny}>
                 Deny
               </Button>
             </div>
@@ -184,12 +183,7 @@ class AdminMarketDisplay extends Component {
               <Button key="cancel" onClick={this.handleCancelDeny}>
                 Close
               </Button>,
-              <Button
-                type="primary"
-                style={{ background: "#f5222d" }}
-                key="deny"
-                onClick={this.handleDeny}
-              >
+              <Button type="danger" key="deny" onClick={this.handleDeny}>
                 Deny
               </Button>
             ]}
@@ -207,4 +201,4 @@ class AdminMarketDisplay extends Component {
   }
 }
 
-export default AdminMarketDisplay;
+export default PendingContractDisplay;
