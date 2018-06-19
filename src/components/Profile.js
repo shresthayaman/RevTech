@@ -185,55 +185,84 @@ class Profile extends Component {
   };
 
   render() {
-    console.log(this.state.complete);
+    // console.log(this.state.currentUser[0].pictureURL);
+    
     return (
       <div>
-        {this.state.complete ? (
-          <div>
-            <div className="profile-container">
-              <div className="ImageDiv">
-                <img
-                  src={this.state.currentUser[0].pictureURL}
-                  className="Nathan"
-                />
-              </div>
-              <div>
-                <Card
-                  classname="card"
-                  style={{
-                    margin: "1vw",
-                    width: "90vw",
-                    height: "35vh",
-                    position: "relative"
-                  }}
-                >
-                  <CardContent>
-                    <Typography gutterBottom variant="headline" component="h2">
-                      RevTech
-                    </Typography>
-                    {this.state.complete == true && (
-                      <Typography component="p">
-                        Name: {this.state.currentUser[0].name} <br /> Position:{" "}
-                        {this.state.currentUser[0].status} <br />
-                        Email: {this.state.currentUser[0].email}
-                      </Typography>
-                    )}
-                    <br />
-                    <div className="icons">
-                      <SocialIcon url={this.state.currentUser[0].linkedin} />
-                      &emsp;
-                      <SocialIcon
-                        disabled={this.state.git_disabled}
-                        url={this.state.currentUser[0].github}
-                      />
-                    </div>
-                    <br />
-                    <div className="setting">
-                      <Icon type="setting" />
-                      &emsp;
-                      <Button type="primary" onClick={this.showModal}>
-                        {" "}
-                        Edit Profile
+      <div className="profile-container">
+          <div className="textInfo">
+            <Card
+              classname="card"
+              style={{
+                width: "100vw",
+                height: "35vh",
+                position: "relative",
+                marginleft: "auto", 
+                marginrright: "auto", 
+                margintop: "4%",
+                paddingBottom: "20px", 
+                zIndex: 3
+
+              }}
+            >
+          <div className="ImageDiv">
+               <img
+              src={this.state.currentUser[0].pictureURL}
+              className="Nathan" />
+          </div>
+
+              <CardContent>
+                <Typography gutterBottom variant="headline" component="h2">
+                  RevTech
+                </Typography>
+                {this.state.complete == true && (
+                  <Typography component="p">
+                    Name: {this.state.currentUser[0].name} <br /> Position:{" "}
+                    {this.state.currentUser[0].status} <br />
+                    Email: {this.state.currentUser[0].email}
+                  </Typography>
+                )}
+                
+                <div className="icons">
+                  <SocialIcon url={this.state.currentUser[0].linkedin} />
+                  &emsp;
+                  <SocialIcon
+                    disabled={this.state.git_disabled}
+                    url={this.state.currentUser[0].github}
+                  />
+                </div>
+
+
+                <div className="setting">
+                  &emsp;
+                  <Button type="primary" onClick={this.showModal}>
+                  <Icon type="setting" />
+                    {" "}
+                    Edit Profile
+                  </Button>
+                  <Button onClick={this.logout}
+                  style={{float: "right"}}> Logout 
+                  </Button>
+                </div>
+
+                {/* Edit Profile */}
+                <div>
+                  <Modal
+                    title="Edit Profile "
+                    visible={this.state.visible}
+                    onSubmit={this.handleSubmit}
+                    onCancel={this.handleCancel}
+                    footer={[
+                      <Button key="back" onClick={this.handleCancel}>
+                        Done
+                      </Button>,
+                      <Button
+                        key="submit"
+                        disabled={this.state.submit_disabled}
+                        type="primary"
+                        onClick={this.handleSubmit}
+                      >
+                        Submit
                       </Button>
                     </div>
                     {/* Edit Profile */}
@@ -269,19 +298,19 @@ class Profile extends Component {
                             />
                           }
                         />
-                        &emsp;
-                        {/* Github Input */}
-                        <Input
-                          name="github"
-                          onChange={this.onChange}
-                          value={this.state.github}
-                          placeholder="Enter your Github URL"
-                          prefix={
-                            <Icon
-                              type="user"
-                              style={{ color: "rgba(0,0,0,.25)" }}
-                            />
-                          }
+                      }
+                    />
+                    &emsp;
+                    {/* Github Input */}
+                    <Input
+                      name="github"
+                      onChange={this.onChange}
+                      value={this.state.github}
+                      placeholder="Enter your Github URL"
+                      prefix={
+                        <Icon
+                          type="user"
+                          style={{ color: "rgba(0,0,0,.25)"}}
                         />
                         <p> Add Photo: </p>
                         <Profile_pic user={this.state.currentUser[0]} />
@@ -305,9 +334,21 @@ class Profile extends Component {
               </Tabs>
             </div>
           </div>
-        ) : (
-            <p>Loading...</p>
-          )}
+        </div>
+        <div classname="tabs">
+          <Tabs defaultActiveKey="1" onChange={callback}>
+            <TabPane tab="Daily Challenges" key="1">
+              <DailyChallenge />
+            </TabPane>
+            <TabPane tab="Contracts" key="2">
+              <Marketplace />
+            </TabPane>
+            <TabPane tab="Network" key="3">
+              <Users_list />
+            </TabPane>
+          </Tabs>
+        </div>
+        <div className="spacer"/>
       </div>
     );
   }

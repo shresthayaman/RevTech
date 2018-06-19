@@ -22,7 +22,7 @@ class Community extends Component {
             margin: "1.8vw",
             width: "21vw",
             padding: "1.8vw",
-            height: "60vh",
+            height: "50vh",
             position: "relative"
           }}
         >
