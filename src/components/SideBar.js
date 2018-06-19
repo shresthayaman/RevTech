@@ -1,6 +1,6 @@
 import React from "react";
 import 'antd/dist/antd.css';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Button } from 'antd';
 import InputDetails from './ContractInputDetails';
 import WebsiteUsers from './WebsiteUsers';
 import AdminMarket from './AdminMarket';
@@ -52,22 +52,21 @@ export default class SideBar extends React.Component {
             </Menu.Item>
             <Menu.Item key="3" onClick={() => this.handleMenuClick("pendingContracts")}>
               <Icon type="clock-circle-o" />
-              <span>Pending Contract Editors</span>
+              <span>Pending Contracts</span>
             </Menu.Item>
             <Menu.Item key="4" onClick={() => this.handleMenuClick("manageContracts")}>
               <Icon type="idcard" />
-              <span>Contract Management</span>
+              <span>Manage Contracts</span>
+            </Menu.Item>
+            <Menu.Item>
+              <Button onClick={this.props.userView}> Toggle to User </Button>
+            </Menu.Item>
+            <Menu.Item>
+              <Button onClick={this.props.logout}> Logout </Button>
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
-          <Header style={{ background: "#fff", padding: 0 }}>
-            <Icon
-              className="trigger"
-              type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-              onClick={this.toggle}
-            />
-          </Header>
           <Content style={{ margin: '155px 16px', padding: 24, background: '#fff', minHeight: 380, marginTop: 30 }}>
             {this.state.page === "" && <WebsiteUsers />}
             {this.state.page === "users" && <WebsiteUsers />}
