@@ -23,12 +23,11 @@ class DummyPage extends Component {
     if (this.state.logout) {
       return <Redirect to="/LandingPage" />;
     }
-    console.log(fire.auth().currentUser.email);
     return (
       <div>
         <div>hello world!</div>
         <button onClick={this.logout}> logout </button>
-        <Profile passedEmail={fire.auth().currentUser.email} />
+        {fire.auth().currentUser !== null && <Profile passedEmail={fire.auth().currentUser.email} />}
       </div>
     );
   }

@@ -22,37 +22,41 @@ function callback(key) {
 }
 
 class Profile extends Component {
-  state = {
-    visible: false,
-    name: "Nathan Park",
-    namedisplay: "Nathan Park",
-    position: "Intern",
-    linkedin: "",
-    github: "",
-    users: [],
-    complete: false,
-    link_disabled: false,
-    git_disabled: false,
-    submit_disabled: true,
-    id: "",
-    loginuser: "",
-    buttontitle: "Add",
-    loggedin: false,
-    user: null,
-    currentUser: [
-      {
-        name: "",
-        status: "",
-        email: "",
-        github: "https://github.com/",
-        linkedin: "https://www.linkedin.com/",
-        approve: false,
-        gradYear: 2021,
-        id: "",
-        pictureURL: ""
-      }
-    ]
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false,
+      name: "Nathan Park",
+      namedisplay: "Nathan Park",
+      position: "Intern",
+      linkedin: "",
+      github: "",
+      users: [],
+      complete: false,
+      link_disabled: false,
+      git_disabled: false,
+      submit_disabled: true,
+      id: this.props.passedEmail,
+      loginuser: "",
+      buttontitle: "Add",
+      loggedin: true,
+      user: null,
+      currentUser: [
+        {
+          name: "",
+          status: "",
+          email: "",
+          github: "https://github.com/",
+          linkedin: "https://www.linkedin.com/",
+          approve: false,
+          gradYear: 2021,
+          id: "",
+          pictureURL: ""
+        }
+      ]
+    };
+  }
+
   showModal = () => {
     this.setState({
       visible: true,
@@ -74,47 +78,52 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    const usersRef = fire.database().ref("Users");
-    console.log(usersRef);
     fire.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState(
           { user, loggedin: true, id: fire.auth().currentUser.email },
-          () => localStorage.setItem("user", user.uid),
-          () =>
-            usersRef.on("value", snapshot => {
-              let users = snapshot.val();
-              let newState = [];
-              for (let user in users) {
-                if (users[user].email === this.state.id) {
-                  newState.push({
-                    name: users[user].name,
-                    approve: users[user].approve,
-                    linkedin: users[user].linkedin,
-                    status: users[user].status,
-                    email: users[user].email,
-                    gradYear: users[user].gradYear,
-                    github: users[user].github,
-                    id: user,
-                    pictureURL: users[user].pictureURL
-                  });
-                }
-              }
-              if (this.state.loggedin == true) {
-                console.log("Log In is true");
-                this.setState({
-                  currentUser: newState,
-                  complete: true
-                });
-              } else {
-                this.setState({
-                  complete: false
-                });
-              }
-            })
+          localStorage.setItem("user", user.uid)
         );
       } else {
         this.setState({ user: null }, localStorage.removeItem("user"));
+      }
+    });
+    // if (fire.auth().currentUser != null) {
+    //   // console.log("Logged in:" + fire.auth().currentUser.email);
+    //   this.setState({
+    //     id: fire.auth().currentUser.email
+    //   });
+    // }
+    const usersRef = fire.database().ref("Users");
+    console.log(usersRef);
+    usersRef.on("value", snapshot => {
+      let users = snapshot.val();
+      let newState = [];
+      for (let user in users) {
+        if (users[user].email === this.state.id) {
+          newState.push({
+            name: users[user].name,
+            approve: users[user].approve,
+            linkedin: users[user].linkedin,
+            status: users[user].status,
+            email: users[user].email,
+            gradYear: users[user].gradYear,
+            github: users[user].github,
+            id: user,
+            pictureURL: users[user].pictureURL
+          });
+        }
+      }
+      if (this.state.loggedin == true) {
+        console.log("Loggin In is true");
+        this.setState({
+          currentUser: newState,
+          complete: true
+        });
+      } else {
+        this.setState({
+          complete: false
+        });
       }
     });
   }
@@ -176,7 +185,7 @@ class Profile extends Component {
   };
 
   render() {
-    console.log(this.props.passedEmail);
+    console.log(this.state.complete);
     return (
       <div>
         {this.state.complete ? (
@@ -297,8 +306,8 @@ class Profile extends Component {
             </div>
           </div>
         ) : (
-          <p>Loading...</p>
-        )}
+            <p>Loading...</p>
+          )}
       </div>
     );
   }
