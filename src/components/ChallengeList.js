@@ -12,9 +12,11 @@ export default class ChallenegeList extends React.Component {
       challengeArray: [],
       clickedChallenge: {
         title: "Daily Challeneges",
-        detail:
-          "Select a specific daily challenge to obtain challenege details,",
-        dueDate: "N/A"
+        text:
+          "<p>Select a specific daily challenge to obtain challenege details</p>",
+        date: "",
+        time: "",
+        submission: []
       }
     };
   }
@@ -29,8 +31,9 @@ export default class ChallenegeList extends React.Component {
         tempList.push({
           key: challenge,
           title: allChallenges[challenge].title,
-          detail: allChallenges[challenge].detail,
-          dueDate: allChallenges[challenge].dueDate,
+          text: allChallenges[challenge].text,
+          date: allChallenges[challenge].date,
+          time: allChallenges[challenge].time,
           submission: allChallenges[challenge].submission
         });
       }

@@ -1,9 +1,10 @@
 import React from "react";
 import { Card, Input, Button } from "antd";
+import ReactQuill, { Quill, Mixin, Toolbar } from "react-quill";
 import fire from "./fire";
 import "./ChallengeDisplay.css";
 
-export default class ChallenegeDisplay extends React.Component {
+export default class ChallengeDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +19,11 @@ export default class ChallenegeDisplay extends React.Component {
       previousLink: "",
       alreadySubmitted: false
     };
-    if (this.props.clickedChallenge !== nextProps.clickedChallenge) {
+    if (
+      this.props.clickedChallenge !== nextProps.clickedChallenge &&
+      this.props.clickedChallenge.submission === null
+    ) {
+      console.log("hello form the other world");
       nextProps.clickedChallenge.submission.map(submission => {
         if (fire.auth().currentUser.email === submission.email) {
           link = submission.link;
@@ -40,15 +45,18 @@ export default class ChallenegeDisplay extends React.Component {
       let allSubmissions = snapshot.val();
       let tempList = [];
       //map through all old submisssions and adds it to the copy array if it was not a submission from the user loged in
-      allSubmissions.map(submission => {
-        if (submission.email !== fire.auth().currentUser.email) {
-          tempList.push({
-            email: submission.email,
-            link: submission.link,
-            onTime: submission.onTime
-          });
-        }
-      });
+      if (allSubmissions !== null) {
+        allSubmissions.map(submission => {
+          if (submission.email !== fire.auth().currentUser.email) {
+            tempList.push({
+              email: submission.email,
+              link: submission.link,
+              onTime: submission.onTime
+            });
+          }
+        });
+      }
+
       //will add the updated link or the new link (doesnt matter eith as their previoius input is not in the tempList)
       tempList.push({
         email: fire.auth().currentUser.email,
@@ -64,12 +72,22 @@ export default class ChallenegeDisplay extends React.Component {
   };
 
   render() {
-    console.log(this.state.previousLink);
+    console.log(this.props.clickedChallenge);
     return (
       <div>
         <h1>{this.props.clickedChallenge.title}</h1>
-        <Card className="card">{this.props.clickedChallenge.detail}</Card>
 
+        <ReactQuill
+          class="displayEditor"
+          theme="snow"
+          value={this.props.clickedChallenge.text}
+          modules={ChallengeDisplay.modules}
+          formats={ChallengeDisplay.formats}
+          bounds={".app"}
+          placeholder="Pick a Challenge to Edit it's Contents"
+          readOnly={true}
+          toolbar={false}
+        />
         <div className="linkSubmission">
           <Input
             placeholder="Input link to submit"
@@ -93,3 +111,31 @@ export default class ChallenegeDisplay extends React.Component {
     );
   }
 }
+
+ChallengeDisplay.modules = {
+  toolbar: false,
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false
+  }
+};
+/* 
+ * Quill editor formats
+ * See https://quilljs.com/docs/formats/
+ */
+ChallengeDisplay.formats = [
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+  "link",
+  "image",
+  "video"
+];

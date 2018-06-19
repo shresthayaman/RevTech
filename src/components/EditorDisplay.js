@@ -23,17 +23,20 @@ export default class EditorDisplay extends React.Component {
       date: null, //date is to keep the proper dispaly on user screen
       time: null,
       firebaseDate: null, //firebaseDate is o have a string format to push to firebase
-      firebaseTime: null
+      firebaseTime: null,
+      submission: []
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.clickedChallenge !== nextProps.clickedChallenge) {
       this.setState({
+        key: nextProps.clickedChallenge.key,
         title: nextProps.clickedChallenge.title,
         text: nextProps.clickedChallenge.text,
         firebaseDate: nextProps.clickedChallenge.date,
-        firebaseTime: nextProps.clickedChallenge.time
+        firebaseTime: nextProps.clickedChallenge.time,
+        submission: nextProps.clickedChallenge.submission
       });
     }
   }
@@ -61,65 +64,65 @@ export default class EditorDisplay extends React.Component {
   };
 
   handleSubmit = () => {
-    // const subRef = fire.database().ref(`DailyChallenges/${this.props.clickedChallenege.key}`);
-    // subRef.on("value", snapshot => {
-    //   let allChallenges = snapshot.val();
-    //   let tempList = [];
-    //   for (let challenge in allChallenges) {
-    //     if (challenge.key !== this.state.key) {
-    //       tempList.push({
-    //         key: challenge.key,
-    //         title: challenge.title,
-    //         text: challenge.text,
-    //         date: challenge.date,
-    //         time: challenge.time,
-    //         submisisons: challenge.submissions
-    //       });
-    //     }
-    //   }
-    //   tempList.push({
-    //     key: this.state.key,
-    //     title: this.state.title,
-    //     text: this.state.text,
-    //     date: this.state.date,
-    //     time: this.state.time,
-    //     submisisons: this.state.submissions
-    //   });
-    //   console.log(tempList);
-    //   fire
-    //     .database()
-    //     .ref("/")
-    //     .update({ DailyChallenges: tempList });
-    // });
+    fire
+      .database()
+      .ref(`DailyChallenges/${this.state.key}`)
+      .update({
+        title: this.state.title,
+        text: this.state.text,
+        date: this.state.firebaseDate,
+        time: this.state.firebaseTime,
+        submisison: []
+      });
   };
 
   render() {
-    console.log(this.state);
     return (
-      <div className="editorButton">
-        <Input
-          onChange={e => this.changeTitle(e.target.value)}
-          value={this.state.title}
-        />
+      <div className="editor">
+        <div className="title">
+          <Input
+            placeholder="Challenge Title"
+            onChange={e => this.changeTitle(e.target.value)}
+            value={this.state.title}
+          />
+        </div>
         <ReactQuill
           className="textEditor"
-          theme={this.state.theme}
           onChange={this.handleTextChange}
           value={this.state.text}
           modules={EditorDisplay.modules}
           formats={EditorDisplay.formats}
           bounds={".app"}
-          placeholder={this.props.placeholder}
+          placeholder="Pick a Challenge to Edit it's Contents"
         />
-        <DatePicker value={this.state.date} onChange={this.changeDate} />
-        <TimePicker
-          value={this.state.time}
-          use12Hours
-          format="h:mm a"
-          onChange={this.changeTime}
-        />
-        <Button className="button" type="primary" onClick={this.handleSubmit}>
-          Submit
+        <br />
+        <div className="dueDateTime">
+          <DatePicker
+            value={this.state.date}
+            onChange={this.changeDate}
+            placeholder="Select Due Date"
+          />
+          <TimePicker
+            value={this.state.time}
+            use12Hours
+            format="h:mm a"
+            onChange={this.changeTime}
+            placeholder="Select Time"
+          />
+        </div>
+        <br />
+        <Button
+          className="button"
+          type="primary"
+          onClick={this.handleSubmit}
+          disabled={
+            this.state.title === "" ||
+            this.state.text === "" ||
+            this.state.date === null ||
+            this.state.time === null
+          }
+        >
+          Update Challenge
         </Button>
       </div>
     );

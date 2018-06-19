@@ -1,6 +1,6 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { List, message } from "antd";
+import { List, Button, Modal } from "antd";
 import fire from "./fire";
 import EditorDisplay from "./EditorDisplay";
 
@@ -9,7 +9,11 @@ export default class AdminChallengeEditor extends React.Component {
     super(props);
     this.state = {
       challengeArray: [],
-      clickedChallenge: {}
+      clickedChallenge: {},
+      tryToRemove: {},
+      ModalText: "",
+      visible: false,
+      confirmLoading: false
     };
   }
 
@@ -41,6 +45,42 @@ export default class AdminChallengeEditor extends React.Component {
     });
   };
 
+  handleRemove = item => {
+    let text = "Do you want to remove: " + item.title + "?";
+    this.setState({
+      visible: true,
+      ModalText: text,
+      tryToRemove: item
+    });
+    console.log("I am trying to remove");
+  };
+
+  //only after user clicks ok confirmation when attempting to remove it will remove from database
+  handleOk = item => {
+    console.log(this.state.tryToRemove.key);
+    const challengeRef = fire
+      .database()
+      .ref(`/DailyChallenges/${this.state.tryToRemove.key}`);
+    challengeRef.remove();
+
+    this.setState({
+      ModalText: "Removing Daily Challenge...",
+      confirmLoading: true
+    });
+    setTimeout(() => {
+      this.setState({
+        visible: false,
+        confirmLoading: false
+      });
+    }, 500);
+  };
+  handleCancel = () => {
+    console.log("Clicked cancel button");
+    this.setState({
+      visible: false
+    });
+  };
+
   render() {
     //console.log(this.state.clickedChallenge);
     return (
@@ -65,10 +105,33 @@ export default class AdminChallengeEditor extends React.Component {
           }}
           dataSource={this.state.challengeArray}
           renderItem={item => (
-            <List.Item key={item.title}>
+            <List.Item
+              key={item.title}
+              extra={[
+                <Button
+                  type="danger"
+                  size="small"
+                  onClick={() => this.handleRemove(item)}
+                >
+                  X
+                </Button>
+              ]}
+            >
+              <Modal
+                visible={this.state.visible}
+                onOk={() => this.handleOk(item)}
+                confirmLoading={this.state.confirmLoading}
+                onCancel={this.handleCancel}
+              >
+                <p>{this.state.ModalText}</p>
+              </Modal>
               <div className="listItem">
                 <a onClick={() => this.handleClick(item)}>{item.title}</a>
-                {item.dueDate}
+                <div>
+                  {item.date}
+                  <br />
+                  {item.time}
+                </div>
               </div>
             </List.Item>
           )}

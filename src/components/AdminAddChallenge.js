@@ -71,11 +71,13 @@ export default class AdminAddChallenge extends React.Component {
 
   render() {
     return (
-      <div className="editorButton">
-        <Input
-          placeholder="Challenege Title"
-          onChange={e => this.changeTitle(e.target.value)}
-        />
+      <div className="editor">
+        <div className="title">
+          <Input
+            placeholder="Challenge Title"
+            onChange={e => this.changeTitle(e.target.value)}
+          />
+        </div>
         <ReactQuill
           className="textEditor"
           theme={this.state.theme}
@@ -86,13 +88,17 @@ export default class AdminAddChallenge extends React.Component {
           bounds={".app"}
           placeholder={this.props.placeholder}
         />
-        <DatePicker value={this.state.date} onChange={this.changeDate} />
-        <TimePicker
-          value={this.state.time}
-          use12Hours
-          format="h:mm a"
-          onChange={this.changeTime}
-        />
+        <br />
+        <div className="dueDateTime">
+          <DatePicker value={this.state.date} onChange={this.changeDate} />
+          <TimePicker
+            value={this.state.time}
+            use12Hours
+            format="h:mm a"
+            onChange={this.changeTime}
+          />
+        </div>
+        <br />
         <Button
           className="button"
           type="primary"

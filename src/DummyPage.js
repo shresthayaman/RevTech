@@ -27,7 +27,7 @@ class DummyPage extends Component {
       <div>
         <div>hello world!</div>
         <button onClick={this.logout}> logout </button>
-        <AdminDailyChallenge />
+        <DailyChallenge />
       </div>
     );
   }
