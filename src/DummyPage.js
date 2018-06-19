@@ -3,6 +3,7 @@ import fire from "./components/fire";
 import { Link, Redirect } from "react-router-dom";
 import DailyChallenge from "./components/DailyChallenge";
 import Profile from "./components/Profile";
+import "./DummyPage.css"; 
 
 class DummyPage extends Component {
   constructor(props) {
@@ -25,8 +26,8 @@ class DummyPage extends Component {
     }
     return (
       <div>
-        <div>hello world!</div>
-        <button onClick={this.logout}> logout </button>
+        {/* <button onClick={this.logout}
+        style={{float: "right"}}> Logout </button> */}
         <Profile />
       </div>
     );

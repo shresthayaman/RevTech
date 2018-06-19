@@ -102,9 +102,9 @@ class MarketDisplay extends Component {
           });
         let prevBidString =
           bid.hours +
-          " hours at " +
+          " hours at $" +
           bid.rate +
-          " dollars per hour; total cost: $" +
+          "/hour; Total cost: $" +
           bid.hours * bid.rate;
         this.setState({
           bidButton: "Update Bid",
@@ -139,9 +139,9 @@ class MarketDisplay extends Component {
           });
         let prevBidString =
           bid.hours +
-          " hours at " +
+          " hours at $" +
           bid.rate +
-          " dollars per hour; total cost: $" +
+          "/hour; Total cost: $" +
           bid.hours * bid.rate;
         this.setState({
           bidButton: "Update Bid",
@@ -180,9 +180,9 @@ class MarketDisplay extends Component {
       if (curBids[bid].bidder === this.props.id) {
         let prevBidString =
           curBids[bid].hours +
-          " hours at " +
+          " hours at $" +
           curBids[bid].rate +
-          " dollars per hour; total cost: $" +
+          "/hour; Total cost: $" +
           curBids[bid].rate * curBids[bid].hours;
         this.setState({
           bidButton: "Update Bid",
@@ -206,7 +206,7 @@ class MarketDisplay extends Component {
             margin: "1.8vw",
             width: "21vw",
             padding: "1.8vw",
-            height: "35vh",
+            height: "40vh",
             position: "relative"
           }}
         >
@@ -267,7 +267,7 @@ class MarketDisplay extends Component {
           <form>
             <Input
               type="number"
-              style={{ margin: "0.75vh", width: "10vw" }}
+              style={{ margin: "0.75vh", width: "11vw" }}
               placeholder="Hours required"
               value={this.state.hours}
               onChange={e => this.updateText("hours", e.target.value)}
@@ -275,8 +275,8 @@ class MarketDisplay extends Component {
             <div />
             <Input
               type="number"
-              style={{ margin: "0.75vh", width: "10vw" }}
-              placeholder="Rate per hour"
+              style={{ margin: "0.75vh", width: "11vw" }}
+              placeholder="Rate/hour"
               addonBefore="$"
               value={this.state.rate}
               onChange={e => this.updateText("rate", e.target.value)}

@@ -180,25 +180,30 @@ class Profile extends Component {
 
   render() {
     // console.log(this.state.currentUser[0].pictureURL);
+    
     return (
       <div>
         <div className="profile-container">
-          <div className="ImageDiv">
-            <img
-              src={this.state.currentUser[0].pictureURL}
-              className="Nathan"
-            />
-          </div>
-          <div>
+          <div className="textInfo">
             <Card
               classname="card"
               style={{
-                margin: "1vw",
-                width: "90vw",
+                width: "100vw",
                 height: "35vh",
-                position: "relative"
+                position: "relative",
+                marginleft: "auto", 
+                marginrright: "auto", 
+                margintop: "4%",
+                paddingBottom: "20px"
+
               }}
             >
+            <div className="ImageDiv">
+               <img
+              src={this.state.currentUser[0].pictureURL}
+              className="Nathan" />
+              </div>
+
               <CardContent>
                 <Typography gutterBottom variant="headline" component="h2">
                   RevTech
@@ -210,7 +215,7 @@ class Profile extends Component {
                     Email: {this.state.currentUser[0].email}
                   </Typography>
                 )}
-                <br />
+                
                 <div className="icons">
                   <SocialIcon url={this.state.currentUser[0].linkedin} />
                   &emsp;
@@ -219,15 +224,21 @@ class Profile extends Component {
                     url={this.state.currentUser[0].github}
                   />
                 </div>
-                <br />
+
+
                 <div className="setting">
-                  <Icon type="setting" />
                   &emsp;
                   <Button type="primary" onClick={this.showModal}>
+                  <Icon type="setting" />
                     {" "}
                     Edit Profile
                   </Button>
+                  <Button onClick={this.logout}
+                  style={{float: "right"}}> Logout 
+                  </Button>
                 </div>
+                <div className="spacer" style={{paddingbottom: "40px", backgroundcolor: "rgb(39, 75, 143)"}}></div>
+
                 {/* Edit Profile */}
                 <div>
                   <Modal
@@ -271,7 +282,7 @@ class Profile extends Component {
                       prefix={
                         <Icon
                           type="user"
-                          style={{ color: "rgba(0,0,0,.25)" }}
+                          style={{ color: "rgba(0,0,0,.25)"}}
                         />
                       }
                     />
