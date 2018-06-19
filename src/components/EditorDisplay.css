@@ -6,6 +6,7 @@
   height: 400px;
   margin-left: 20%;
   margin-right: 20%;
+  overflow: auto;
 }
 .button {
   margin-left: 20%;
