@@ -11,9 +11,9 @@ export default class ChallenegeList extends React.Component {
     this.state = {
       challengeArray: [],
       clickedChallenge: {
-        title: "Daily Challenges",
+        title: "",
         detail:
-          "Select a specific daily challenge to obtain challenege details,",
+          "Select a specific daily challenge to obtain challenege details.",
         dueDate: "N/A"
       }
     };

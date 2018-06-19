@@ -48,7 +48,7 @@
   background-color: rgb(233, 232, 232);
 }
 
-.ant-tabs ant-tabs-top ant-tabs-line { 
+.ant-tabs  { 
   background-color: rgb(38, 60, 121);
 }
 
@@ -64,7 +64,7 @@
 
 }
 
-.flex-container { 
+/* .flex-container { 
   background-color: rgb(80, 104, 134);
+} */
 
-}

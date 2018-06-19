@@ -194,7 +194,8 @@ class Profile extends Component {
                 marginleft: "auto", 
                 marginrright: "auto", 
                 margintop: "4%",
-                paddingBottom: "20px"
+                paddingBottom: "20px", 
+                zIndex: 3
 
               }}
             >
@@ -237,7 +238,6 @@ class Profile extends Component {
                   style={{float: "right"}}> Logout 
                   </Button>
                 </div>
-                <div className="spacer" style={{paddingbottom: "40px", backgroundcolor: "rgb(39, 75, 143)"}}></div>
 
                 {/* Edit Profile */}
                 <div>
@@ -307,6 +307,7 @@ class Profile extends Component {
             </TabPane>
           </Tabs>
         </div>
+        <div className="spacer"/>
       </div>
     );
   }
