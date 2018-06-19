@@ -17,7 +17,8 @@
   width: 200px;
   height: 200px;
   display: inline-block;
-  padding-top: -50px;
+  padding-left: 30px;
+  padding-bottom: 30px;
 }
 
 .Nathan {
@@ -39,6 +40,7 @@
 
 .tabs { 
   text-align: center;
+  background-color: rgb(122, 127, 187);
 }
 
 .ant-tabs-nav-scroll { 
@@ -46,14 +48,23 @@
   background-color: rgb(233, 232, 232);
 }
 
+.ant-tabs ant-tabs-top ant-tabs-line { 
+  background-color: rgb(38, 60, 121);
+}
+
 .MuiCardContent-root-29 { 
   display: flex;
   text-align: left;
   display: inline-block;
+  margin-left: 50;
 }
 
 .textInfo { 
   display: inline-block;
-  background-color: rgb(61, 88, 139);
+
+}
+
+.flex-container { 
+  background-color: rgb(80, 104, 134);
 
 }

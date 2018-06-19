@@ -28,7 +28,7 @@ class DummyPage extends Component {
       <div>
         {/* <button onClick={this.logout}
         style={{float: "right"}}> Logout </button> */}
-        <Profile />
+        <Profile/>
       </div>
     );
   }

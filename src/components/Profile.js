@@ -183,7 +183,7 @@ class Profile extends Component {
     
     return (
       <div>
-        <div className="profile-container">
+      <div className="profile-container">
           <div className="textInfo">
             <Card
               classname="card"
@@ -198,11 +198,11 @@ class Profile extends Component {
 
               }}
             >
-            <div className="ImageDiv">
+          <div className="ImageDiv">
                <img
               src={this.state.currentUser[0].pictureURL}
               className="Nathan" />
-              </div>
+          </div>
 
               <CardContent>
                 <Typography gutterBottom variant="headline" component="h2">
@@ -248,7 +248,7 @@ class Profile extends Component {
                     onCancel={this.handleCancel}
                     footer={[
                       <Button key="back" onClick={this.handleCancel}>
-                        Return
+                        Done
                       </Button>,
                       <Button
                         key="submit"
