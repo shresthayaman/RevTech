@@ -8,7 +8,8 @@ class DummyPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            logout: false
+            logout: false,
+            userView: false
         }
     }
 
@@ -19,14 +20,22 @@ class DummyPage extends Component {
         });
     }
 
+    userView = () => {
+        this.setState({
+            userView: true
+        });
+    }
+
     render() {
         if (this.state.logout) {
             return <Redirect to="/LandingPage" />
         }
+        if (this.state.userView) {
+            return <Redirect to="/DummyPage" />
+        }
         return (
             <div>
-                <button onClick={this.logout}> logout </button>
-                <SideBar />
+                <SideBar logout={this.logout} userView={this.userView} />
             </div>
         );
     }

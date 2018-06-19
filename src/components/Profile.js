@@ -22,35 +22,41 @@ function callback(key) {
 }
 
 class Profile extends Component {
-  state = {
-    visible: false,
-    name: "Nathan Park",
-    namedisplay: "Nathan Park",
-    position: "Intern",
-    linkedin: "",
-    github: "",
-    users: [],
-    complete: false,
-    link_disabled: false,
-    git_disabled: false,
-    submit_disabled: true,
-    id: "ys2nc@virginia.edu",
-    buttontitle: "Add",
-    currentUser: [
-      {
-        name: "",
-        status: "",
-        email: "",
-        github: "https://github.com/",
-        linkedin: "https://www.linkedin.com/",
-        approve: false,
-        gradYear: 2021,
-        id: "",
-        pictureURL: "",
-        pictureUploaded: false
-      }
-    ]
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false,
+      name: "Nathan Park",
+      namedisplay: "Nathan Park",
+      position: "Intern",
+      linkedin: "",
+      github: "",
+      users: [],
+      complete: false,
+      link_disabled: false,
+      git_disabled: false,
+      submit_disabled: true,
+      id: this.props.passedEmail,
+      loginuser: "",
+      buttontitle: "Add",
+      loggedin: true,
+      user: null,
+      currentUser: [
+        {
+          name: "",
+          status: "",
+          email: "",
+          github: "https://github.com/",
+          linkedin: "https://www.linkedin.com/",
+          approve: false,
+          gradYear: 2021,
+          id: "",
+          pictureURL: ""
+        }
+      ]
+    };
+  }
+
   showModal = () => {
     this.setState({
       visible: true,
@@ -72,18 +78,29 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    console.log("Hello:" + fire.auth().currentUser);
+    fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState(
+          { user, loggedin: true, id: fire.auth().currentUser.email },
+          localStorage.setItem("user", user.uid)
+        );
+      } else {
+        this.setState({ user: null }, localStorage.removeItem("user"));
+      }
+    });
+    // if (fire.auth().currentUser != null) {
+    //   // console.log("Logged in:" + fire.auth().currentUser.email);
+    //   this.setState({
+    //     id: fire.auth().currentUser.email
+    //   });
+    // }
     const usersRef = fire.database().ref("Users");
     console.log(usersRef);
     usersRef.on("value", snapshot => {
       let users = snapshot.val();
       let newState = [];
-      console.log(users);
       for (let user in users) {
-        if (
-          users[user].email === this.state.id &&
-          users[user].pictureUploaded == true
-        ) {
+        if (users[user].email === this.state.id) {
           newState.push({
             name: users[user].name,
             approve: users[user].approve,
@@ -93,32 +110,21 @@ class Profile extends Component {
             gradYear: users[user].gradYear,
             github: users[user].github,
             id: user,
-            pictureURL: users[user].pictureURL,
-            pictureUploaded: users[user].pictureUploaded
-          });
-        }
-        if (
-          users[user].email === this.state.id &&
-          users[user].pictureUploaded == false
-        ) {
-          newState.push({
-            name: users[user].name,
-            approve: users[user].approve,
-            linkedin: users[user].linkedin,
-            status: users[user].status,
-            email: users[user].email,
-            gradYear: users[user].gradYear,
-            github: users[user].github,
-            id: user,
-            pictureURL: "https://imgur.com/a/cptzpKN",
-            pictureUploaded: false
+            pictureURL: users[user].pictureURL
           });
         }
       }
-      this.setState({
-        currentUser: newState,
-        complete: true
-      });
+      if (this.state.loggedin == true) {
+        console.log("Loggin In is true");
+        this.setState({
+          currentUser: newState,
+          complete: true
+        });
+      } else {
+        this.setState({
+          complete: false
+        });
+      }
     });
   }
 
@@ -129,29 +135,29 @@ class Profile extends Component {
       buttontitle: "Edit",
       submit_disabled: true
     });
-    console.log(this.state.currentUser);
-    console.log(this.state.currentUser[0].id);
+    // console.log(this.state.currentUser);
+    // console.log(this.state.currentUser[0].id);
 
     if (
       this.state.complete == true &&
       this.state.linkedin == "" &&
       this.state.github != ""
     ) {
-      console.log(this.state.currentUser[0].id);
+      // console.log(this.state.currentUser[0].id);
       fire
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-          {
-            github: this.state.github
-          },
-          function(error) {
-            if (error) {
-              // The write failed...
-            } else {
-              // Data saved successfully!
-            }
+        {
+          github: this.state.github
+        },
+        function (error) {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
           }
+        }
         );
     }
     if (
@@ -164,16 +170,16 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-          {
-            linkedin: this.state.linkedin
-          },
-          function(error) {
-            if (error) {
-              // The write failed...
-            } else {
-              // Data saved successfully!
-            }
+        {
+          linkedin: this.state.linkedin
+        },
+        function (error) {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
           }
+        }
         );
     }
   };
@@ -258,17 +264,39 @@ class Profile extends Component {
                       >
                         Submit
                       </Button>
-                    ]}
-                  >
-                    <Input
-                      name="linkedin"
-                      placeholder="Enter your Linkedin URL"
-                      onChange={this.onChange}
-                      value={this.state.linkedin}
-                      prefix={
-                        <Icon
-                          type="user"
-                          style={{ color: "rgba(0,0,0,.25)" }}
+                    </div>
+                    {/* Edit Profile */}
+                    <div>
+                      <Modal
+                        title="Edit Profile "
+                        visible={this.state.visible}
+                        onSubmit={this.handleSubmit}
+                        onCancel={this.handleCancel}
+                        footer={[
+                          <Button key="back" onClick={this.handleCancel}>
+                            Return
+                          </Button>,
+                          <Button
+                            key="submit"
+                            disabled={this.state.submit_disabled}
+                            type="primary"
+                            onClick={this.handleSubmit}
+                          >
+                            Submit
+                          </Button>
+                        ]}
+                      >
+                        <Input
+                          name="linkedin"
+                          placeholder="Enter your Linkedin URL"
+                          onChange={this.onChange}
+                          value={this.state.linkedin}
+                          prefix={
+                            <Icon
+                              type="user"
+                              style={{ color: "rgba(0,0,0,.25)" }}
+                            />
+                          }
                         />
                       }
                     />
@@ -284,14 +312,27 @@ class Profile extends Component {
                           type="user"
                           style={{ color: "rgba(0,0,0,.25)"}}
                         />
-                      }
-                    />
-                    <p> Add Photo: </p>
-                    <Profile_pic user={this.state.currentUser[0]} />
-                  </Modal>
-                </div>
-              </CardContent>
-            </Card>
+                        <p> Add Photo: </p>
+                        <Profile_pic user={this.state.currentUser[0]} />
+                      </Modal>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+            <div classname="tabs">
+              <Tabs defaultActiveKey="1" onChange={callback}>
+                <TabPane tab="Daily Challenges" key="1">
+                  <DailyChallenge />
+                </TabPane>
+                <TabPane tab="Contracts" key="2">
+                  <Marketplace email={this.state.id} />
+                </TabPane>
+                <TabPane tab="Network" key="3">
+                  <Users_list />
+                </TabPane>
+              </Tabs>
+            </div>
           </div>
         </div>
         <div classname="tabs">

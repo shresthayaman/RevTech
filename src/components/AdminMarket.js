@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import MarketDisplay from "./MarketDisplay";
-import "./Marketplace.css";
+import AdminMarketDisplay from "./AdminMarketDisplay.js";
+import "./AdminMarket.css";
 import fire from "./fire.js";
 
-class Marketplace extends Component {
+class AdminMarket extends Component {
   constructor(props) {
     super(props);
     this.state = {
       approvedContracts: [],
-      id: this.props.id
+      id: "dmk6tm@virginia.edu"
     };
   }
   componentDidMount() {
@@ -17,7 +17,7 @@ class Marketplace extends Component {
       let contracts = snapshot.val();
       let newState = [];
       for (let contract in contracts) {
-        if (contracts[contract].approve === true) {
+        if (contracts[contract].approve === false) {
           newState.push({
             id: contract,
             approve: contracts[contract].approve,
@@ -36,10 +36,10 @@ class Marketplace extends Component {
   }
   render() {
     let marketDisplays = this.state.approvedContracts.map(con => {
-      return <MarketDisplay contract={con} id={this.state.id} />;
+      return <AdminMarketDisplay contract={con} id={this.state.id} />;
     });
     return <div className="flex-container">{marketDisplays}</div>;
   }
 }
 
-export default Marketplace;
+export default AdminMarket;
