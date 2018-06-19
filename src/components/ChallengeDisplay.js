@@ -21,7 +21,7 @@ export default class ChallengeDisplay extends React.Component {
     };
     if (
       this.props.clickedChallenge !== nextProps.clickedChallenge &&
-      this.props.clickedChallenge.submission === null
+      nextProps.clickedChallenge.submission !== undefined
     ) {
       console.log("hello form the other world");
       nextProps.clickedChallenge.submission.map(submission => {
@@ -33,8 +33,8 @@ export default class ChallengeDisplay extends React.Component {
           };
         }
       });
-      this.setState(updatedState);
     }
+    this.setState(updatedState); //has to be here to make sure it reset the previousLink state when a new challenge is clicked
   }
 
   handleLinkSubmit = () => {
@@ -43,7 +43,9 @@ export default class ChallengeDisplay extends React.Component {
       .ref(`DailyChallenges/${this.props.clickedChallenge.key}/submission`);
     subRef.on("value", snapshot => {
       let allSubmissions = snapshot.val();
+      console.log(allSubmissions);
       let tempList = [];
+
       //map through all old submisssions and adds it to the copy array if it was not a submission from the user loged in
       if (allSubmissions !== null) {
         allSubmissions.map(submission => {
