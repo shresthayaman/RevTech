@@ -35,9 +35,7 @@ class DummyPage extends Component {
         }
         return (
             <div>
-                <button onClick={this.logout}> logout </button>
-                <button onClick={this.userView}> User View </button>
-                <SideBar />
+                <SideBar logout={this.logout} userView={this.userView} />
             </div>
         );
     }

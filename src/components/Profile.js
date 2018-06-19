@@ -34,7 +34,7 @@ class Profile extends Component {
     link_disabled: false,
     git_disabled: false,
     submit_disabled: true,
-    id: "stephen@gmail.com",
+    id: "",
     loginuser: "",
     buttontitle: "Add",
     currentUser: [
@@ -153,16 +153,16 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-          {
-            github: this.state.github
-          },
-          function(error) {
-            if (error) {
-              // The write failed...
-            } else {
-              // Data saved successfully!
-            }
+        {
+          github: this.state.github
+        },
+        function (error) {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
           }
+        }
         );
     }
     if (
@@ -175,16 +175,16 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-          {
-            linkedin: this.state.linkedin
-          },
-          function(error) {
-            if (error) {
-              // The write failed...
-            } else {
-              // Data saved successfully!
-            }
+        {
+          linkedin: this.state.linkedin
+        },
+        function (error) {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
           }
+        }
         );
     }
   };
