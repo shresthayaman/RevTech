@@ -8,7 +8,7 @@ class Marketplace extends Component {
     super(props);
     this.state = {
       approvedContracts: [],
-      id: "dmk6tm@virginia.edu"
+      id: this.props.id
     };
   }
   componentDidMount() {
