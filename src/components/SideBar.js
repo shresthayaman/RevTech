@@ -4,6 +4,7 @@ import { Layout, Menu, Icon, Button } from 'antd';
 import InputDetails from './ContractInputDetails';
 import WebsiteUsers from './WebsiteUsers';
 import AdminMarket from './AdminMarket';
+import './WebsiteUsers.css';
 
 const { Header, Sider, Content } = Layout;
 
@@ -38,7 +39,7 @@ export default class SideBar extends React.Component {
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="0" style={{ height: 130 }}>
+            <Menu.Item key="0" style={{ height: 130 }} selectable="false">
               <Icon type="" />
               <span>Admins Page</span>
             </Menu.Item>
@@ -58,11 +59,17 @@ export default class SideBar extends React.Component {
               <Icon type="idcard" />
               <span>Manage Contracts</span>
             </Menu.Item>
+            <Menu.Item />
+            <Menu.Item />
             <Menu.Item>
-              <Button onClick={this.props.userView}> Toggle to User </Button>
+              <div className="button-container-toggle">
+                <Button onClick={this.props.userView}> Toggle to User </Button>
+              </div>
             </Menu.Item>
             <Menu.Item>
-              <Button onClick={this.props.logout}> Logout </Button>
+              <div className="button-container-logout">
+                <Button onClick={this.props.logout}> Logout </Button>
+              </div>
             </Menu.Item>
           </Menu>
         </Sider>

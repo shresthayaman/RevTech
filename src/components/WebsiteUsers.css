@@ -14,3 +14,11 @@
 .flexbox-item {
     width: 33.33%;
 }
+
+.button-container-toggle {
+    margin-left: 9%;
+}
+
+.button-container-logout {
+    margin-left: 23%
+}
