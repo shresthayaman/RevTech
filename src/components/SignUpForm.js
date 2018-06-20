@@ -13,7 +13,14 @@ class SignUpForm extends Component {
       email: "",
       status: "",
       gradYear: "",
-      password: ""
+      password: "",
+      skills: [
+        { software: "Skills not added" },
+        { media: "Skills not added" },
+        { data: "Skills not added" },
+        { strat: "Skills not added" },
+        { entre: "Skills not added" }
+      ]
     };
   }
 
@@ -52,7 +59,8 @@ class SignUpForm extends Component {
               github: "",
               approve: false,
               pictureURL: "https://i.imgur.com/dUYvmXB.jpg",
-              password: this.state.password
+              password: this.state.password,
+              skills: this.state.skills
             };
             fire
               .database()

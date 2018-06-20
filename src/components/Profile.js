@@ -3,16 +3,13 @@ import { Tabs, Icon, Button, Modal, Input } from "antd";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import "./Profile.css";
-import Community from "./Community.js";
 import { SocialIcon } from "react-social-icons";
 import fire from "./fire";
 import Users_list from "./Users_list";
 import Profile_pic from "./Profile_pic";
 import DailyChallenge from "./DailyChallenge";
-import MarketDisplay from "./MarketDisplay";
 import Marketplace from "./Marketplace";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -73,7 +70,12 @@ class Profile extends Component {
       visible: true,
       linkedin: "",
       github: "",
-      submit_disabled: true
+      submit_disabled: true,
+      software: false,
+      data: false,
+      media: false,
+      strat: false,
+      entre: false
     });
   };
   handleCancel = e => {
@@ -147,23 +149,23 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-        {
-          skills: [
-            { software: this.state.software },
-            { media: this.state.media },
-            { data: this.state.data },
-            { strat: this.state.strat },
-            { entre: this.state.entre }
-          ],
-          github: this.state.github
-        },
-        function (error) {
-          if (error) {
-            // The write failed...
-          } else {
-            // Data saved successfully!
+          {
+            skills: [
+              { software: this.state.software },
+              { media: this.state.media },
+              { data: this.state.data },
+              { strat: this.state.strat },
+              { entre: this.state.entre }
+            ],
+            github: this.state.github
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+            }
           }
-        }
         );
     } else if (
       this.state.complete == true &&
@@ -175,23 +177,23 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-        {
-          linkedin: this.state.linkedin,
-          skills: [
-            { software: this.state.software },
-            { media: this.state.media },
-            { data: this.state.data },
-            { strat: this.state.strat },
-            { entre: this.state.entre }
-          ]
-        },
-        function (error) {
-          if (error) {
-            // The write failed...
-          } else {
-            // Data saved successfully!
+          {
+            linkedin: this.state.linkedin,
+            skills: [
+              { software: this.state.software },
+              { media: this.state.media },
+              { data: this.state.data },
+              { strat: this.state.strat },
+              { entre: this.state.entre }
+            ]
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+            }
           }
-        }
         );
     } else {
       // console.log(this.state.currentUser[0].id);
@@ -199,24 +201,24 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-        {
-          linkedin: this.state.linkedin,
-          github: this.state.github,
-          skills: [
-            { software: this.state.software },
-            { media: this.state.media },
-            { data: this.state.data },
-            { strat: this.state.strat },
-            { entre: this.state.entre }
-          ]
-        },
-        function (error) {
-          if (error) {
-            // The write failed...
-          } else {
-            // Data saved successfully!
+          {
+            linkedin: this.state.linkedin,
+            github: this.state.github,
+            skills: [
+              { software: this.state.software },
+              { media: this.state.media },
+              { data: this.state.data },
+              { strat: this.state.strat },
+              { entre: this.state.entre }
+            ]
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+            }
           }
-        }
         );
     }
   };
@@ -413,8 +415,8 @@ class Profile extends Component {
             </div>
           </div>
         ) : (
-            <p>Loading...</p>
-          )}
+          <p>Loading...</p>
+        )}
       </div>
     );
   }

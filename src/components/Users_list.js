@@ -30,9 +30,10 @@ class Users_list extends Component {
       let newState = [];
       for (let User in Users) {
         if (
-          Users[User].approve === true &&
-          Users[User].linkedin != "" &&
-          Users[User].github != ""
+          (Users[User].approve === true &&
+            Users[User].linkedin != "" &&
+            Users[User].github != "",
+          Users[User].skills !== null)
         ) {
           newState.push({
             name: Users[User].name,
@@ -43,13 +44,13 @@ class Users_list extends Component {
             approve: Users[User].approve,
             gradYear: Users[User].gradYear,
             id: User,
-            pictureURL: Users[User].pictureURL
+            pictureURL: Users[User].pictureURL,
+            skills: Users[User].skills
           });
-        }
-        if (
+        } else if (
           Users[User].approve === true &&
-          Users[User].linkedin == "" &&
-          Users[User].github == ""
+          Users[User].linkedin === "" &&
+          Users[User].github === ""
         ) {
           newState.push({
             name: Users[User].name,
@@ -60,10 +61,12 @@ class Users_list extends Component {
             approve: Users[User].approve,
             gradYear: Users[User].gradYear,
             id: User,
-            pictureURL: Users[User].pictureURL
+            pictureURL: Users[User].pictureURL,
+            skills: Users[User].skills
           });
         }
       }
+
       let newState2 = newState.sort(this.compare);
       this.setState({
         approvedUsers: newState2
@@ -71,7 +74,7 @@ class Users_list extends Component {
     });
   }
   render() {
-    console.log("Hello");
+    console.log(this.state.newState2);
     let userDisplays = this.state.approvedUsers.map(con => {
       return <Community user={con} id={this.state.id} />;
     });
