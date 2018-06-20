@@ -53,16 +53,13 @@ class DummyPage extends Component {
     }
     return (
       <div>
-        {fire.auth().currentUser !== null && this.state.toggleToAdmin &&
+        <button onClick={this.logout}> logout </button>
+        {fire.auth().currentUser !== null &&
           <Profile
             passedEmail={fire.auth().currentUser.email}
             logout={this.logout}
             toggleToAdmin={this.toggleToAdmin}
-          />}
-        {fire.auth().currentUser !== null && !this.state.toggleToAdmin &&
-          <Profile
-            passedEmail={fire.auth().currentUser.email}
-            logout={this.logout}
+            isAdmin={this.state.toggleToAdmin}
           />}
       </div>
     );

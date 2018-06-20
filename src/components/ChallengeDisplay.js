@@ -64,7 +64,6 @@ export default class ChallenegeDisplay extends React.Component {
   };
 
   render() {
-    console.log(this.state.previousLink);
     return (
       <div>
         <h1>{this.props.clickedChallenge.title}</h1>
