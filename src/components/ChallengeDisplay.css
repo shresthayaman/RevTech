@@ -1,9 +1,10 @@
-displayEditor {
-  height: 300px;
+.challengeTitle {
+  display: flex;
+  justify-content: center;
 }
-.card {
-  height: 300px;
-  overflow: auto;
+
+.quill {
+  height: 400px;
 }
 
 .linkSubmission {

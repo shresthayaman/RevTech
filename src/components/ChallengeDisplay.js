@@ -19,11 +19,7 @@ export default class ChallengeDisplay extends React.Component {
       previousLink: "",
       alreadySubmitted: false
     };
-    if (
-      this.props.clickedChallenge !== nextProps.clickedChallenge &&
-      nextProps.clickedChallenge.submission !== undefined
-    ) {
-      console.log("hello form the other world");
+    if (nextProps.clickedChallenge.submission !== undefined) {
       nextProps.clickedChallenge.submission.map(submission => {
         if (fire.auth().currentUser.email === submission.email) {
           link = submission.link;
@@ -79,13 +75,12 @@ export default class ChallengeDisplay extends React.Component {
   };
 
   render() {
-    console.log(this.props.clickedChallenge);
+    console.log(this.state);
     return (
       <div>
-        <h1>{this.props.clickedChallenge.title}</h1>
+        <h1 className="challengeTitle">{this.props.clickedChallenge.title}</h1>
 
         <ReactQuill
-          class="displayEditor"
           theme="snow"
           value={this.props.clickedChallenge.text}
           modules={ChallengeDisplay.modules}
