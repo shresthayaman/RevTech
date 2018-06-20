@@ -241,6 +241,9 @@ class Profile extends Component {
                   <Button onClick={this.props.logout}
                     style={{ float: "right" }}> Logout
                   </Button>
+                  <Button onClick={this.props.toggleToAdmin}
+                    style={{ float: "right" }}> Admin View
+                  </Button>
                 </div>
 
                 {/* Edit Profile */}
@@ -304,7 +307,7 @@ class Profile extends Component {
               <DailyChallenge />
             </TabPane>
             <TabPane tab="Contracts" key="2">
-              <Marketplace />
+              <Marketplace id={this.state.id} />
             </TabPane>
             <TabPane tab="Network" key="3">
               <Users_list />

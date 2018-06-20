@@ -51,15 +51,18 @@ class DummyPage extends Component {
     if (this.state.toggleToAdminNow) {
       return <Redirect to="/AdminPage" />;
     }
-    console.log(fire.auth().currentUser);
     return (
       <div>
-        {this.state.toggleToAdmin && <button onClick={this.toggleToAdmin}> Admin Mode </button>}
         {fire.auth().currentUser !== null && this.state.toggleToAdmin &&
           <Profile
             passedEmail={fire.auth().currentUser.email}
             logout={this.logout}
             toggleToAdmin={this.toggleToAdmin}
+          />}
+        {fire.auth().currentUser !== null && !this.state.toggleToAdmin &&
+          <Profile
+            passedEmail={fire.auth().currentUser.email}
+            logout={this.logout}
           />}
       </div>
     );
