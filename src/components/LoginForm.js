@@ -53,7 +53,7 @@ class LoginForm extends Component {
       fire
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
-        .catch(function(error) {
+        .catch(function (error) {
           let errorCode = error.code;
           if (errorCode === "auth/wrong-password") {
             alert("Wrong password.");
@@ -75,7 +75,7 @@ class LoginForm extends Component {
   };
 
   render() {
-    if (this.state.user) {
+    if (this.state.user && this.state.admin.length !== 0) {
       let isAdmin = false;
       for (let i = 0; i < this.state.admin.length; i++) {
         if (this.state.admin[i] === fire.auth().currentUser.email) {
@@ -110,7 +110,7 @@ class LoginForm extends Component {
           />
         </div>
         <br />
-        
+
         <div className="button-container">
           <Button
             onClick={this.verifyLogin}
