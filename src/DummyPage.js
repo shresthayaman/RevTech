@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import DailyChallenge from "./components/DailyChallenge";
 import AdminDailyChallenge from "./components/AdminDailyChallenge";
 import Profile from "./components/Profile";
-import "./DummyPage.css"; 
+import "./DummyPage.css";
 
 class DummyPage extends Component {
   constructor(props) {
@@ -54,10 +54,13 @@ class DummyPage extends Component {
     }
     return (
       <div>
-        {this.state.toggleToAdmin && <button onClick={this.toggleToAdmin}> Admin Mode </button>}
-        <button onClick={this.logout}> logout </button>
-
-        {fire.auth().currentUser !== null && <Profile passedEmail={fire.auth().currentUser.email} />}
+        {fire.auth().currentUser !== null &&
+          <Profile
+            passedEmail={fire.auth().currentUser.email}
+            logout={this.logout}
+            toggleToAdmin={this.toggleToAdmin}
+            isAdmin={this.state.toggleToAdmin}
+          />}
       </div>
     );
   }

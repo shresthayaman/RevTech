@@ -51,7 +51,6 @@ class MarketDisplay extends Component {
     });
   };
   handleCancelDetails = e => {
-    console.log(e);
     this.setState({
       visibleDetails: false
     });
@@ -79,7 +78,7 @@ class MarketDisplay extends Component {
         let contractId = this.props.contract.id;
         const bidsRef = fire.database().ref(`/Contracts/${contractId}/bids`);
         let curBids = [];
-        bidsRef.on("value", snapshot => {
+        bidsRef.once("value", snapshot => {
           let bids = snapshot.val();
           for (let bid in bids) {
             if (bids[bid].bidder !== this.props.id) {
@@ -102,9 +101,9 @@ class MarketDisplay extends Component {
           });
         let prevBidString =
           bid.hours +
-          " hours at $" +
+          " hours at " +
           bid.rate +
-          "/hour; Total cost: $" +
+          " dollars per hour; total cost: $" +
           bid.hours * bid.rate;
         this.setState({
           bidButton: "Update Bid",
@@ -118,7 +117,7 @@ class MarketDisplay extends Component {
         let contractId = this.props.contract.id;
         const bidsRef = fire.database().ref(`/Contracts/${contractId}/bids`);
         let curBids = [];
-        bidsRef.on("value", snapshot => {
+        bidsRef.once("value", snapshot => {
           let bids = snapshot.val();
           for (let bid in bids) {
             curBids.push({
@@ -139,9 +138,9 @@ class MarketDisplay extends Component {
           });
         let prevBidString =
           bid.hours +
-          " hours at $" +
+          " hours at " +
           bid.rate +
-          "/hour; Total cost: $" +
+          " dollars per hour; total cost: $" +
           bid.hours * bid.rate;
         this.setState({
           bidButton: "Update Bid",
@@ -176,13 +175,14 @@ class MarketDisplay extends Component {
         });
       }
     });
+    this.setState({ totalBids: curBids.length });
     for (let bid in curBids) {
       if (curBids[bid].bidder === this.props.id) {
         let prevBidString =
           curBids[bid].hours +
-          " hours at $" +
+          " hours at " +
           curBids[bid].rate +
-          "/hour; Total cost: $" +
+          " dollars per hour; total cost: $" +
           curBids[bid].rate * curBids[bid].hours;
         this.setState({
           bidButton: "Update Bid",
@@ -206,7 +206,7 @@ class MarketDisplay extends Component {
             margin: "1.8vw",
             width: "21vw",
             padding: "1.8vw",
-            height: "40vh",
+            height: "35vh",
             position: "relative"
           }}
         >
@@ -267,7 +267,7 @@ class MarketDisplay extends Component {
           <form>
             <Input
               type="number"
-              style={{ margin: "0.75vh", width: "11vw" }}
+              style={{ margin: "0.75vh", width: "10vw" }}
               placeholder="Hours required"
               value={this.state.hours}
               onChange={e => this.updateText("hours", e.target.value)}
@@ -275,8 +275,8 @@ class MarketDisplay extends Component {
             <div />
             <Input
               type="number"
-              style={{ margin: "0.75vh", width: "11vw" }}
-              placeholder="Rate/hour"
+              style={{ margin: "0.75vh", width: "10vw" }}
+              placeholder="Rate per hour"
               addonBefore="$"
               value={this.state.rate}
               onChange={e => this.updateText("rate", e.target.value)}

@@ -35,6 +35,7 @@ class Marketplace extends Component {
     });
   }
   render() {
+    console.log("from Marketplac.js", this.state.id)
     let marketDisplays = this.state.approvedContracts.map(con => {
       return <MarketDisplay contract={con} id={this.state.id} />;
     });
