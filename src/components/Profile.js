@@ -147,23 +147,23 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-          {
-            skills: [
-              { software: this.state.software },
-              { media: this.state.media },
-              { data: this.state.data },
-              { strat: this.state.strat },
-              { entre: this.state.entre }
-            ],
-            github: this.state.github
-          },
-          function(error) {
-            if (error) {
-              // The write failed...
-            } else {
-              // Data saved successfully!
-            }
+        {
+          skills: [
+            { software: this.state.software },
+            { media: this.state.media },
+            { data: this.state.data },
+            { strat: this.state.strat },
+            { entre: this.state.entre }
+          ],
+          github: this.state.github
+        },
+        function (error) {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
           }
+        }
         );
     } else if (
       this.state.complete == true &&
@@ -175,23 +175,23 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-          {
-            linkedin: this.state.linkedin,
-            skills: [
-              { software: this.state.software },
-              { media: this.state.media },
-              { data: this.state.data },
-              { strat: this.state.strat },
-              { entre: this.state.entre }
-            ]
-          },
-          function(error) {
-            if (error) {
-              // The write failed...
-            } else {
-              // Data saved successfully!
-            }
+        {
+          linkedin: this.state.linkedin,
+          skills: [
+            { software: this.state.software },
+            { media: this.state.media },
+            { data: this.state.data },
+            { strat: this.state.strat },
+            { entre: this.state.entre }
+          ]
+        },
+        function (error) {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
           }
+        }
         );
     } else {
       // console.log(this.state.currentUser[0].id);
@@ -199,24 +199,24 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-          {
-            linkedin: this.state.linkedin,
-            github: this.state.github,
-            skills: [
-              { software: this.state.software },
-              { media: this.state.media },
-              { data: this.state.data },
-              { strat: this.state.strat },
-              { entre: this.state.entre }
-            ]
-          },
-          function(error) {
-            if (error) {
-              // The write failed...
-            } else {
-              // Data saved successfully!
-            }
+        {
+          linkedin: this.state.linkedin,
+          github: this.state.github,
+          skills: [
+            { software: this.state.software },
+            { media: this.state.media },
+            { data: this.state.data },
+            { strat: this.state.strat },
+            { entre: this.state.entre }
+          ]
+        },
+        function (error) {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
           }
+        }
         );
     }
   };
@@ -278,6 +278,11 @@ class Profile extends Component {
                       >
                         Logout
                       </Button>
+                      {this.props.isAdmin && <Button
+                        onClick={this.props.toggleToAdmin}
+                      >
+                        Admin View
+                      </Button>}
                     </div>
                     {/* Edit Profile */}
                     <div>
@@ -408,8 +413,8 @@ class Profile extends Component {
             </div>
           </div>
         ) : (
-          <p>Loading...</p>
-        )}
+            <p>Loading...</p>
+          )}
       </div>
     );
   }
