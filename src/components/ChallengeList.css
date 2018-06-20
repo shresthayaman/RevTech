@@ -19,3 +19,9 @@
   padding-left: 1%;
   padding-right: 2%;
 }
+
+.spacer { 
+  padding-bottom: 30px;
+  background-color: rgb(38, 60, 121);
+
+}

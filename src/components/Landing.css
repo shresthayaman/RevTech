@@ -1,20 +1,125 @@
 @import url('https://fonts.googleapis.com/css?family=Aldrich');
 
 .title { 
-    font-size: 90px;
+    font-size: 50px;
+  
     font-family: 'Aldrich', sans-serif;
-    color: rgb(15, 0, 70);
-    top: 10; 
+    color: white;
+    position: absolute;
+    margin-left: -40.1%;
+
+    /* position: absolute; 
+    top: 10%; 
+    left: 30%; */
+
+    left: 0;
+
+    width: 100%;
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
 }
 
 .missionStatement { 
-    padding-top: 20px;
-    padding-bottom: 50px;
+    width: 60%;
     font-size: 30px;
     font-family: 'Aldrich', sans-serif;
     color: black;
-    top: 10; 
     background: white;
     width: 70%;
+    display: inline-block; 
+}
+
+
+.signUpAffiliates { 
+    position: absolute;
+    margin: 20%;
+    width: 60%;
+    height: 40%;
+}
+
+.signUpAffiliatesBox { 
+    background-color: white;
+    opacity: .8;
+    position: relative;
+    z-index: 1;
+}
+
+.downArrow { 
+    width: 7%;
+    height: "auto"; 
+    display: block;
+    opacity: .5;
+    position: absolute;
+    margin-left: 45%;
+    margin-top: -8%;
+    /* margin-right: auto;  */
+
+}
+
+/* Styling for affiliates login */
+  .affiliatesLogin img {
+    -webkit-transition: all .5s ease;
+       -moz-transition: all .5s ease;
+         -o-transition: all .5s ease;
+        -ms-transition: all .5s ease;
+            transition: all .5s ease;
+  }
+  
+  .affiliatesLogin img:hover {
+    -webkit-filter: blur(10px);
+  } 
+
+  .affiliatesLogin:hover .identity-container{
+    opacity: 1;
+  }
+
+/* Styling for company login */
+
+.companyLogin img {
+    -webkit-transition: all .5s ease;
+       -moz-transition: all .5s ease;
+         -o-transition: all .5s ease;
+        -ms-transition: all .5s ease;
+            transition: all .5s ease;
+  }
+   
+  .companyLogin img:hover {
+    -webkit-filter: blur(5px);
+  } 
+
+  .companyLogin:hover .login-container{
+    opacity: 1;
+  }
+
+
+.contractForm { 
+    position: absolute;
+    margin: 18%;
+    margin-left: 25%; 
+    z-index: 3;    
+    opacity: 0;
+}
+
+.AboutUs { 
+    font-size: 50px;
+    font-family: 'Aldrich', sans-serif;
+    color: black;
+}
+
+.pics { 
     display: inline-block;
+    padding-right: 50px;
+    width: 150px;
+}
+
+.pics1 { 
+    display: inline-block;
+    padding-right: 50px;
+    width: 150px;
 }

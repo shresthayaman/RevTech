@@ -1,33 +1,27 @@
 import React, { Component } from "react";
-import "./App.css";
+import "antd/dist/antd.css";
+import Profile from "./components/Profile";
+import Marketplace from "./components/Marketplace.js";
 import DailyChallenge from "./components/DailyChallenge";
-import InputDetails from "./components/ContractInputDetails";
-import DisplayContracts from "./components/ContractInput";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import Identity from "./components/Identity";
 import SideBar from "./components/SideBar";
 import fire from "./components/fire";
-import Identity from "./components/Identity";
 import Landing from "./components/Landing.js";
+import PendingContracts from "./components/PendingContracts";
+import PendingUsers from "./components/PendingUsers";
+import AdminMarket from "./components/AdminMarket.js";
+import "./App.css";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      contractList: []
-    };
-  }
-
-  updateContracts(newContract) {
-    let temp = this.state.contractList;
-    temp.push(newContract);
-    this.setState({
-      contractList: temp
-    });
   }
 
   render() {
     return (
       <div className="App">
-        <Identity />
+        <Landing />
       </div>
     );
   }
