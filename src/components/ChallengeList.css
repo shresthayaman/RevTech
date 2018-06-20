@@ -1,7 +1,6 @@
 .challengeDisplayAndList {
-  max-width: 60%;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 .listItem {
@@ -18,4 +17,9 @@
   text-decoration: underline;
   padding-left: 1%;
   padding-right: 2%;
+}
+
+.spacer {
+  padding-bottom: 30px;
+  background-color: rgb(38, 60, 121);
 }

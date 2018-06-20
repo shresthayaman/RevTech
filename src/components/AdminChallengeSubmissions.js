@@ -1,23 +1,15 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { List } from "antd";
-import ChallengeDisplay from "./ChallengeDisplay";
-import "./ChallengeList.css";
+import { List, Button, Modal } from "antd";
 import fire from "./fire";
+import SubmissionDisplay from "./SubmissionDisplay";
 
-export default class ChallenegeList extends React.Component {
+export default class AdminChallengeSubmission extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       challengeArray: [],
-      clickedChallenge: {
-        title: "Daily Challeneges",
-        text:
-          "<p>Select a specific daily challenge to obtain challenege details</p>",
-        date: "",
-        time: "",
-        submission: []
-      }
+      clickedChallenge: {}
     };
   }
 
@@ -43,7 +35,6 @@ export default class ChallenegeList extends React.Component {
     });
   }
 
-  //change the challenge stored in state when another challenge is selected
   handleClick = item => {
     this.setState({
       clickedChallenge: item
@@ -51,15 +42,18 @@ export default class ChallenegeList extends React.Component {
   };
 
   render() {
+    //console.log(this.state.clickedChallenge);
     return (
-      <div className="challengeDisplayAndList">
-        <ChallengeDisplay clickedChallenge={this.state.clickedChallenge} />
-
+      <div className="DisplayListSubmissions">
+        <h1 style={{ display: "flex", justifyContent: "center" }}>
+          Submissiond for: {this.state.clickedChallenge.title}
+        </h1>
+        <SubmissionDisplay clickedChallenge={this.state.clickedChallenge} />;
         <List
           bordered
           header={
             <div className="listHeader">
-              <div>Daily Challenges</div>
+              <div>Daily Challeneges</div>
               <div>Due Date</div>
             </div>
           }
@@ -74,7 +68,11 @@ export default class ChallenegeList extends React.Component {
             <List.Item key={item.title}>
               <div className="listItem">
                 <a onClick={() => this.handleClick(item)}>{item.title}</a>
-                {item.dueDate}
+                <div>
+                  {item.date}
+                  <br />
+                  {item.time}
+                </div>
               </div>
             </List.Item>
           )}
