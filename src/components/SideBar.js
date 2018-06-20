@@ -1,11 +1,16 @@
 import React from "react";
 import "antd/dist/antd.css";
+
+import PendingContract from "./PendingContract";
+import ContractMgmt from "./ContractMgmt";
+
 import { Layout, Menu, Icon, Button } from "antd";
 import InputDetails from "./ContractInputDetails";
 import WebsiteUsers from "./WebsiteUsers";
 import AdminMarket from "./AdminMarket";
 import AdminDailyChallenge from "./AdminDailyChallenge";
 import "./WebsiteUsers.css";
+
 
 const { Header, Sider, Content } = Layout;
 
@@ -40,6 +45,7 @@ export default class SideBar extends React.Component {
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item key="0" style={{ height: 130 }} selectable="false">
+
               <Icon type="" />
               <span>Admins Page</span>
             </Menu.Item>
@@ -94,6 +100,7 @@ export default class SideBar extends React.Component {
           >
             {this.state.page === "" && <WebsiteUsers />}
             {this.state.page === "users" && <WebsiteUsers />}
+
             {this.state.page === "challenges" && <AdminDailyChallenge />}
             {this.state.page === "pendingContracts" && (
               <div>
