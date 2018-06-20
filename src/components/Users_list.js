@@ -45,8 +45,7 @@ class Users_list extends Component {
             gradYear: Users[User].gradYear,
             id: User,
             pictureURL: Users[User].pictureURL,
-            skills: Users[User].skills,
-            skillset: ["hello"]
+            skills: Users[User].skills
           });
         } else if (
           Users[User].approve === true &&
@@ -63,8 +62,7 @@ class Users_list extends Component {
             gradYear: Users[User].gradYear,
             id: User,
             pictureURL: Users[User].pictureURL,
-            skills: Users[User].skills,
-            skillset: ["hello"]
+            skills: Users[User].skills
           });
         }
       }

@@ -3,23 +3,18 @@ import { Tabs, Icon, Button, Modal, Input } from "antd";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import "./Profile.css";
-import Community from "./Community.js";
 import { SocialIcon } from "react-social-icons";
 import fire from "./fire";
 import Users_list from "./Users_list";
 import Profile_pic from "./Profile_pic";
 import DailyChallenge from "./DailyChallenge";
-import MarketDisplay from "./MarketDisplay";
 import Marketplace from "./Marketplace";
-import Skills from "/Users/deepakgoel/Desktop/RevTech/src/components/Skills.js";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import Checkbox from "@material-ui/core/Checkbox";
 
 const TabPane = Tabs.TabPane;
@@ -74,7 +69,12 @@ class Profile extends Component {
       visible: true,
       linkedin: "",
       github: "",
-      submit_disabled: true
+      submit_disabled: true,
+      software: false,
+      data: false,
+      media: false,
+      strat: false,
+      entre: false
     });
   };
   handleCancel = e => {

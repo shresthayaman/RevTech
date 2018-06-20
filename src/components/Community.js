@@ -14,19 +14,34 @@ class Community extends Component {
     console.log(this.props.user.skills);
     const { user, id } = this.props;
     this.props.user.skills.push([]);
-    if (this.props.user.skills[0].software === true) {
+    if (
+      this.props.user.skills[0].software === true &&
+      this.props.user.skills[5].includes("Software Engineering") == false
+    ) {
       this.props.user.skills[5].push("Software Engineering");
     }
-    if (this.props.user.skills[1].media === true) {
+    if (
+      this.props.user.skills[1].media === true &&
+      this.props.user.skills[5].includes("Digital Media") == false
+    ) {
       this.props.user.skills[5].push("Digital Media");
     }
-    if (this.props.user.skills[2].data === true) {
+    if (
+      this.props.user.skills[2].data === true &&
+      this.props.user.skills[5].includes("Data Science") == false
+    ) {
       this.props.user.skills[5].push("Data Science");
     }
-    if (this.props.user.skills[3].strat === true) {
+    if (
+      this.props.user.skills[3].strat === true &&
+      this.props.user.skills[5].includes("Digital Strategy") == false
+    ) {
       this.props.user.skills[5].push("Digital Strategy");
     }
-    if (this.props.user.skills[4].entre === true) {
+    if (
+      this.props.user.skills[4].entre === true &&
+      this.props.user.skills[5].includes("Entreprenuership") == false
+    ) {
       this.props.user.skills[5].push("Entreprenuership");
     }
     console.log(this.props.user.skills);
