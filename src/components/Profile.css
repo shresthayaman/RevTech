@@ -6,12 +6,10 @@
   padding-bottom: 40px;
 }
 
-
 /* .card {
   display: flex;
   flex-direction: row;
 } */
-
 
 .ImageDiv {
   width: 200px;
@@ -31,40 +29,37 @@
 }
 
 .setting {
-  float: right; 
+  float: right;
   display: inline-block;
 }
 .Profile {
   text-align: center;
 }
 
-.tabs { 
+.tabs {
   text-align: center;
   background-color: rgb(122, 127, 187);
 }
 
-.ant-tabs-nav-scroll { 
+.ant-tabs-nav-scroll {
   text-align: center;
   background-color: rgb(233, 232, 232);
 }
 
-.ant-tabs  { 
-  background-color: rgb(38, 60, 121);
+.ant-tabs {
 }
 
-.MuiCardContent-root-29 { 
+.MuiCardContent-root-29 {
   display: flex;
   text-align: left;
   display: inline-block;
   margin-left: 50;
 }
 
-.textInfo { 
+.textInfo {
   display: inline-block;
-
 }
 
 /* .flex-container { 
   background-color: rgb(80, 104, 134);
 } */
-

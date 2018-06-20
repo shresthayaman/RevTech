@@ -163,7 +163,6 @@ class Profile extends Component {
           } else {
             // Data saved successfully!
           }
-        }
         );
     } else if (
       this.state.complete == true &&
@@ -216,7 +215,6 @@ class Profile extends Component {
           } else {
             // Data saved successfully!
           }
-        }
         );
     }
   };

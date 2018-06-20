@@ -1,6 +1,10 @@
-.card {
-  height: 300px;
-  overflow: auto;
+.challengeTitle {
+  display: flex;
+  justify-content: center;
+}
+
+.quill {
+  height: 400px;
 }
 
 .linkSubmission {
