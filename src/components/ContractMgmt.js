@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import MarketDisplay from "./MarketDisplay";
-import "./Marketplace.css";
+import ContractMgmtDisplay from "./ContractMgmtDisplay.js";
+import "./ContractMgmt.css";
 import fire from "./fire.js";
 
-class Marketplace extends Component {
+class ContractMgmt extends Component {
   constructor(props) {
     super(props);
     this.state = {
       approvedContracts: [],
-      id: this.props.id
+      id: "dmk6tm@virginia.edu"
     };
   }
   componentDidMount() {
@@ -35,12 +35,13 @@ class Marketplace extends Component {
     });
   }
   render() {
-    console.log("from Marketplac.js", this.state.id)
+    console.log("gets in contract mgmt render");
+    console.log(this.state.approvedContracts);
     let marketDisplays = this.state.approvedContracts.map(con => {
-      return <MarketDisplay contract={con} id={this.state.id} />;
+      return <ContractMgmtDisplay contract={con} id={this.state.id} />;
     });
     return <div className="flex-container">{marketDisplays}</div>;
   }
 }
 
-export default Marketplace;
+export default ContractMgmt;

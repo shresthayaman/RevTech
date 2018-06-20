@@ -8,10 +8,10 @@ import Identity from "./components/Identity";
 import SideBar from "./components/SideBar";
 import fire from "./components/fire";
 import Landing from "./components/Landing.js";
-import PendingContracts from "./components/PendingContracts";
+import PendingContract from "./components/PendingContract";
 import PendingUsers from "./components/PendingUsers";
-import AdminMarket from "./components/AdminMarket.js";
 import "./App.css";
+import ContractMgmt from "./components/ContractMgmt";
 
 class App extends Component {
   constructor(props) {
@@ -21,7 +21,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Landing />
+        hello world
+        <ContractMgmt />
       </div>
     );
   }

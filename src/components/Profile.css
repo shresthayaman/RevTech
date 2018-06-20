@@ -6,12 +6,10 @@
   padding-bottom: 40px;
 }
 
-
 /* .card {
   display: flex;
   flex-direction: row;
 } */
-
 
 .ImageDiv {
   width: 200px;
@@ -39,15 +37,17 @@
 }
 
 .setting {
+
 }
 .Profile {
   text-align: center;
 }
 
-.tabs { 
+.tabs {
   text-align: center;
   background-color: rgb(122, 127, 187);
 }
+
 
 .ant-tabs-bar {
   background-color: #F5F5F5;
@@ -55,23 +55,26 @@
 }
 
 .ant-tabs-nav-scroll { 
+
   text-align: center;
   background-color: #F8F8F8;
 }
 
+
 .ant-tabs-tabpane{ 
   background-color: white;
+
 }
 
-.MuiCardContent-root-29 { 
+.MuiCardContent-root-29 {
   display: flex;
   text-align: left;
   display: inline-block;
   margin-left: 50;
 }
 
-.textInfo { 
+.textInfo {
   display: inline-block;
-
 }
+
 
