@@ -79,7 +79,7 @@ export default class EditorDisplay extends React.Component {
   render() {
     return (
       <div className="editor">
-        <div className="title">
+        <div className="challengeTitle">
           <Input
             placeholder="Challenge Title"
             onChange={e => this.changeTitle(e.target.value)}
@@ -124,6 +124,7 @@ export default class EditorDisplay extends React.Component {
         >
           Update Challenge
         </Button>
+        <br />
       </div>
     );
   }

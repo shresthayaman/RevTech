@@ -1,7 +1,7 @@
 import React from "react";
 import "antd/dist/antd.css";
 import fire from "./fire";
-import { Button, Input } from "antd";
+import { Button, Input, message } from "antd";
 import ReactQuill, { Quill, Mixin, Toolbar } from "react-quill";
 import PropTypes from "prop-types";
 import { DatePicker } from "antd";
@@ -56,8 +56,8 @@ export default class AdminAddChallenge extends React.Component {
       submisison: []
     };
 
-    console.log(challengeToAdd);
     challengeRef.push(challengeToAdd);
+    message.success("Challenge Published", 1);
 
     this.setState({
       title: "",
@@ -72,10 +72,11 @@ export default class AdminAddChallenge extends React.Component {
   render() {
     return (
       <div className="editor">
-        <div className="title">
+        <div className="challengeTitle">
           <Input
-            placeholder="Challenge Title"
+            placeholder="New Challenge Title"
             onChange={e => this.changeTitle(e.target.value)}
+            value={this.state.title}
           />
         </div>
         <ReactQuill
@@ -86,7 +87,7 @@ export default class AdminAddChallenge extends React.Component {
           modules={AdminAddChallenge.modules}
           formats={AdminAddChallenge.formats}
           bounds={".app"}
-          placeholder={this.props.placeholder}
+          placeholder="Input description of new challenge"
         />
         <br />
         <div className="dueDateTime">
@@ -156,10 +157,3 @@ AdminAddChallenge.formats = [
   "image",
   "video"
 ];
-
-/* 
-   * PropType validation
-   */
-AdminAddChallenge.propTypes = {
-  placeholder: PropTypes.string
-};
