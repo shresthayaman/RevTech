@@ -1,3 +1,6 @@
+displayEditor {
+  height: 300px;
+}
 .card {
   height: 300px;
   overflow: auto;

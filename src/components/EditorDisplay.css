@@ -1,0 +1,21 @@
+.editor {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  margin-left: 20%;
+  margin-right: 20%;
+  font-size: 30px;
+}
+.textEditor {
+  height: 400px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+.dueDateTime {
+  margin-left: 40%;
+}
+.button {
+  margin-left: 20%;
+  margin-right: 20%;
+}
