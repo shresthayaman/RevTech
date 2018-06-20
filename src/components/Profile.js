@@ -148,16 +148,16 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-        {
-          github: this.state.github
-        },
-        function (error) {
-          if (error) {
-            // The write failed...
-          } else {
-            // Data saved successfully!
+          {
+            github: this.state.github
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+            }
           }
-        }
         );
     }
     if (
@@ -170,26 +170,26 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-        {
-          linkedin: this.state.linkedin
-        },
-        function (error) {
-          if (error) {
-            // The write failed...
-          } else {
-            // Data saved successfully!
+          {
+            linkedin: this.state.linkedin
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+            }
           }
-        }
         );
     }
   };
 
   render() {
     // console.log(this.state.currentUser[0].pictureURL);
-    
+
     return (
       <div>
-      <div className="profile-container">
+        <div className="profile-container">
           <div className="textInfo">
             <Card
               classname="card"
@@ -197,19 +197,19 @@ class Profile extends Component {
                 width: "100vw",
                 height: "35vh",
                 position: "relative",
-                marginleft: "auto", 
-                marginrright: "auto", 
+                marginleft: "auto",
+                marginrright: "auto",
                 margintop: "4%",
-                paddingBottom: "20px", 
+                paddingBottom: "20px",
                 zIndex: 3
-
               }}
             >
-          <div className="ImageDiv">
-               <img
-              src={this.state.currentUser[0].pictureURL}
-              className="Nathan" />
-          </div>
+              <div className="ImageDiv">
+                <img
+                  src={this.state.currentUser[0].pictureURL}
+                  className="Nathan"
+                />
+              </div>
 
               <CardContent>
                 <Typography gutterBottom variant="headline" component="h2">
@@ -222,26 +222,25 @@ class Profile extends Component {
                     Email: {this.state.currentUser[0].email}
                   </Typography>
                 )}
-                
+
                 <div className="icons">
                   <SocialIcon url={this.state.currentUser[0].linkedin} />
-                  &emsp;
                   <SocialIcon
                     disabled={this.state.git_disabled}
                     url={this.state.currentUser[0].github}
                   />
                 </div>
 
-
                 <div className="setting">
-                  &emsp;
                   <Button type="primary" onClick={this.showModal}>
-                  <Icon type="setting" />
-                    {" "}
-                    Edit Profile
+                    <Icon type="setting" /> Edit Profile
                   </Button>
-                  <Button onClick={this.logout}
-                  style={{float: "right"}}> Logout 
+                  <Button
+                    onClick={this.props.logout}
+                    style={{ float: "right" }}
+                  >
+                    {" "}
+                    Logout
                   </Button>
                 </div>
 
@@ -264,43 +263,21 @@ class Profile extends Component {
                       >
                         Submit
                       </Button>
-                    </div>
-                    {/* Edit Profile */}
-                    <div>
-                      <Modal
-                        title="Edit Profile "
-                        visible={this.state.visible}
-                        onSubmit={this.handleSubmit}
-                        onCancel={this.handleCancel}
-                        footer={[
-                          <Button key="back" onClick={this.handleCancel}>
-                            Return
-                          </Button>,
-                          <Button
-                            key="submit"
-                            disabled={this.state.submit_disabled}
-                            type="primary"
-                            onClick={this.handleSubmit}
-                          >
-                            Submit
-                          </Button>
-                        ]}
-                      >
-                        <Input
-                          name="linkedin"
-                          placeholder="Enter your Linkedin URL"
-                          onChange={this.onChange}
-                          value={this.state.linkedin}
-                          prefix={
-                            <Icon
-                              type="user"
-                              style={{ color: "rgba(0,0,0,.25)" }}
-                            />
-                          }
+                    ]}
+                  >
+                    <Input
+                      name="linkedin"
+                      placeholder="Enter your Linkedin URL"
+                      onChange={this.onChange}
+                      value={this.state.linkedin}
+                      prefix={
+                        <Icon
+                          type="user"
+                          style={{ color: "rgba(0,0,0,.25)" }}
                         />
                       }
                     />
-                    &emsp;
+
                     {/* Github Input */}
                     <Input
                       name="github"
@@ -310,29 +287,16 @@ class Profile extends Component {
                       prefix={
                         <Icon
                           type="user"
-                          style={{ color: "rgba(0,0,0,.25)"}}
+                          style={{ color: "rgba(0,0,0,.25)" }}
                         />
-                        <p> Add Photo: </p>
-                        <Profile_pic user={this.state.currentUser[0]} />
-                      </Modal>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-            <div classname="tabs">
-              <Tabs defaultActiveKey="1" onChange={callback}>
-                <TabPane tab="Daily Challenges" key="1">
-                  <DailyChallenge />
-                </TabPane>
-                <TabPane tab="Contracts" key="2">
-                  <Marketplace email={this.state.id} />
-                </TabPane>
-                <TabPane tab="Network" key="3">
-                  <Users_list />
-                </TabPane>
-              </Tabs>
-            </div>
+                      }
+                    />
+                    <p> Add Photo: </p>
+                    <Profile_pic user={this.state.currentUser[0]} />
+                  </Modal>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
         <div classname="tabs">
@@ -348,7 +312,7 @@ class Profile extends Component {
             </TabPane>
           </Tabs>
         </div>
-        <div className="spacer"/>
+        <div className="spacer" />
       </div>
     );
   }
