@@ -27,7 +27,9 @@ class DummyPage extends Component {
       <div>
         <div>hello world!</div>
         <button onClick={this.logout}> logout </button>
-        {fire.auth().currentUser !== null && <Profile passedEmail={fire.auth().currentUser.email} />}
+        {fire.auth().currentUser !== null && (
+          <Profile passedEmail={fire.auth().currentUser.email} />
+        )}
       </div>
     );
   }

@@ -14,6 +14,13 @@ import Profile_pic from "./Profile_pic";
 import DailyChallenge from "./DailyChallenge";
 import MarketDisplay from "./MarketDisplay";
 import Marketplace from "./Marketplace";
+import Skills from "/Users/deepakgoel/Desktop/RevTech/src/components/Skills.js";
+import FormLabel from "@material-ui/core/FormLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const TabPane = Tabs.TabPane;
 
@@ -41,6 +48,11 @@ class Profile extends Component {
       buttontitle: "Add",
       loggedin: true,
       user: null,
+      software: false,
+      data: false,
+      media: false,
+      strat: false,
+      entre: false,
       currentUser: [
         {
           name: "",
@@ -76,28 +88,16 @@ class Profile extends Component {
       submit_disabled: false
     });
   };
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.checked });
+  };
 
   componentDidMount() {
-    fire.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.setState(
-          { user, loggedin: true, id: fire.auth().currentUser.email },
-          localStorage.setItem("user", user.uid)
-        );
-      } else {
-        this.setState({ user: null }, localStorage.removeItem("user"));
-      }
-    });
-    // if (fire.auth().currentUser != null) {
-    //   // console.log("Logged in:" + fire.auth().currentUser.email);
-    //   this.setState({
-    //     id: fire.auth().currentUser.email
-    //   });
-    // }
     const usersRef = fire.database().ref("Users");
     console.log(usersRef);
     usersRef.on("value", snapshot => {
       let users = snapshot.val();
+      console.log(users);
       let newState = [];
       for (let user in users) {
         if (users[user].email === this.state.id) {
@@ -148,19 +148,25 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-        {
-          github: this.state.github
-        },
-        function (error) {
-          if (error) {
-            // The write failed...
-          } else {
-            // Data saved successfully!
+          {
+            skills: [
+              { software: this.state.software },
+              { media: this.state.media },
+              { data: this.state.data },
+              { strat: this.state.strat },
+              { entre: this.state.entre }
+            ],
+            github: this.state.github
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+            }
           }
-        }
         );
-    }
-    if (
+    } else if (
       this.state.complete == true &&
       this.state.linkedin != "" &&
       this.state.github == ""
@@ -170,22 +176,54 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-        {
-          linkedin: this.state.linkedin
-        },
-        function (error) {
-          if (error) {
-            // The write failed...
-          } else {
-            // Data saved successfully!
+          {
+            linkedin: this.state.linkedin,
+            skills: [
+              { software: this.state.software },
+              { media: this.state.media },
+              { data: this.state.data },
+              { strat: this.state.strat },
+              { entre: this.state.entre }
+            ]
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+            }
           }
-        }
+        );
+    } else {
+      // console.log(this.state.currentUser[0].id);
+      fire
+        .database()
+        .ref(`/Users/${this.state.currentUser[0].id}`)
+        .update(
+          {
+            linkedin: this.state.linkedin,
+            github: this.state.github,
+            skills: [
+              { software: this.state.software },
+              { media: this.state.media },
+              { data: this.state.data },
+              { strat: this.state.strat },
+              { entre: this.state.entre }
+            ]
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+            }
+          }
         );
     }
   };
 
   render() {
-    console.log(this.state.complete);
+    console.log(this.state);
     return (
       <div>
         {this.state.complete ? (
@@ -249,7 +287,7 @@ class Profile extends Component {
                           </Button>,
                           <Button
                             key="submit"
-                            disabled={this.state.submit_disabled}
+                            /* disabled={this.state.submit_disabled} */
                             type="primary"
                             onClick={this.handleSubmit}
                           >
@@ -283,6 +321,65 @@ class Profile extends Component {
                             />
                           }
                         />
+                        <div>
+                          <FormControl component="fieldset">
+                            <FormLabel component="legend">
+                              Choose your Skillset(s)
+                            </FormLabel>
+                            <FormGroup>
+                              <FormControlLabel
+                                control={
+                                  <Checkbox
+                                    checked={this.state.software}
+                                    onChange={this.handleChange("software")}
+                                    value="software"
+                                  />
+                                }
+                                label="Software Engineering"
+                              />
+                              <FormControlLabel
+                                control={
+                                  <Checkbox
+                                    checked={this.state.data}
+                                    onChange={this.handleChange("data")}
+                                    value="data"
+                                  />
+                                }
+                                label="Data Science"
+                              />
+                              <FormControlLabel
+                                control={
+                                  <Checkbox
+                                    checked={this.state.media}
+                                    onChange={this.handleChange("media")}
+                                    value="media"
+                                  />
+                                }
+                                label="Digital Media"
+                              />
+                              <FormControlLabel
+                                control={
+                                  <Checkbox
+                                    checked={this.state.strat}
+                                    onChange={this.handleChange("strat")}
+                                    value="strat"
+                                  />
+                                }
+                                label="Digital Strategy"
+                              />
+                              <FormControlLabel
+                                control={
+                                  <Checkbox
+                                    checked={this.state.entre}
+                                    onChange={this.handleChange("entre")}
+                                    value="entre"
+                                  />
+                                }
+                                label="Entrepreneurship"
+                              />
+                            </FormGroup>
+                          </FormControl>
+                        </div>
                         <p> Add Photo: </p>
                         <Profile_pic user={this.state.currentUser[0]} />
                       </Modal>
@@ -306,8 +403,8 @@ class Profile extends Component {
             </div>
           </div>
         ) : (
-            <p>Loading...</p>
-          )}
+          <p>Loading...</p>
+        )}
       </div>
     );
   }
