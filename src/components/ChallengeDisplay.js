@@ -41,13 +41,14 @@ export default class ChallengeDisplay extends React.Component {
     const subRef = fire
       .database()
       .ref(`DailyChallenges/${this.props.clickedChallenge.key}/submission`);
+
     subRef.on("value", snapshot => {
       let allSubmissions = snapshot.val();
-      console.log(allSubmissions);
-      let tempList = [];
 
+      let tempList = [];
       //map through all old submisssions and adds it to the copy array if it was not a submission from the user loged in
       if (allSubmissions !== null) {
+        //to prevent mapping through undefined
         allSubmissions.map(submission => {
           if (submission.email !== fire.auth().currentUser.email) {
             tempList.push({
@@ -70,6 +71,10 @@ export default class ChallengeDisplay extends React.Component {
         .database()
         .ref(`DailyChallenges/${this.props.clickedChallenge.key}`)
         .update({ submission: tempList });
+    });
+
+    this.setState({
+      alreadySubmitted: true
     });
   };
 
