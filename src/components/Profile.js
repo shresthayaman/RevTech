@@ -163,7 +163,7 @@ class Profile extends Component {
           } else {
             // Data saved successfully!
           }
-        );
+        });
     } else if (
       this.state.complete == true &&
       this.state.linkedin != "" &&
@@ -215,7 +215,7 @@ class Profile extends Component {
           } else {
             // Data saved successfully!
           }
-        );
+        });
     }
   };
 
@@ -270,6 +270,9 @@ class Profile extends Component {
                         {" "}
                         Edit Profile
                       </Button>
+                      <Button onClick={this.props.logout} style={{ float: "right" }}>
+                        Logout
+                        </Button>
                     </div>
                     {/* Edit Profile */}
                     <div>
