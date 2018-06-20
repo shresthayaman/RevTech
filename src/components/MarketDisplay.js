@@ -176,6 +176,7 @@ class MarketDisplay extends Component {
         });
       }
     });
+    this.setState({ totalBids: curBids.length });
     for (let bid in curBids) {
       if (curBids[bid].bidder === this.props.id) {
         let prevBidString =

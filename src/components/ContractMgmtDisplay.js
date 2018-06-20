@@ -12,6 +12,7 @@ class ContractMgmtDisplay extends Component {
       visibleEdit: false,
       visibleDeny: false,
       visibleAward: false,
+      checked: false,
       user: "",
       details: "",
       contact: "",
@@ -20,6 +21,7 @@ class ContractMgmtDisplay extends Component {
       awardColor: "#389e0d",
       selectedBids: []
     };
+    this.handleCheck = this.handleCheck.bind(this);
   }
   updateText = (field, value) => {
     this.setState({
@@ -92,6 +94,27 @@ class ContractMgmtDisplay extends Component {
     });
   };
 
+  handleCheck = e => {
+    this.setState({
+      checked: !this.state.checked
+    });
+    let selection = this.state.selectedBids;
+    if (this.state.checked === true) {
+      selection.push(e.target.value);
+      this.setState({
+        selectedBids: selection
+      });
+    } else {
+      var index = selection.indexOf(e.target.value);
+      if (index > -1) {
+        selection.splice(index, 1);
+      }
+      this.setState({
+        selectedBids: selection
+      });
+    }
+  };
+
   componentDidMount() {
     this.setState({
       details: this.props.contract.detail,
@@ -121,7 +144,7 @@ class ContractMgmtDisplay extends Component {
       bidCheckList = contract.bids.map(bid => {
         return (
           <div className="Checkboxes">
-            <Checkbox>
+            <Checkbox onClick={this.handleCheck}>
               {" "}
               {bid.bidder} billing {bid.hours} hours at ${bid.rate} per hour (${bid.hours *
                 bid.rate}{" "}
@@ -171,7 +194,7 @@ class ContractMgmtDisplay extends Component {
                 style={{ background: "#389e0d" }}
                 onClick={this.handleClickAward}
               >
-                Award
+                Bids
               </Button>
               &emsp;
             </div>
@@ -251,23 +274,11 @@ class ContractMgmtDisplay extends Component {
             footer={[
               <Button key="cancel" onClick={this.handleCancelAward}>
                 Close
-              </Button>,
-              <Button
-                type="primary"
-                key="award"
-                style={{ background: this.state.awardColor }}
-                onClick={this.handleAward}
-                disabled={this.state.disabled}
-              >
-                Award
               </Button>
             ]}
           >
             <p>
-              <strong>
-                From the list of submitted bids, select the user(s) who will
-                receive the contract.{" "}
-              </strong>
+              <strong>Submitted bids from interns and alumni:</strong>
             </p>
             {bidCheckList}
           </Modal>
