@@ -1,8 +1,9 @@
 .profile-container {
   margin-top: 3%;
   display: flex;
-  flex-direction: row;
   text-align: left;
+  display: inline-block;
+  padding-bottom: 40px;
 }
 
 /* .card {
@@ -12,22 +13,68 @@
 
 .ImageDiv {
   width: 200px;
-  height: 180px;
-  background-color: pink;
+  height: 200px;
+  display: inline-block;
+  padding-left: 30px;
+  padding-bottom: 30px;
 }
 
 .Nathan {
   height: 100%;
   width: 100%;
+  margin-top: -52%;
+  margin-left: 228%;
 }
 
 .icons {
-  text-align: left;
+  order: 2;
+  margin-left: -1%;
+}
+
+.cardText{
+  order: 4;
+  margin-left: 71%;
 }
 
 .setting {
-  padding-left: 1000px;
+
 }
 .Profile {
   text-align: center;
 }
+
+.tabs {
+  text-align: center;
+  background-color: rgb(122, 127, 187);
+}
+
+
+.ant-tabs-bar {
+  background-color: #F5F5F5;
+
+}
+
+.ant-tabs-nav-scroll { 
+
+  text-align: center;
+  background-color: #F8F8F8;
+}
+
+
+.ant-tabs-tabpane{ 
+  background-color: white;
+
+}
+
+.MuiCardContent-root-29 {
+  display: flex;
+  text-align: left;
+  display: inline-block;
+  margin-left: 50;
+}
+
+.textInfo {
+  display: inline-block;
+}
+
+

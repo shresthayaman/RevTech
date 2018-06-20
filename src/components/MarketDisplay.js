@@ -51,7 +51,6 @@ class MarketDisplay extends Component {
     });
   };
   handleCancelDetails = e => {
-    console.log(e);
     this.setState({
       visibleDetails: false
     });
@@ -79,7 +78,7 @@ class MarketDisplay extends Component {
         let contractId = this.props.contract.id;
         const bidsRef = fire.database().ref(`/Contracts/${contractId}/bids`);
         let curBids = [];
-        bidsRef.on("value", snapshot => {
+        bidsRef.once("value", snapshot => {
           let bids = snapshot.val();
           for (let bid in bids) {
             if (bids[bid].bidder !== this.props.id) {
@@ -118,7 +117,7 @@ class MarketDisplay extends Component {
         let contractId = this.props.contract.id;
         const bidsRef = fire.database().ref(`/Contracts/${contractId}/bids`);
         let curBids = [];
-        bidsRef.on("value", snapshot => {
+        bidsRef.once("value", snapshot => {
           let bids = snapshot.val();
           for (let bid in bids) {
             curBids.push({
@@ -176,6 +175,7 @@ class MarketDisplay extends Component {
         });
       }
     });
+    this.setState({ totalBids: curBids.length });
     for (let bid in curBids) {
       if (curBids[bid].bidder === this.props.id) {
         let prevBidString =

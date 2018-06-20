@@ -15,6 +15,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import Checkbox from "@material-ui/core/Checkbox";
 
 const TabPane = Tabs.TabPane;
@@ -273,6 +274,17 @@ class Profile extends Component {
                         {" "}
                         Edit Profile
                       </Button>
+                      <Button
+                        onClick={this.props.logout}
+                        style={{ float: "right" }}
+                      >
+                        Logout
+                      </Button>
+                      {this.props.isAdmin && <Button
+                        onClick={this.props.toggleToAdmin}
+                      >
+                        Admin View
+                      </Button>}
                     </div>
                     {/* Edit Profile */}
                     <div>
@@ -394,7 +406,7 @@ class Profile extends Component {
                   <DailyChallenge />
                 </TabPane>
                 <TabPane tab="Contracts" key="2">
-                  <Marketplace />
+                  <Marketplace id={this.props.passedEmail} />
                 </TabPane>
                 <TabPane tab="Network" key="3">
                   <Users_list />

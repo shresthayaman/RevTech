@@ -1,0 +1,13 @@
+.challengeTitle {
+  font-size: 30px;
+}
+.textEditor {
+  height: 400px;
+}
+.dueDateTime {
+  display: flex;
+  justify-content: center;
+}
+.button {
+  width: 100%;
+}
