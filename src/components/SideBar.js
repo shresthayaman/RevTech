@@ -7,10 +7,8 @@ import ContractMgmt from "./ContractMgmt";
 import { Layout, Menu, Icon, Button } from "antd";
 import InputDetails from "./ContractInputDetails";
 import WebsiteUsers from "./WebsiteUsers";
-import AdminMarket from "./AdminMarket";
 import AdminDailyChallenge from "./AdminDailyChallenge";
 import "./WebsiteUsers.css";
-
 
 const { Header, Sider, Content } = Layout;
 
@@ -40,12 +38,11 @@ export default class SideBar extends React.Component {
 
   render() {
     return (
-      <Layout style={{height: "100vh", margin:0, padding:0}}>
-         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+      <Layout style={{ height: "100vh", margin: 0, padding: 0 }}>
+        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item key="0" style={{ height: 130 }} selectable="false">
-
               <Icon type="" />
               <span>Admins Page</span>
             </Menu.Item>
@@ -89,9 +86,16 @@ export default class SideBar extends React.Component {
           </Menu>
         </Sider>
         <Layout>
-
-          <Content style={{ margin: '155px 16px', padding: 24, background: '#fff', height: "100%", width: "auto", marginTop: 30 }}>
-
+          <Content
+            style={{
+              margin: "155px 16px",
+              padding: 24,
+              background: "#fff",
+              height: "100%",
+              width: "auto",
+              marginTop: 30
+            }}
+          >
             {this.state.page === "" && <WebsiteUsers />}
             {this.state.page === "users" && <WebsiteUsers />}
 
@@ -99,11 +103,14 @@ export default class SideBar extends React.Component {
             {this.state.page === "pendingContracts" && (
               <div>
                 {" "}
-                <AdminMarket />{" "}
+                <PendingContract />{" "}
               </div>
             )}
             {this.state.page === "manageContracts" && (
-              <div> manage contract bids </div>
+              <div>
+                {" "}
+                <ContractMgmt />{" "}
+              </div>
             )}
           </Content>
         </Layout>
