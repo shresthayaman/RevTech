@@ -89,7 +89,7 @@ class LoginForm extends Component {
       }
     }
     return (
-      <div className="login-container">
+      <div className="login-container" id="overrideLoginStyle">
         <div className="input-fields">
           <Input
             placeholder="Email"
@@ -110,6 +110,7 @@ class LoginForm extends Component {
           />
         </div>
         <br />
+        
         <div className="button-container">
           <Button
             onClick={this.verifyLogin}

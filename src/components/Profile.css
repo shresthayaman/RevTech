@@ -24,15 +24,21 @@
 .Nathan {
   height: 100%;
   width: 100%;
+  margin-top: -52%;
+  margin-left: 228%;
 }
 
 .icons {
-  text-align: left;
+  order: 2;
+  margin-left: -1%;
+}
+
+.cardText{
+  order: 4;
+  margin-left: 71%;
 }
 
 .setting {
-  float: right; 
-  display: inline-block;
 }
 .Profile {
   text-align: center;
@@ -43,13 +49,18 @@
   background-color: rgb(122, 127, 187);
 }
 
-.ant-tabs-nav-scroll { 
-  text-align: center;
-  background-color: rgb(233, 232, 232);
+.ant-tabs-bar {
+  background-color: #F5F5F5;
+
 }
 
-.ant-tabs  { 
-  background-color: rgb(38, 60, 121);
+.ant-tabs-nav-scroll { 
+  text-align: center;
+  background-color: #F8F8F8;
+}
+
+.ant-tabs-tabpane{ 
+  background-color: white;
 }
 
 .MuiCardContent-root-29 { 
@@ -63,8 +74,4 @@
   display: inline-block;
 
 }
-
-/* .flex-container { 
-  background-color: rgb(80, 104, 134);
-} */
 

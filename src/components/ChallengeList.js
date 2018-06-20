@@ -50,7 +50,7 @@ export default class ChallenegeList extends React.Component {
   render() {
     return (
       <div className="challengeDisplayAndList">
-        <ChallengeDisplay clickedChallenge={this.state.clickedChallenge} />
+        <ChallengeDisplay style={{color: "white"}} clickedChallenge={this.state.clickedChallenge} />
 
         <List
           bordered
