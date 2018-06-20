@@ -35,6 +35,8 @@ class ContractMgmt extends Component {
     });
   }
   render() {
+    console.log("gets in contract mgmt render");
+    console.log(this.state.approvedContracts);
     let marketDisplays = this.state.approvedContracts.map(con => {
       return <ContractMgmtDisplay contract={con} id={this.state.id} />;
     });

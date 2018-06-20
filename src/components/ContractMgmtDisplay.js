@@ -4,7 +4,6 @@ import { Button, Modal, Input, message, Checkbox } from "antd";
 import "./ContractMgmt.css";
 import fire from "./fire.js";
 import "antd/dist/antd.css";
-import { relative } from "path";
 
 class ContractMgmtDisplay extends Component {
   constructor(props) {
@@ -15,7 +14,11 @@ class ContractMgmtDisplay extends Component {
       visibleAward: false,
       user: "",
       details: "",
-      contact: ""
+      contact: "",
+      bids: [],
+      disabled: true,
+      awardColor: "#389e0d",
+      selectedBids: []
     };
   }
   updateText = (field, value) => {
@@ -61,7 +64,7 @@ class ContractMgmtDisplay extends Component {
     let contractId = this.props.contract.id;
     const contractRef = fire.database().ref(`/Contracts/${contractId}`);
     contractRef.remove();
-    message.error("Contract denied!");
+    message.error("Contract deleted!");
   };
   submitEdits = () => {
     let contractId = this.props.contract.id;
@@ -75,36 +78,62 @@ class ContractMgmtDisplay extends Component {
     });
     message.success("Changes submitted!");
   };
+
   handleCancelAward = () => {
     this.setState({
       visibleAward: false
     });
   };
+
   handleAward = () => {
-    message.success("Contract Awarded!");
+    message.success("Contract awarded!");
     this.setState({
       visibleAward: false
     });
   };
+
   componentDidMount() {
     this.setState({
       details: this.props.contract.detail,
-      contact: this.props.contract.contact
+      contact: this.props.contract.contact,
+      bids: this.props.contract.bids
     });
-    if (this.props.contract.bids) {
-      const bidCheckList = this.props.contract.bids.map(bid => {
-        return <Checkbox> {bid.user} </Checkbox>;
+    if (this.props.contract.bids && this.state.selectedBids[0]) {
+      this.setState({
+        disabled: false
       });
     } else {
-      const bidCheckList = () => {
-        return <p> No bids found. </p>;
-      };
+      this.setState({ awardColor: "#efefef" });
     }
   }
+
   render() {
     const { contract, id } = this.props;
     const { visible, confirmLoading } = this.state;
     const { TextArea } = Input;
+    if (contract.bids) {
+      console.log(contract.bids);
+    } else {
+      console.log("No bids");
+    }
+    let bidCheckList = null;
+    if (contract.bids) {
+      bidCheckList = contract.bids.map(bid => {
+        return (
+          <div className="Checkboxes">
+            <Checkbox>
+              {" "}
+              {bid.bidder} billing {bid.hours} hours at ${bid.rate} per hour (${bid.hours *
+                bid.rate}{" "}
+              total){" "}
+            </Checkbox>
+            <br />
+          </div>
+        );
+      });
+    } else {
+      bidCheckList = <p> No bids found. </p>;
+    }
     return (
       <div>
         <Card
@@ -226,8 +255,9 @@ class ContractMgmtDisplay extends Component {
               <Button
                 type="primary"
                 key="award"
-                style={{ background: "#389e0d" }}
+                style={{ background: this.state.awardColor }}
                 onClick={this.handleAward}
+                disabled={this.state.disabled}
               >
                 Award
               </Button>

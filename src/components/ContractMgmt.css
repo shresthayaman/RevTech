@@ -31,3 +31,8 @@
   overflow: hidden;
   margin-bottom: 10px;
 }
+
+.Checkboxes {
+  display: flex;
+  flex-direction: column;
+}
