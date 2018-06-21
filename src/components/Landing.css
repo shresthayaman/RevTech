@@ -1,7 +1,7 @@
 .title {
   font-size: 50px;
 
-  font-family: "Aldrich", sans-serif;
+  font-family: Helvetica, Sans-Serif;
   color: white;
   position: absolute;
   margin-left: -43%;
@@ -77,9 +77,9 @@
   -webkit-filter: blur(10px);
 }
 
-.affiliatesLogin:hover .identity-container {
+/* .affiliatesLogin:hover .identity-container {
   opacity: 1;
-}
+} */
 
 /* Styling for company login */
 
@@ -95,9 +95,9 @@
   -webkit-filter: blur(5px);
 }
 
-.companyLogin:hover .login-container {
+/* .companyLogin:hover .login-container {
   opacity: 1;
-}
+} */
 
 .contractForm {
   position: absolute;

@@ -60,16 +60,16 @@
 }
 
 .ant-tabs-bar {
-  background-color: #f5f5f5;
+  background-color: none;
 }
 
 .ant-tabs-nav-scroll {
   text-align: center;
-  background-color: #f8f8f8;
+  background-color: none;
 }
 
 .ant-tabs-tabpane {
-  background-color: white;
+  background-color: none;
 }
 
 .MuiCardContent-root-29 {

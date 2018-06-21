@@ -10,7 +10,7 @@
 .name-container {
   font-size: 250%;
   font-weight: bold;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.257858);
 }
 
 .picture-container {
@@ -22,12 +22,12 @@
 }
 
 .individual-info-status {
-  font-size: 130%;
+  font-size: 120%;
 }
 
 .individual-info{
   margin: 2%;
-  font-size: 130%;
+  font-size: 120%;
   margin-bottom: 5%;
 }
 

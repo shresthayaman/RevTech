@@ -62,12 +62,8 @@ class Community extends Component {
 
 
     return (
-      <Card className="individual-profiles" classes="div">
-        <div>
-          <div className="name-container">
-            {user.name}
-          </div>
-        </div>
+      <Card className="individual-profiles" style={{ padding: "1.8vw" }}>
+        <div className="name-container">{user.name}</div>
         <img src={user.pictureURL} className="picture-container" />
         <Tabs defaultActiveKey="1">
           <TabPane tab="General Contact" key="1">
