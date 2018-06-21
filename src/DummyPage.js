@@ -47,10 +47,10 @@ class DummyPage extends Component {
 
   render() {
     if (this.state.logout) {
-      return <Redirect to="/LandingPage" />;
+      return <Redirect to="/Home" />;
     }
     if (this.state.toggleToAdminNow) {
-      return <Redirect to="/AdminPage" />;
+      return <Redirect to="/Admin" />;
     }
     return (
       <div>

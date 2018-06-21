@@ -83,9 +83,9 @@ class LoginForm extends Component {
         }
       }
       if (isAdmin) {
-        return <Redirect to="/AdminPage" />;
+        return <Redirect to="/Admin" />;
       } else {
-        return <Redirect to="/DummyPage" />;
+        return <Redirect to="/User" />;
       }
     }
     return (

@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import SideBar from "./components/SideBar"
 import PendingUsers from "./components/PendingUsers"
 
-class DummyPage extends Component {
+class AdminPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,10 +28,10 @@ class DummyPage extends Component {
 
     render() {
         if (this.state.logout) {
-            return <Redirect to="/LandingPage" />
+            return <Redirect to="/Home" />
         }
         if (this.state.userView) {
-            return <Redirect to="/DummyPage" />
+            return <Redirect to="/User" />
         }
         return (
             <div>
@@ -41,4 +41,4 @@ class DummyPage extends Component {
     }
 }
 
-export default DummyPage;
+export default AdminPage;

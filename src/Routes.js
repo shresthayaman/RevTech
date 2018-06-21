@@ -9,10 +9,10 @@ class Routes extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Redirect to="/LandingPage" />
-          <Route path="/LandingPage" component={App} />
-          <Route path="/DummyPage" component={DummyPage} />
-          <Route path="/AdminPage" component={AdminPage} />
+          <Redirect to="/Home" />
+          <Route path="/Home" component={App} />
+          <Route path="/User" component={DummyPage} />
+          <Route path="/Admin" component={AdminPage} />
         </div>
       </BrowserRouter>
     );

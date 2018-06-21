@@ -1,36 +1,42 @@
-.Card-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.individual-profiles {
+  margin: 1%;
+  width: 23%;
+  text-align: center;
+  font-family: Helvetica, sans-serif;
+  height: 500px;
+  background-color: #a5a5af;
 }
 
-.Title {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  border-bottom: solid;
-  border-bottom-width: 1pt;
-  border-bottom-color: rgba(0, 0, 0, 0.257858);
+.name-container {
+  font-size: 250%;
+  font-weight: bold;
+  border-bottom: 2px solid black;
 }
 
-.flex-container {
-  display: flex;
-  flex-wrap: wrap;
+.picture-container {
+  width: 200px;
+  height: 200px;
+  margin: 4%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
-.button1 {
-  padding-right: 2%;
+.individual-info-status {
+  font-size: 130%;
 }
 
-.communitypic {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 10%;
-  width: 50%;
-  height: auto;
+.individual-info{
+  margin: 2%;
+  font-size: 130%;
+  margin-bottom: 5%;
 }
 
-.ant-list{
-  background-color: white;
+.link-icons {
+  margin-right: 3.5%;
+  margin-left: 3.5%;
+}
+
+.scrollable{
+  height: 145px;
+  overflow: auto;
 }
