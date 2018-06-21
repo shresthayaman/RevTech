@@ -150,23 +150,23 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-        {
-          skills: [
-            { software: this.state.software },
-            { media: this.state.media },
-            { data: this.state.data },
-            { strat: this.state.strat },
-            { entre: this.state.entre }
-          ],
-          github: this.state.github
-        },
-        function (error) {
-          if (error) {
-            // The write failed...
-          } else {
-            // Data saved successfully!
+          {
+            skills: [
+              { software: this.state.software },
+              { media: this.state.media },
+              { data: this.state.data },
+              { strat: this.state.strat },
+              { entre: this.state.entre }
+            ],
+            github: this.state.github
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+            }
           }
-        }
         );
     } else if (
       this.state.complete == true &&
@@ -178,23 +178,23 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-        {
-          linkedin: this.state.linkedin,
-          skills: [
-            { software: this.state.software },
-            { media: this.state.media },
-            { data: this.state.data },
-            { strat: this.state.strat },
-            { entre: this.state.entre }
-          ]
-        },
-        function (error) {
-          if (error) {
-            // The write failed...
-          } else {
-            // Data saved successfully!
+          {
+            linkedin: this.state.linkedin,
+            skills: [
+              { software: this.state.software },
+              { media: this.state.media },
+              { data: this.state.data },
+              { strat: this.state.strat },
+              { entre: this.state.entre }
+            ]
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+            }
           }
-        }
         );
     } else {
       // console.log(this.state.currentUser[0].id);
@@ -202,24 +202,24 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-        {
-          linkedin: this.state.linkedin,
-          github: this.state.github,
-          skills: [
-            { software: this.state.software },
-            { media: this.state.media },
-            { data: this.state.data },
-            { strat: this.state.strat },
-            { entre: this.state.entre }
-          ]
-        },
-        function (error) {
-          if (error) {
-            // The write failed...
-          } else {
-            // Data saved successfully!
+          {
+            linkedin: this.state.linkedin,
+            github: this.state.github,
+            skills: [
+              { software: this.state.software },
+              { media: this.state.media },
+              { data: this.state.data },
+              { strat: this.state.strat },
+              { entre: this.state.entre }
+            ]
+          },
+          function(error) {
+            if (error) {
+              // The write failed...
+            } else {
+              // Data saved successfully!
+            }
           }
-        }
         );
     }
   };
@@ -231,33 +231,57 @@ class Profile extends Component {
         {this.state.complete ? (
           <div>
             <div className="profile-container">
-              <div className="innerProf">
-                <div>
-                  <Card
-                    classname="card"
-                    style={{
-                      margin: "1vw",
-                      top: "1vw",
-                      left: "-1vw",
-                      width: "100%",
-                      height: "19vh",
-                      position: "relative",
-                      backgroundColor: "rgba(255,255,255,0.3)"
-                    }}
-                  >
-                    <CardContent>
+              <div className="leftSide">
+                <div
+                  classname="card"
+                  style={{
+                    margin: "1vw",
+                    top: "1vw",
+                    left: "-1vw",
+                    width: "100%",
+                    height: "21vh",
+                    position: "relative",
+                    zIndex: "3",
+                    display: "inline-block",
+                    backgroundColor: "rgba(255,255,255,0.3)"
+                  }}
+                >
+                  <div className="leftHalfCard">
+                    <div className="innerLeftHalfCard">
                       <div className="ImageDiv">
                         <img
                           src={this.state.currentUser[0].pictureURL}
                           className="Nathan"
                         />
                       </div>
+                      <div className="setting">
+                        &emsp;
+                        {this.props.isAdmin && (
+                          <Button onClick={this.props.toggleToAdmin}>
+                            Admin View
+                          </Button>
+                        )}
+                        <Button
+                          type="primary"
+                          onClick={this.showModal}
+                          className="EditProfile"
+                        >
+                          Edit Profile
+                        </Button>
+                        <Button onClick={this.props.logout}>Logout</Button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* =============================================== */}
+                  <div className="rightHalfCard">
+                    <div className="innerRightHalfCard">
                       <div className="infodiv">
                         <Typography
                           gutterBottom
                           variant="headline"
                           component="h2"
-                          style={{ fontSize: "20px", color: "white" }}
+                          style={{ fontSize: "29px", color: "white" }}
                         >
                           RevTech
                         </Typography>
@@ -269,150 +293,129 @@ class Profile extends Component {
                           </Typography>
                         )}
                         <br />
-
-                        <div className="icons">
-                          <SocialIcon
-                            url={this.state.currentUser[0].linkedin}
-                          />
-                          &emsp;
-                          <SocialIcon
-                            disabled={this.state.git_disabled}
-                            url={this.state.currentUser[0].github}
-                          />
-                        </div>
-                      </div>
-                      <br />
-
-                      <div className="setting">
+                        <SocialIcon url={this.state.currentUser[0].linkedin} />
                         &emsp;
-                        <Button
-                          type="primary"
-                          onClick={this.showModal}
-                          className="EditProfile"
-                        >
-                          {" "}
-                          Edit Profile
-                        </Button>
-                        <Button onClick={this.props.logout}>Logout</Button>
-                        {this.props.isAdmin && (
-                          <Button onClick={this.props.toggleToAdmin}>
-                            Admin View
-                          </Button>
-                        )}
+                        <SocialIcon
+                          disabled={this.state.git_disabled}
+                          url={this.state.currentUser[0].github}
+                        />
                       </div>
+                    </div>
+                  </div>
 
-                      {/* Edit Profile */}
-                      <div>
-                        <Modal
-                          title="Edit Profile "
-                          visible={this.state.visible}
-                          onSubmit={this.handleSubmit}
-                          onCancel={this.handleCancel}
-                          footer={[
-                            <Button key="back" onClick={this.handleCancel}>
-                              Return
-                            </Button>,
-                            <Button
-                              key="submit"
-                              /* disabled={this.state.submit_disabled} */
-                              type="primary"
-                              onClick={this.handleSubmit}
-                            >
-                              Submit
-                            </Button>
-                          ]}
+                  {/* =========================================== */}
+                  <br />
+
+                  {/* Edit Profile */}
+                  <div>
+                    <Modal
+                      title="Edit Profile "
+                      visible={this.state.visible}
+                      onSubmit={this.handleSubmit}
+                      onCancel={this.handleCancel}
+                      footer={[
+                        <Button key="back" onClick={this.handleCancel}>
+                          Return
+                        </Button>,
+                        <Button
+                          key="submit"
+                          /* disabled={this.state.submit_disabled} */
+                          type="primary"
+                          onClick={this.handleSubmit}
                         >
-                          <Input
-                            name="linkedin"
-                            placeholder="Enter your Linkedin URL"
-                            onChange={this.onChange}
-                            value={this.state.linkedin}
-                            prefix={
-                              <Icon
-                                type="user"
-                                style={{ color: "rgba(0,0,0,.25)" }}
-                              />
-                            }
+                          Submit
+                        </Button>
+                      ]}
+                    >
+                      <Input
+                        name="linkedin"
+                        placeholder="Enter your Linkedin URL"
+                        onChange={this.onChange}
+                        value={this.state.linkedin}
+                        prefix={
+                          <Icon
+                            type="user"
+                            style={{ color: "rgba(0,0,0,.25)" }}
                           />
-                          &emsp;
-                          {/* Github Input */}
-                          <Input
-                            name="github"
-                            onChange={this.onChange}
-                            value={this.state.github}
-                            placeholder="Enter your Github URL"
-                            prefix={
-                              <Icon
-                                type="user"
-                                style={{ color: "rgba(0,0,0,.25)" }}
-                              />
-                            }
+                        }
+                      />
+                      &emsp;
+                      {/* Github Input */}
+                      <Input
+                        name="github"
+                        onChange={this.onChange}
+                        value={this.state.github}
+                        placeholder="Enter your Github URL"
+                        prefix={
+                          <Icon
+                            type="user"
+                            style={{ color: "rgba(0,0,0,.25)" }}
                           />
-                          <div>
-                            <FormControl component="fieldset">
-                              <FormLabel component="legend">
-                                Choose your Skillset(s)
-                              </FormLabel>
-                              <FormGroup>
-                                <FormControlLabel
-                                  control={
-                                    <Checkbox
-                                      checked={this.state.software}
-                                      onChange={this.handleChange("software")}
-                                      value="software"
-                                    />
-                                  }
-                                  label="Software Engineering"
+                        }
+                      />
+                      <div>
+                        <FormControl component="fieldset">
+                          <FormLabel component="legend">
+                            Choose your Skillset(s)
+                          </FormLabel>
+                          <FormGroup>
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  checked={this.state.software}
+                                  onChange={this.handleChange("software")}
+                                  value="software"
                                 />
-                                <FormControlLabel
-                                  control={
-                                    <Checkbox
-                                      checked={this.state.data}
-                                      onChange={this.handleChange("data")}
-                                      value="data"
-                                    />
-                                  }
-                                  label="Data Science"
+                              }
+                              label="Software Engineering"
+                            />
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  checked={this.state.data}
+                                  onChange={this.handleChange("data")}
+                                  value="data"
                                 />
-                                <FormControlLabel
-                                  control={
-                                    <Checkbox
-                                      checked={this.state.media}
-                                      onChange={this.handleChange("media")}
-                                      value="media"
-                                    />
-                                  }
-                                  label="Digital Media"
+                              }
+                              label="Data Science"
+                            />
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  checked={this.state.media}
+                                  onChange={this.handleChange("media")}
+                                  value="media"
                                 />
-                                <FormControlLabel
-                                  control={
-                                    <Checkbox
-                                      checked={this.state.strat}
-                                      onChange={this.handleChange("strat")}
-                                      value="strat"
-                                    />
-                                  }
-                                  label="Digital Strategy"
+                              }
+                              label="Digital Media"
+                            />
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  checked={this.state.strat}
+                                  onChange={this.handleChange("strat")}
+                                  value="strat"
                                 />
-                                <FormControlLabel
-                                  control={
-                                    <Checkbox
-                                      checked={this.state.entre}
-                                      onChange={this.handleChange("entre")}
-                                      value="entre"
-                                    />
-                                  }
-                                  label="Entrepreneurship"
+                              }
+                              label="Digital Strategy"
+                            />
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  checked={this.state.entre}
+                                  onChange={this.handleChange("entre")}
+                                  value="entre"
                                 />
-                              </FormGroup>
-                            </FormControl>
-                          </div>
-                          <p> Add Photo: </p>
-                          <Profile_pic user={this.state.currentUser[0]} />
-                        </Modal>
+                              }
+                              label="Entrepreneurship"
+                            />
+                          </FormGroup>
+                        </FormControl>
                       </div>
-                    </CardContent>
-                  </Card>
+                      <p> Add Photo: </p>
+                      <Profile_pic user={this.state.currentUser[0]} />
+                    </Modal>
+                  </div>
                 </div>
               </div>
             </div>
@@ -434,8 +437,8 @@ class Profile extends Component {
             </div>
           </div>
         ) : (
-            <p>Loading...</p>
-          )}
+          <p>Loading...</p>
+        )}
       </div>
     );
   }

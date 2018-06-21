@@ -72,12 +72,10 @@ export default class Landing extends Component {
 
         <div>
           <br />
-          <br />
-          <p className="missionStatement">- About Us - </p>
-          <br />
+
           <p className="missionStatement">
-            Our goal is to foster an elite team of software developers and to
-            build a community between interns and alumni.
+            "To foster an elite team of software developers and to build a
+            community between interns and alumni.""
           </p>
         </div>
 
