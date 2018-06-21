@@ -1,0 +1,9 @@
+.submissionList {
+  height: 300px;
+  overflow: auto;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+}

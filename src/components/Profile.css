@@ -1,0 +1,107 @@
+.profile-container {
+  /* margin-top: 3%; */
+  display: flex;
+  width: 100%;
+  text-align: left;
+  display: inline-block;
+  padding-bottom: 40px;
+  background-image: url("uva6.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 120%;
+}
+
+/* .card {
+  display: flex;
+  flex-direction: row;
+} */
+
+.ImageDiv {
+  width: 150px;
+  height: 150px;
+}
+
+.Nathan {
+  height: 90%;
+  width: 90%;
+  margin-left: 95%;
+  margin-top: 4%;
+  border-radius: 50%;
+}
+
+.infodiv {
+}
+
+.icons {
+}
+
+.cardText {
+  order: 4;
+
+  color: white;
+}
+
+.EditProfile {
+}
+.setting {
+  position: relative;
+  z-index: 6;
+  margin-left: 33%;
+}
+
+.tabs {
+  text-align: center;
+  background-color: rgb(122, 127, 187);
+}
+
+.ant-tabs-bar {
+  background-color: none;
+}
+
+.ant-tabs-nav-scroll {
+  text-align: center;
+  background-color: none;
+}
+
+.ant-tabs-tabpane {
+  background-color: none;
+}
+
+.MuiCardContent-root-29 {
+  display: flex;
+  text-align: left;
+  display: inline-block;
+  margin-left: 50;
+}
+
+.textInfo {
+  display: inline-block;
+}
+
+.leftHalfCard {
+  position: relative;
+  z-index: 4;
+  /* background-color: blue; */
+  width: 50%;
+  float: left;
+}
+
+.rightHalfCard {
+  position: relative;
+  z-index: 5;
+  /* background-color: red; */
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+.innerLeftHalfCard {
+  width: 40%;
+  height: 100%;
+  /* background-color: white; */
+  float: right;
+}
+
+.innerRightHalfCard {
+  width: 40%;
+  height: 100%;
+  /* background-color: black; */
+}

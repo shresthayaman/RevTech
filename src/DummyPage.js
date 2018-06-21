@@ -1,0 +1,69 @@
+import React, { Component } from "react";
+import fire from "./components/fire";
+import { Link, Redirect } from "react-router-dom";
+import DailyChallenge from "./components/DailyChallenge";
+import AdminDailyChallenge from "./components/AdminDailyChallenge";
+import Profile from "./components/Profile";
+import "./DummyPage.css";
+
+class DummyPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      logout: false,
+      toggleToAdmin: false,
+      toggleToAdminNow: false
+    };
+  }
+
+  logout = () => {
+    fire.auth().signOut();
+    this.setState({
+      logout: true
+    });
+  };
+
+  toggleToAdmin = () => {
+    this.setState({
+      toggleToAdminNow: true
+    })
+  }
+
+  componentDidMount() {
+    fire
+      .database()
+      .ref("Users")
+      .on("value", snapshot => {
+        let allUsers = snapshot.val();
+        for (let user in allUsers) {
+          if (allUsers[user].status === "admin" && allUsers[user].email === fire.auth().currentUser.email) {
+            this.setState({
+              toggleToAdmin: true
+            })
+          }
+        }
+      });
+  }
+
+  render() {
+    if (this.state.logout) {
+      return <Redirect to="/Home" />;
+    }
+    if (this.state.toggleToAdminNow) {
+      return <Redirect to="/Admin" />;
+    }
+    return (
+      <div>
+        {fire.auth().currentUser !== null &&
+          <Profile
+            passedEmail={fire.auth().currentUser.email}
+            logout={this.logout}
+            toggleToAdmin={this.toggleToAdmin}
+            isAdmin={this.state.toggleToAdmin}
+          />}
+      </div>
+    );
+  }
+}
+
+export default DummyPage;
