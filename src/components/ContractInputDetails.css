@@ -8,7 +8,6 @@
     margin: 18%;
     margin-left: 25%; 
     z-index: 3;    
-    opacity: 0;
 }
 
 .input-fields {
@@ -29,9 +28,9 @@
     margin-top: -30%;
 }
 
-.login-container1:hover {
+/* .login-container1:hover {
     opacity: 1;
     transition: all .5s ease;
-  } 
+  }  */
 
 
