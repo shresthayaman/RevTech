@@ -254,22 +254,6 @@ class Profile extends Component {
                           className="Nathan"
                         />
                       </div>
-                      <div className="setting">
-                        &emsp;
-                        {this.props.isAdmin && (
-                          <Button onClick={this.props.toggleToAdmin}>
-                            Admin View
-                          </Button>
-                        )}
-                        <Button
-                          type="primary"
-                          onClick={this.showModal}
-                          className="EditProfile"
-                        >
-                          Edit Profile
-                        </Button>
-                        <Button onClick={this.props.logout}>Logout</Button>
-                      </div>
                     </div>
                   </div>
 
@@ -300,6 +284,22 @@ class Profile extends Component {
                           url={this.state.currentUser[0].github}
                         />
                       </div>
+                      {/* ================================================  Logout/Admin Button*/}
+                    </div>
+                    <div className="logoutAdmin">
+                      <Button
+                        type="primary"
+                        onClick={this.showModal}
+                        className="EditProfile"
+                      >
+                        Edit Profile
+                      </Button>
+                      {this.props.isAdmin && (
+                        <Button onClick={this.props.toggleToAdmin}>
+                          Admin View
+                        </Button>
+                      )}
+                      <Button onClick={this.props.logout}>Logout</Button>
                     </div>
                   </div>
 
