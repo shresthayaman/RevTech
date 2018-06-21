@@ -43,6 +43,9 @@
 .EditProfile {
 }
 .setting {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10%;
   position: relative;
   z-index: 6;
   margin-left: 33%;
@@ -83,15 +86,20 @@
   /* background-color: blue; */
   width: 50%;
   float: left;
+  margin-top: 1%;
 }
 
 .rightHalfCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   position: relative;
   z-index: 5;
   /* background-color: red; */
   width: 50%;
   height: 100%;
   float: right;
+  margin-top: 1%;
 }
 .innerLeftHalfCard {
   width: 40%;
@@ -101,7 +109,14 @@
 }
 
 .innerRightHalfCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 40%;
   height: 100%;
   /* background-color: black; */
+}
+
+.logoutAdmin {
+  margin-top: 0.1%;
 }
