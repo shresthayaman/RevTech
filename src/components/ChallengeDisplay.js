@@ -75,6 +75,7 @@ export default class ChallengeDisplay extends React.Component {
   };
 
   render() {
+    console.log(this.props.clickedChallenge.text);
     return (
       <div>
         <h1 className="challengeTitle">{this.props.clickedChallenge.title}</h1>
