@@ -12,8 +12,7 @@ export default class ChallenegeList extends React.Component {
       challengeArray: [],
       clickedChallenge: {
         title: "Daily Challeneges",
-        text:
-          "<p>Select a specific daily challenge to obtain challenege details</p>",
+        text: "",
         date: "",
         time: "",
         submission: []
@@ -53,7 +52,10 @@ export default class ChallenegeList extends React.Component {
   render() {
     return (
       <div className="challengeDisplayAndList">
-        <ChallengeDisplay style={{color: "white"}} clickedChallenge={this.state.clickedChallenge} />
+        <ChallengeDisplay
+          style={{ color: "white" }}
+          clickedChallenge={this.state.clickedChallenge}
+        />
 
         <List
           bordered
