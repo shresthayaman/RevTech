@@ -1,0 +1,15 @@
+.challengeTitle {
+  display: flex;
+  justify-content: center;
+}
+
+.quill {
+  height: 400px;
+}
+
+.linkSubmission {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 2%;
+}

@@ -1,0 +1,84 @@
+.profile-container {
+  /* margin-top: 3%; */
+  display: flex;
+  width: 100%;
+  text-align: left;
+  display: inline-block;
+  padding-bottom: 40px;
+  background-image: url("uva3.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 120%;
+}
+
+/* .card {
+  display: flex;
+  flex-direction: row;
+} */
+
+.ImageDiv {
+  width: 150px;
+  height: 150px;
+  display: inline-block;
+  margin-top: 1%;
+  order: 2;
+}
+
+.Nathan {
+  height: 100%;
+  width: 95%;
+  margin-top: -6.5vh;
+  margin-left: 39.5vw;
+}
+
+.infodiv {
+  margin-left: 50vw;
+  margin-top: -24vh;
+}
+
+.icons {
+  order: 2;
+  margin-left: -1%;
+  margin-top: -2%;
+}
+
+.cardText {
+  order: 4;
+  margin-left: 71%;
+  color: white;
+}
+
+.EditProfile {
+  margin-left: 84vw;
+}
+.setting {
+  margin-top: -21vh;
+}
+
+.tabs {
+  text-align: center;
+  background-color: rgb(122, 127, 187);
+}
+
+.ant-tabs-bar {
+  background-color: #f5f5f5;
+}
+
+.ant-tabs-nav-scroll {
+  text-align: center;
+  background-color: #f8f8f8;
+}
+
+.ant-tabs-tabpane {
+  background-color: white;
+}
+
+.MuiCardContent-root-29 {
+  display: flex;
+  text-align: left;
+  display: inline-block;
+  margin-left: 50;
+}
+
+.textInfo {
+  display: inline-block;
+}

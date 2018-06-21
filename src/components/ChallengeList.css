@@ -1,0 +1,31 @@
+.challengeDisplayAndList {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1%;
+  padding-right: 2%;
+}
+
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  text-decoration: underline;
+  padding-left: 1%;
+  padding-right: 2%;
+}
+
+.spacer {
+  padding-bottom: 30px;
+  background-color: rgb(38, 60, 121);
+
+}
+
+.challengeDisplayAndList{ 
+  color: white;
+}
+
