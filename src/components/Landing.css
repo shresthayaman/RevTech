@@ -124,3 +124,13 @@
   padding-right: 50px;
   width: 150px;
 }
+
+.footer-landing{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.picDiv{
+  margin-left: 3%;
+}
