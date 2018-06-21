@@ -95,7 +95,7 @@ export default class AdminChallengeEditor extends React.Component {
           header={
             <div className="listHeader">
               <div>Daily Challeneges</div>
-              <div>Due Date</div>
+              <div style={{ marginRight: "5%" }}>Due Date</div>
             </div>
           }
           itemLayout="vertical"

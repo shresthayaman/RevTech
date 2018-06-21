@@ -46,7 +46,7 @@ export default class AdminChallengeSubmission extends React.Component {
     return (
       <div className="DisplayListSubmissions">
         <h1 style={{ display: "flex", justifyContent: "center" }}>
-          Submissiond for: {this.state.clickedChallenge.title}
+          Submission for: {this.state.clickedChallenge.title}
         </h1>
         <SubmissionDisplay clickedChallenge={this.state.clickedChallenge} />;
         <List
