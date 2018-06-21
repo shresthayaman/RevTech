@@ -69,23 +69,24 @@ export default class Landing extends Component {
             }}
           />
         </div>
+        <div className="footer-landing">
+          <div>
+            <br />
 
-        <div>
-          <br />
-
-          <p className="missionStatement">
-            "To foster an elite team of software developers and to build a
+            <p className="missionStatement">
+              "To foster an elite team of software developers and to build a
             community between interns and alumni.""
           </p>
-        </div>
+          </div>
 
-        <div>
-          <img src={community} className="pics" />
-          <img src={computer} className="pics" />
-          <img src={tools} className="pics1" />
-          <br />
-          <br />
-          <br />
+          <div className="picDiv">
+            <img src={community} className="pics" />
+            <img src={computer} className="pics" />
+            <img src={tools} className="pics1" />
+            <br />
+            <br />
+            <br />
+          </div>
         </div>
       </div>
     );
