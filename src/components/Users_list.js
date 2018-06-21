@@ -22,18 +22,17 @@ class Users_list extends Component {
   };
 
   componentDidMount() {
-    console.log("Hello11");
     const usersRef = fire.database().ref("Users");
-    usersRef.on("value", snapshot => {
+    usersRef.once("value", snapshot => {
       let Users = snapshot.val();
-      console.log(Users);
+
       let newState = [];
       for (let User in Users) {
         if (
-          (Users[User].approve === true &&
-            Users[User].linkedin != "" &&
-            Users[User].github != "",
-            Users[User].skills !== null)
+          Users[User].approve === true &&
+          Users[User].linkedin != "" &&
+          Users[User].github != "" &&
+          Users[User].skills !== null
         ) {
           newState.push({
             name: Users[User].name,
@@ -66,7 +65,7 @@ class Users_list extends Component {
           });
         }
       }
-
+      console.log(newState);
       let newState2 = newState.sort(this.compare);
       this.setState({
         approvedUsers: newState2
