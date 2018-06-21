@@ -19,7 +19,7 @@ class MarketDisplay extends Component {
       user: "",
       bids: [],
       bidButton: "Bid",
-      bidButtonColor: "#389e0d",
+      bidButtonColor: "#015249",
       didBid: false,
       previousBid: "No bid found",
       totalBids: 0
@@ -107,7 +107,7 @@ class MarketDisplay extends Component {
           bid.hours * bid.rate;
         this.setState({
           bidButton: "Update Bid",
-          bidButtonColor: "#1890FF",
+          bidButtonColor: "#77D9C4",
           didBid: true,
           previousBid: prevBidString,
           totalBids: curBids.length
@@ -144,7 +144,7 @@ class MarketDisplay extends Component {
           bid.hours * bid.rate;
         this.setState({
           bidButton: "Update Bid",
-          bidButtonColor: "#1890FF",
+          bidButtonColor: "#77D9C4",
           didBid: true,
           previousBid: prevBidString,
           totalBids: curBids.length
@@ -186,7 +186,7 @@ class MarketDisplay extends Component {
           curBids[bid].rate * curBids[bid].hours;
         this.setState({
           bidButton: "Update Bid",
-          bidButtonColor: "#1890FF",
+          bidButtonColor: "#77D9C4",
           didBid: true,
           previousBid: prevBidString,
           totalBids: curBids.length
@@ -204,14 +204,15 @@ class MarketDisplay extends Component {
           square={false}
           style={{
             margin: "1.8vw",
-            width: "21vw",
+            maxWidth: "20vw",
+            minWidth: "250px",
             padding: "1.8vw",
-            height: "35vh",
+            height: "300px",
             position: "relative"
           }}
         >
           <div className="Card-content">
-            <h1 className="Title">{contract.company}</h1>
+            <p className="Title">{contract.company}</p>
             <div className="Details">
               <p>
                 <strong>Contract details: </strong>
