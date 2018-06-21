@@ -53,7 +53,7 @@ class LoginForm extends Component {
       fire
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
-        .catch(function (error) {
+        .catch(function(error) {
           let errorCode = error.code;
           if (errorCode === "auth/wrong-password") {
             alert("Wrong password.");
