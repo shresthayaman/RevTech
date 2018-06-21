@@ -18,40 +18,34 @@
 .ImageDiv {
   width: 150px;
   height: 150px;
-  display: inline-block;
-  margin-top: 1%;
-  order: 2;
 }
 
 .Nathan {
-  height: 100%;
-  width: 95%;
-  margin-top: -6.5vh;
-  margin-left: 39.5vw;
+  height: 90%;
+  width: 90%;
+  margin-left: 95%;
+  margin-top: 4%;
+  border-radius: 50%;
 }
 
 .infodiv {
-  margin-left: 50vw;
-  margin-top: -24vh;
 }
 
 .icons {
-  order: 2;
-  margin-left: -1%;
-  margin-top: -2%;
 }
 
 .cardText {
   order: 4;
-  margin-left: 71%;
+
   color: white;
 }
 
 .EditProfile {
-  margin-left: 84vw;
 }
 .setting {
-  margin-top: -21vh;
+  position: relative;
+  z-index: 6;
+  margin-left: 33%;
 }
 
 .tabs {
@@ -81,4 +75,33 @@
 
 .textInfo {
   display: inline-block;
+}
+
+.leftHalfCard {
+  position: relative;
+  z-index: 4;
+  /* background-color: blue; */
+  width: 50%;
+  float: left;
+}
+
+.rightHalfCard {
+  position: relative;
+  z-index: 5;
+  /* background-color: red; */
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+.innerLeftHalfCard {
+  width: 40%;
+  height: 100%;
+  /* background-color: white; */
+  float: right;
+}
+
+.innerRightHalfCard {
+  width: 40%;
+  height: 100%;
+  /* background-color: black; */
 }
