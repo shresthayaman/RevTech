@@ -33,7 +33,7 @@ class Users_list extends Component {
           (Users[User].approve === true &&
             Users[User].linkedin != "" &&
             Users[User].github != "",
-          Users[User].skills !== null)
+            Users[User].skills !== null)
         ) {
           newState.push({
             name: Users[User].name,
@@ -56,8 +56,8 @@ class Users_list extends Component {
             name: Users[User].name,
             status: Users[User].status,
             email: Users[User].email,
-            github: "https://github.com/DeepakG123",
-            linkedin: "https://www.linkedin.com/in/",
+            github: "",
+            linkedin: "",
             approve: Users[User].approve,
             gradYear: Users[User].gradYear,
             id: User,

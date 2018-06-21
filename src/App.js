@@ -12,6 +12,8 @@ import PendingContract from "./components/PendingContract";
 import PendingUsers from "./components/PendingUsers";
 import "./App.css";
 import ContractMgmt from "./components/ContractMgmt";
+import Users_list from "./components/Users_list";
+import "./components/Community.css"
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +22,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <Landing />
       </div>
     );

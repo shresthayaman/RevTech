@@ -1,17 +1,31 @@
 import React, { Component } from "react";
 import Card from "@material-ui/core/Card";
-import { Button, Modal, Input } from "antd";
+import { Button, Modal, Input, Tabs } from "antd";
 import "./Community.css";
 import fire from "./fire.js";
 import "antd/dist/antd.css";
 import { SocialIcon } from "react-social-icons";
 
+const TabPane = Tabs.TabPane;
+
 class Community extends Component {
   constructor(props) {
     super(props);
   }
+
+  getStatus = (status) => {
+    if (status === "admin") {
+      return "Administrator"
+    }
+    else if (status === "intern") {
+      return "Intern"
+    }
+    else {
+      return "Alumnus"
+    }
+  }
+
   render() {
-    console.log(this.props.user.skills);
     const { user, id } = this.props;
     this.props.user.skills.push([]);
     if (
@@ -44,34 +58,37 @@ class Community extends Component {
     ) {
       this.props.user.skills[5].push("Entreprenuership");
     }
-    console.log(this.props.user.skills);
+
+
+
     return (
-      <div>
-        <Card
-          elevation={6}
-          square={true}
-          style={{
-            margin: "1.8vw",
-            width: "21vw",
-            padding: "1.8vw",
-            height: "50vh",
-            position: "relative"
-          }}
-        >
-          <div className="Card-content">
-            <h1 className="Title">{user.name}</h1>
+      <Card className="individual-profiles" classes="div">
+        <div>
+          <div className="name-container">
+            {user.name}
           </div>
-          <p className="Position"> Position: {user.status}</p>
-          <p className="Position"> Email: {user.email}</p>
-          <p> Skillset(s) </p>
-          {this.props.user.skills[5].map(skill => <li> {skill}</li>)}
-          <SocialIcon url={user.linkedin} />
-          &nbsp;
-          <SocialIcon url={user.github} />
-          <br />
-          <img src={user.pictureURL} className="communitypic" />
-        </Card>
-      </div>
+        </div>
+        <img src={user.pictureURL} className="picture-container" />
+        <Tabs defaultActiveKey="1">
+          <TabPane tab="General Contact" key="1">
+            <div className="individual-info-status">
+              {this.getStatus(user.status)}
+            </div>
+            <div className="individual-info">
+              {user.email}
+            </div>
+            <div className="individual-info">
+              {user.linkedin && <SocialIcon url={user.linkedin} className="link-icons" />}
+              {user.github && <SocialIcon url={user.github} className="link-icons" />}
+            </div>
+          </TabPane>
+          <TabPane tab="Skillset" key="2">
+            <div className="scrollable" >
+              {this.props.user.skills[5].map(skill => <div className="individual-info"> {skill}</div>)}
+            </div>
+          </TabPane>
+        </Tabs>
+      </Card>
     );
   }
 }

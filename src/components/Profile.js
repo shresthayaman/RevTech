@@ -17,6 +17,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Checkbox from "@material-ui/core/Checkbox";
+import "./Community.css";
 
 const TabPane = Tabs.TabPane;
 
@@ -149,23 +150,23 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-          {
-            skills: [
-              { software: this.state.software },
-              { media: this.state.media },
-              { data: this.state.data },
-              { strat: this.state.strat },
-              { entre: this.state.entre }
-            ],
-            github: this.state.github
-          },
-          function(error) {
-            if (error) {
-              // The write failed...
-            } else {
-              // Data saved successfully!
-            }
+        {
+          skills: [
+            { software: this.state.software },
+            { media: this.state.media },
+            { data: this.state.data },
+            { strat: this.state.strat },
+            { entre: this.state.entre }
+          ],
+          github: this.state.github
+        },
+        function (error) {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
           }
+        }
         );
     } else if (
       this.state.complete == true &&
@@ -177,23 +178,23 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-          {
-            linkedin: this.state.linkedin,
-            skills: [
-              { software: this.state.software },
-              { media: this.state.media },
-              { data: this.state.data },
-              { strat: this.state.strat },
-              { entre: this.state.entre }
-            ]
-          },
-          function(error) {
-            if (error) {
-              // The write failed...
-            } else {
-              // Data saved successfully!
-            }
+        {
+          linkedin: this.state.linkedin,
+          skills: [
+            { software: this.state.software },
+            { media: this.state.media },
+            { data: this.state.data },
+            { strat: this.state.strat },
+            { entre: this.state.entre }
+          ]
+        },
+        function (error) {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
           }
+        }
         );
     } else {
       // console.log(this.state.currentUser[0].id);
@@ -201,24 +202,24 @@ class Profile extends Component {
         .database()
         .ref(`/Users/${this.state.currentUser[0].id}`)
         .update(
-          {
-            linkedin: this.state.linkedin,
-            github: this.state.github,
-            skills: [
-              { software: this.state.software },
-              { media: this.state.media },
-              { data: this.state.data },
-              { strat: this.state.strat },
-              { entre: this.state.entre }
-            ]
-          },
-          function(error) {
-            if (error) {
-              // The write failed...
-            } else {
-              // Data saved successfully!
-            }
+        {
+          linkedin: this.state.linkedin,
+          github: this.state.github,
+          skills: [
+            { software: this.state.software },
+            { media: this.state.media },
+            { data: this.state.data },
+            { strat: this.state.strat },
+            { entre: this.state.entre }
+          ]
+        },
+        function (error) {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
           }
+        }
         );
     }
   };
@@ -425,14 +426,16 @@ class Profile extends Component {
                   <Marketplace id={this.props.passedEmail} />
                 </TabPane>
                 <TabPane tab="Network" key="3">
-                  <Users_list />
+                  <div className="flex-container">
+                    <Users_list />
+                  </div>
                 </TabPane>
               </Tabs>
             </div>
           </div>
         ) : (
-          <p>Loading...</p>
-        )}
+            <p>Loading...</p>
+          )}
       </div>
     );
   }
