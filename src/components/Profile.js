@@ -242,7 +242,7 @@ class Profile extends Component {
                       width: "100%",
                       height: "19vh",
                       position: "relative",
-                      backgroundColor: "rgba(255,255,255,0.55)"
+                      backgroundColor: "rgba(255,255,255,0.3)"
                     }}
                   >
                     <CardContent>
