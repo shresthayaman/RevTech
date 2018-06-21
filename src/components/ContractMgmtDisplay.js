@@ -18,7 +18,7 @@ class ContractMgmtDisplay extends Component {
       contact: "",
       bids: [],
       disabled: true,
-      awardColor: "#389e0d",
+      awardColor: "#015249",
       selectedBids: []
     };
     this.handleCheck = this.handleCheck.bind(this);
@@ -164,14 +164,15 @@ class ContractMgmtDisplay extends Component {
           square={false}
           style={{
             margin: "1.8vw",
-            width: "21vw",
+            maxWidth: "20vw",
+            minWidth: "250px",
             padding: "1.8vw",
-            height: "35vh",
+            height: "300px",
             position: "relative"
           }}
         >
           <div className="Card-content">
-            <h1 className="Title">{contract.company}</h1>
+            <p className="Title">{contract.company}</p>
             <div className="Details">
               <p>
                 <strong>Contract details: </strong>
@@ -191,7 +192,7 @@ class ContractMgmtDisplay extends Component {
             <div>
               <Button
                 type="primary"
-                style={{ background: "#389e0d" }}
+                style={{ background: "#015249" }}
                 onClick={this.handleClickAward}
               >
                 Bids

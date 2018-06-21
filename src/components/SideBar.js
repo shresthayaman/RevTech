@@ -71,47 +71,33 @@ export default class SideBar extends React.Component {
               <Icon type="idcard" />
               <span>Manage Contracts</span>
             </Menu.Item>
-            <Menu.Item />
-            <Menu.Item />
-            <Menu.Item>
-              <div className="button-container-toggle">
-                <Button onClick={this.props.userView}> Toggle to User </Button>
-              </div>
+            <Menu.Item key="5" onClick={this.props.userView}>
+              {" "}
+              <Icon type="eye-o" />
+              <span>User View</span>
             </Menu.Item>
-            <Menu.Item>
-              <div className="button-container-logout">
-                <Button onClick={this.props.logout}> Logout </Button>
-              </div>
+            <Menu.Item key="6" onClick={this.props.logout}>
+              {" "}
+              <Icon type="logout" />
+              <span>Logout</span>
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
           <Content
             style={{
-              margin: "155px 16px",
               padding: 24,
-              background: "#fff",
-              height: "100%",
-              width: "auto",
-              marginTop: 30
+              background: "#FFF",
+              height: "auto",
+              width: "100%"
             }}
           >
             {this.state.page === "" && <WebsiteUsers />}
             {this.state.page === "users" && <WebsiteUsers />}
 
             {this.state.page === "challenges" && <AdminDailyChallenge />}
-            {this.state.page === "pendingContracts" && (
-              <div>
-                {" "}
-                <PendingContract />{" "}
-              </div>
-            )}
-            {this.state.page === "manageContracts" && (
-              <div>
-                {" "}
-                <ContractMgmt />{" "}
-              </div>
-            )}
+            {this.state.page === "pendingContracts" && <PendingContract />}
+            {this.state.page === "manageContracts" && <ContractMgmt />}
           </Content>
         </Layout>
       </Layout>

@@ -23,7 +23,10 @@
   overflow: hidden;
   border-bottom: solid;
   border-bottom-width: 1pt;
-  border-bottom-color: rgba(0, 0, 0, 0.217858);
+  border-bottom-color: rgba(0, 0, 0, 0.257858);
+  font-family: helvetica;
+  font-size: 24pt;
+  font-weight: bold;
 }
 
 .Details {
@@ -31,4 +34,3 @@
   overflow: hidden;
   margin-bottom: 10px;
 }
-

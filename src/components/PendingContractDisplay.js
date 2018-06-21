@@ -91,18 +91,20 @@ class PendingContractDisplay extends Component {
     return (
       <div>
         <Card
-          elevation={12}
+          key="contractCard"
+          elevation={6}
           square={false}
           style={{
             margin: "1.8vw",
-            width: "21vw",
+            maxWidth: "20vw",
+            minWidth: "250px",
             padding: "1.8vw",
-            height: "35vh",
+            height: "300px",
             position: "relative"
           }}
         >
           <div className="Card-content">
-            <h1 className="Title">{contract.company}</h1>
+            <p className="Title">{contract.company}</p>
             <div className="Details">
               <p>
                 <strong>Contract details: </strong>
@@ -122,7 +124,7 @@ class PendingContractDisplay extends Component {
             <div>
               <Button
                 type="primary"
-                style={{ background: "#389e0d" }}
+                style={{ background: "#015249" }}
                 onClick={this.handleClickApprove}
               >
                 Approve
