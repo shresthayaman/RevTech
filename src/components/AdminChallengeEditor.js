@@ -1,6 +1,6 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { List, Button, Modal } from "antd";
+import { List, Button, Modal, message } from "antd";
 import fire from "./fire";
 import EditorDisplay from "./EditorDisplay";
 

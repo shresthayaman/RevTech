@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, Input, Button } from "antd";
-import ReactQuill, { Quill, Mixin, Toolbar } from "react-quill";
+import { message, Input, Button } from "antd";
+import ReactQuill from "react-quill";
 import fire from "./fire";
 import "./ChallengeDisplay.css";
 
@@ -69,6 +69,8 @@ export default class ChallengeDisplay extends React.Component {
         .update({ submission: tempList });
     });
 
+    message.success("Challenge Updated", 1);
+
     this.setState({
       alreadySubmitted: true
     });
@@ -85,7 +87,7 @@ export default class ChallengeDisplay extends React.Component {
           modules={ChallengeDisplay.modules}
           formats={ChallengeDisplay.formats}
           bounds={".app"}
-          placeholder="Pick a Challenge to Edit it's Contents"
+          placeholder="Select a daily challenge to display challenge details"
           readOnly={true}
           toolbar={false}
         />
@@ -94,6 +96,7 @@ export default class ChallengeDisplay extends React.Component {
             placeholder="Input link to submit"
             size="default"
             id="link"
+            addonBefore="http://"
             value={this.state.previousLink}
             onChange={event =>
               this.setState({ previousLink: event.target.value })

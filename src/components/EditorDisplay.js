@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Value } from "slate";
-import { Button, Input } from "antd";
+import { Button, Input, message } from "antd";
 import ReactQuill, { Quill, Mixin, Toolbar } from "react-quill";
 import PropTypes from "prop-types";
 import { DatePicker } from "antd";
@@ -74,6 +74,8 @@ export default class EditorDisplay extends React.Component {
         time: this.state.firebaseTime,
         submisison: []
       });
+
+    message.success("Challenge Updated", 1);
   };
 
   render() {

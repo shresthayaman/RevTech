@@ -39,10 +39,14 @@ export default class SubmissionDisplay extends React.Component {
           header={
             <div className="listItem">
               <div>
-                <u>User</u>
+                <b>
+                  <u>User</u>
+                </b>
               </div>
               <div>
-                <u>Submitted Link</u>
+                <b>
+                  <u>Submitted Link</u>
+                </b>
               </div>
             </div>
           }
@@ -51,7 +55,7 @@ export default class SubmissionDisplay extends React.Component {
           renderItem={item => (
             <List.Item key={item}>
               <div className="listItem">
-                <p>{item.email}</p> <a href={item.link}> {item.link}</a>
+                <p>{item.email}</p> <a href={item.link}> https://{item.link}</a>
               </div>
             </List.Item>
           )}
