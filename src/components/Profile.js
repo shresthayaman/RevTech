@@ -230,176 +230,192 @@ class Profile extends Component {
         {this.state.complete ? (
           <div>
             <div className="profile-container">
-              <div className="ImageDiv">
-                <img
-                  src={this.state.currentUser[0].pictureURL}
-                  className="Nathan"
-                />
-              </div>
-              <div>
-                <Card
-                  classname="card"
-                  style={{
-                    margin: "1vw",
-                    width: "90vw",
-                    height: "35vh",
-                    position: "relative"
-                  }}
-                >
-                  <CardContent>
-                    <Typography gutterBottom variant="headline" component="h2">
-                      RevTech
-                    </Typography>
-                    {this.state.complete == true && (
-                      <Typography component="p">
-                        Name: {this.state.currentUser[0].name} <br /> Position:{" "}
-                        {this.state.currentUser[0].status} <br />
-                        Email: {this.state.currentUser[0].email}
-                      </Typography>
-                    )}
-                    <br />
-                    <div className="icons">
-                      <SocialIcon url={this.state.currentUser[0].linkedin} />
-                      &emsp;
-                      <SocialIcon
-                        disabled={this.state.git_disabled}
-                        url={this.state.currentUser[0].github}
-                      />
-                    </div>
-                    <br />
-                    <div className="setting">
-                      <Icon type="setting" />
-                      &emsp;
-                      <Button type="primary" onClick={this.showModal}>
-                        {" "}
-                        Edit Profile
-                      </Button>
-                      <Button
-                        onClick={this.props.logout}
-                        style={{ float: "right" }}
-                      >
-                        Logout
-                      </Button>
-                      {this.props.isAdmin && <Button
-                        onClick={this.props.toggleToAdmin}
-                      >
-                        Admin View
-                      </Button>}
-                    </div>
-                    {/* Edit Profile */}
-                    <div>
-                      <Modal
-                        title="Edit Profile "
-                        visible={this.state.visible}
-                        onSubmit={this.handleSubmit}
-                        onCancel={this.handleCancel}
-                        footer={[
-                          <Button key="back" onClick={this.handleCancel}>
-                            Return
-                          </Button>,
-                          <Button
-                            key="submit"
-                            /* disabled={this.state.submit_disabled} */
-                            type="primary"
-                            onClick={this.handleSubmit}
-                          >
-                            Submit
-                          </Button>
-                        ]}
-                      >
-                        <Input
-                          name="linkedin"
-                          placeholder="Enter your Linkedin URL"
-                          onChange={this.onChange}
-                          value={this.state.linkedin}
-                          prefix={
-                            <Icon
-                              type="user"
-                              style={{ color: "rgba(0,0,0,.25)" }}
-                            />
-                          }
+              <div className="innerProf">
+                <div>
+                  <Card
+                    classname="card"
+                    style={{
+                      margin: "1vw",
+                      top: "1vw",
+                      left: "-1vw",
+                      width: "100%",
+                      height: "19vh",
+                      position: "relative",
+                      backgroundColor: "rgba(255,255,255,0.55)"
+                    }}
+                  >
+                    <CardContent>
+                      <div className="ImageDiv">
+                        <img
+                          src={this.state.currentUser[0].pictureURL}
+                          className="Nathan"
                         />
-                        &emsp;
-                        {/* Github Input */}
-                        <Input
-                          name="github"
-                          onChange={this.onChange}
-                          value={this.state.github}
-                          placeholder="Enter your Github URL"
-                          prefix={
-                            <Icon
-                              type="user"
-                              style={{ color: "rgba(0,0,0,.25)" }}
-                            />
-                          }
-                        />
-                        <div>
-                          <FormControl component="fieldset">
-                            <FormLabel component="legend">
-                              Choose your Skillset(s)
-                            </FormLabel>
-                            <FormGroup>
-                              <FormControlLabel
-                                control={
-                                  <Checkbox
-                                    checked={this.state.software}
-                                    onChange={this.handleChange("software")}
-                                    value="software"
-                                  />
-                                }
-                                label="Software Engineering"
-                              />
-                              <FormControlLabel
-                                control={
-                                  <Checkbox
-                                    checked={this.state.data}
-                                    onChange={this.handleChange("data")}
-                                    value="data"
-                                  />
-                                }
-                                label="Data Science"
-                              />
-                              <FormControlLabel
-                                control={
-                                  <Checkbox
-                                    checked={this.state.media}
-                                    onChange={this.handleChange("media")}
-                                    value="media"
-                                  />
-                                }
-                                label="Digital Media"
-                              />
-                              <FormControlLabel
-                                control={
-                                  <Checkbox
-                                    checked={this.state.strat}
-                                    onChange={this.handleChange("strat")}
-                                    value="strat"
-                                  />
-                                }
-                                label="Digital Strategy"
-                              />
-                              <FormControlLabel
-                                control={
-                                  <Checkbox
-                                    checked={this.state.entre}
-                                    onChange={this.handleChange("entre")}
-                                    value="entre"
-                                  />
-                                }
-                                label="Entrepreneurship"
-                              />
-                            </FormGroup>
-                          </FormControl>
+                      </div>
+                      <div className="infodiv">
+                        <Typography
+                          gutterBottom
+                          variant="headline"
+                          component="h2"
+                          style={{ fontSize: "20px", color: "white" }}
+                        >
+                          RevTech
+                        </Typography>
+                        {this.state.complete == true && (
+                          <Typography component="p" style={{ color: "white" }}>
+                            Name: {this.state.currentUser[0].name} <br />{" "}
+                            Position: {this.state.currentUser[0].status} <br />
+                            Email: {this.state.currentUser[0].email}
+                          </Typography>
+                        )}
+                        <br />
+
+                        <div className="icons">
+                          <SocialIcon
+                            url={this.state.currentUser[0].linkedin}
+                          />
+                          &emsp;
+                          <SocialIcon
+                            disabled={this.state.git_disabled}
+                            url={this.state.currentUser[0].github}
+                          />
                         </div>
-                        <p> Add Photo: </p>
-                        <Profile_pic user={this.state.currentUser[0]} />
-                      </Modal>
-                    </div>
-                  </CardContent>
-                </Card>
+                      </div>
+                      <br />
+
+                      <div className="setting">
+                        &emsp;
+                        <Button
+                          type="primary"
+                          onClick={this.showModal}
+                          className="EditProfile"
+                        >
+                          {" "}
+                          Edit Profile
+                        </Button>
+                        <Button onClick={this.props.logout}>Logout</Button>
+                        {this.props.isAdmin && (
+                          <Button onClick={this.props.toggleToAdmin}>
+                            Admin View
+                          </Button>
+                        )}
+                      </div>
+
+                      {/* Edit Profile */}
+                      <div>
+                        <Modal
+                          title="Edit Profile "
+                          visible={this.state.visible}
+                          onSubmit={this.handleSubmit}
+                          onCancel={this.handleCancel}
+                          footer={[
+                            <Button key="back" onClick={this.handleCancel}>
+                              Return
+                            </Button>,
+                            <Button
+                              key="submit"
+                              /* disabled={this.state.submit_disabled} */
+                              type="primary"
+                              onClick={this.handleSubmit}
+                            >
+                              Submit
+                            </Button>
+                          ]}
+                        >
+                          <Input
+                            name="linkedin"
+                            placeholder="Enter your Linkedin URL"
+                            onChange={this.onChange}
+                            value={this.state.linkedin}
+                            prefix={
+                              <Icon
+                                type="user"
+                                style={{ color: "rgba(0,0,0,.25)" }}
+                              />
+                            }
+                          />
+                          &emsp;
+                          {/* Github Input */}
+                          <Input
+                            name="github"
+                            onChange={this.onChange}
+                            value={this.state.github}
+                            placeholder="Enter your Github URL"
+                            prefix={
+                              <Icon
+                                type="user"
+                                style={{ color: "rgba(0,0,0,.25)" }}
+                              />
+                            }
+                          />
+                          <div>
+                            <FormControl component="fieldset">
+                              <FormLabel component="legend">
+                                Choose your Skillset(s)
+                              </FormLabel>
+                              <FormGroup>
+                                <FormControlLabel
+                                  control={
+                                    <Checkbox
+                                      checked={this.state.software}
+                                      onChange={this.handleChange("software")}
+                                      value="software"
+                                    />
+                                  }
+                                  label="Software Engineering"
+                                />
+                                <FormControlLabel
+                                  control={
+                                    <Checkbox
+                                      checked={this.state.data}
+                                      onChange={this.handleChange("data")}
+                                      value="data"
+                                    />
+                                  }
+                                  label="Data Science"
+                                />
+                                <FormControlLabel
+                                  control={
+                                    <Checkbox
+                                      checked={this.state.media}
+                                      onChange={this.handleChange("media")}
+                                      value="media"
+                                    />
+                                  }
+                                  label="Digital Media"
+                                />
+                                <FormControlLabel
+                                  control={
+                                    <Checkbox
+                                      checked={this.state.strat}
+                                      onChange={this.handleChange("strat")}
+                                      value="strat"
+                                    />
+                                  }
+                                  label="Digital Strategy"
+                                />
+                                <FormControlLabel
+                                  control={
+                                    <Checkbox
+                                      checked={this.state.entre}
+                                      onChange={this.handleChange("entre")}
+                                      value="entre"
+                                    />
+                                  }
+                                  label="Entrepreneurship"
+                                />
+                              </FormGroup>
+                            </FormControl>
+                          </div>
+                          <p> Add Photo: </p>
+                          <Profile_pic user={this.state.currentUser[0]} />
+                        </Modal>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
             </div>
+
             <div classname="tabs">
               <Tabs defaultActiveKey="1" onChange={callback}>
                 <TabPane tab="Daily Challenges" key="1">
